@@ -11,35 +11,35 @@ boolean isEmpty(List l){
 
 ElType getElmt(List l, int idx){
     ElType nomer = 0 ;
-    Address alamat = l;
+    Address P = l;
     while (nomer < idx) {
         nomer += 1;
-        alamat = NEXT(alamat);
+        P = NEXT(P);
     }
-    return INFO(alamat);
+    return INFO(P);
 }
 
 void setElmt(List *l, int idx, ElType val){
     ElType nomer = 0 ;
-    Address alamat = *l;
+    Address P = *l;
     while (nomer < idx) {
         nomer += 1;
-        alamat = NEXT(alamat);
+        P = NEXT(P);
     }
-    INFO(alamat) = val;
+    INFO(P) = val;
 }
 
 int indexOf(List l, ElType val){
     int indeks = 0, hasil ;
-    Address alamat = l ;
+    Address P = l ;
     boolean found = false;
-    while (alamat != NULL && !found) {
-        if (INFO(alamat) == val) {
+    while (P != NULL && !found) {
+        if (INFO(P) == val) {
             found = true;
         }
         else {
             indeks ++ ;
-            alamat = NEXT(alamat);
+            P = NEXT(P);
         }
     }
     if (found) {
@@ -62,7 +62,7 @@ void insertFirst(List *l, ElType val){
 
 
 void insertLast(List *l, ElType val){
-    Address alamat, akhir ;
+    Address P, akhir ;
     /*if (isEmpty(&l)) {
         insertFirst(l, val);
     }*/
@@ -70,52 +70,52 @@ void insertLast(List *l, ElType val){
         insertFirst(l, val);
     }
     else {
-        alamat = newNode(val) ;
-        if (alamat != NULL) {
+        P = newNode(val) ;
+        if (P != NULL) {
             akhir = *l ;
             while (NEXT(akhir) != NULL ) {
                 akhir = NEXT(akhir);
             }
-            NEXT(akhir) = alamat;
+            NEXT(akhir) = P;
         }
     }
 }
 
 void insertAt(List *l, ElType val, int idx){
     int angka;
-    Address alamat, lokasi ;
+    Address P, lokasi ;
     if (idx == 0) {
         insertFirst(l,val);
     }
     else {
-        alamat = newNode(val);
-        if (alamat != NULL) {
+        P = newNode(val);
+        if (P != NULL) {
             angka = 0;
             lokasi = *l;
             while (angka < idx - 1) {
                 angka++ ;
                 lokasi = NEXT(lokasi);
             }
-            NEXT(alamat) = NEXT(lokasi);
-            NEXT(lokasi) = alamat;
+            NEXT(P) = NEXT(lokasi);
+            NEXT(lokasi) = P;
         }
     }
 }
 
 void deleteFirst(List *l, ElType *val){
-    Address alamat = *l;
-    *val = INFO(alamat) ;
-    *l = NEXT(alamat);
-    free(alamat) ;
+    Address P = *l;
+    *val = INFO(P) ;
+    *l = NEXT(P);
+    free(P) ;
 }
 
 void deleteLast(List *l, ElType *val){
-    Address alamat, lokasi ;
-    alamat = *l;
+    Address P, lokasi ;
+    P = *l;
     lokasi = NULL ;
-    while (NEXT(alamat) != NULL) {
-        lokasi = alamat ;
-        alamat = NEXT(alamat) ;
+    while (NEXT(P) != NULL) {
+        lokasi = P ;
+        P = NEXT(P) ;
     }
     if (lokasi == NULL) {
         *l = NULL;
@@ -123,13 +123,13 @@ void deleteLast(List *l, ElType *val){
     else {
         NEXT(lokasi) = NULL;
     }
-    *val = INFO(alamat);
-    free(alamat);
+    *val = INFO(P);
+    free(P);
 }
 
 void deleteAt(List *l, int idx, ElType *val){
     int angka;
-    Address alamat, lokasi ;
+    Address P, lokasi ;
     if (idx == 0) {
         deleteFirst(l,val);
     }
@@ -140,22 +140,22 @@ void deleteAt(List *l, int idx, ElType *val){
             angka ++ ;
             lokasi = NEXT(lokasi) ;
         }
-        alamat = NEXT(lokasi);
-        *val= INFO(alamat);
-        NEXT(lokasi) = NEXT(alamat);
-        free(alamat);
+        P = NEXT(lokasi);
+        *val= INFO(P);
+        NEXT(lokasi) = NEXT(P);
+        free(P);
     }
 }
 
 void displayList(List l){
-    Address alamat = l ;
+    Address P = l ;
     printf("[");
     if (!isEmpty(l)) {
-        while (NEXT(alamat) != NULL) {
-            printf("%d,", INFO(alamat));
-            alamat = NEXT(alamat);
+        while (NEXT(P) != NULL) {
+            printf("%d,", INFO(P));
+            P = NEXT(P);
         }
-        printf("%d", INFO(alamat));
+        printf("%d", INFO(P));
     }
     printf("]");
 }
@@ -186,79 +186,79 @@ boolean fSearch(List L, Address P){
 }
 
 Address searchPrec(List L, ElType X){
-    Address sebelum = NULL, sekarang= FIRST(L);
+    Address Q = NULL, P= FIRST(L);
     boolean found= false;
-    while ((sekarang != NULL) && (!found)) {
-        if (INFO(sekarang) == X) {
+    while ((P != NULL) && (!found)) {
+        if (INFO(P) == X) {
             found = true;
         }
         else {
-            sebelum = sekarang;
-            sekarang = NEXT(sekarang);
+            Q = P;
+            P = NEXT(P);
         }
     }
     if (!found) {
-        sebelum = NULL;
+        Q = NULL;
     }
-    return sebelum;
+    return Q;
 }
 
 ElType max(List l){
-    Address sekarang = l;
-    ElType terbesar= INFO(sekarang);
-    while(sekarang != NULL) {
-        if(INFO(sekarang) > terbesar) {
-            terbesar = INFO(sekarang);
+    Address P = l;
+    ElType maxnum= INFO(P);
+    while(P != NULL) {
+        if(INFO(P) > maxnum) {
+            maxnum = INFO(P);
         }
         else {
-            sekarang = NEXT(sekarang);
+            P = NEXT(P);
         }
     }
-    return terbesar;
+    return maxnum;
 }
 
 Address adrMax(List l){
-    Address sekarang = l, addTerbesar = l;
-    ElType terbesar = INFO(sekarang);
-    while(sekarang != NULL) {
-        if(INFO(sekarang) > terbesar) {
-            terbesar = INFO(sekarang);
-            addTerbesar = sekarang;
+    Address P = l, addmaxnum = l;
+    ElType maxnum = INFO(P);
+    while(P != NULL) {
+        if(INFO(P) > maxnum) {
+            maxnum = INFO(P);
+            addmaxnum = P;
         }
         else {
-            sekarang = NEXT(sekarang);
+            P = NEXT(P);
         }
     }
-    return addTerbesar;
+    return addmaxnum;
 }
 
 ElType min(List l){
-    Address sekarang = l;
-    ElType terkecil= INFO(sekarang);
-    while(sekarang != NULL) {
-        if(INFO(sekarang) < terkecil) {
-            terkecil = INFO(sekarang);
+    Address P = l;
+    ElType minnum= INFO(P);
+    while(P != NULL) {
+        if(INFO(P) < minnum) {
+            minnum = INFO(P);
         }
         else {
-            sekarang = NEXT(sekarang);
+            P = NEXT(P);
         }
     }
-    return terkecil;
+    return minnum;
 }
 
 Address adrMin(List l){
-    Address sekarang = l, addTerkecil = l;
-    ElType terkecil = INFO(sekarang);
-    while(sekarang != NULL) {
-        if(INFO(sekarang) < terkecil) {
-            terkecil = INFO(sekarang);
-            addTerkecil = sekarang;
+    Address P = l, addminnum = l;
+    ElType minnum = INFO(P);
+    while(P != NULL) {
+        if(INFO(P) < minnum) {
+            minnum = INFO(P);
+            addminnum = P;
         }
         else {
-            sekarang = NEXT(sekarang);
+            P = NEXT(P);
         }
     }
-    return addTerkecil;
+    return addminnum;
 }
 
 float average(List l){
@@ -274,18 +274,18 @@ float average(List l){
 
 /****************** PROSES TERHADAP LIST ******************/
 List concat(List l1, List l2) {
-    Address alamat = l1;
+    Address P = l1;
     List l3;
     ElType val;
     CreateList(&l3);
-    while (alamat != NULL) {
-        insertLast(&l3, INFO(alamat));
-        alamat = NEXT(alamat);
+    while (P != NULL) {
+        insertLast(&l3, INFO(P));
+        P = NEXT(P);
     }
-    alamat = l2;
-    while (alamat != NULL) {
-        insertLast(&l3, INFO(alamat));
-        alamat = NEXT(alamat);
+    P = l2;
+    while (P != NULL) {
+        insertLast(&l3, INFO(P));
+        P = NEXT(P);
     }
     return l3;
 }
@@ -298,10 +298,10 @@ void delAll(List *l){
 }
 
 void inverseList(List *l){
-    Address sekarang = *l, awal=NULL, akhir;
-    while(sekarang != NULL) {
-        akhir = sekarang;
-        sekarang = NEXT(sekarang);
+    Address P = *l, awal=NULL, akhir;
+    while(P != NULL) {
+        akhir = P;
+        P = NEXT(P);
         NEXT(akhir) = awal;
         awal = akhir;
     }
@@ -328,19 +328,19 @@ void copyList(List *l1, List *l2){
 
 List fCopyList(List l){
     List kopian;
-    Address sekarang = l, baru;
+    Address P = l, baru;
     boolean gagal = false;
     CreateList(&kopian);
-    while(sekarang != NULL && !gagal) {
-        baru = newNode(INFO(sekarang));
+    while(P != NULL && !gagal) {
+        baru = newNode(INFO(P));
         if(baru != NULL) {
-            insertLast(&kopian, INFO(sekarang));
+            insertLast(&kopian, INFO(P));
         } 
         else {
             delAll(&kopian);
             gagal = true;
         }
-        sekarang = NEXT(sekarang);
+        P = NEXT(P);
     }
     return kopian;
 }
@@ -353,16 +353,16 @@ void splitList(List *l1, List *l2, List l){
     int indeks, panjang = length(l) / 2;;
     CreateList(l1);
     CreateList(l2);
-    Address sekarang;
-    sekarang = l;
+    Address P;
+    P = l;
     indeks = 0;
-    while(sekarang != NULL) {
+    while(P != NULL) {
         if(panjang > indeks) {
-            insertLast(l1,INFO(sekarang));
+            insertLast(l1,INFO(P));
         } else {
-            insertLast(l2,INFO(sekarang));
+            insertLast(l2,INFO(P));
         }
-        sekarang = NEXT(sekarang);
+        P = NEXT(P);
         indeks += 1;
     }
 }
