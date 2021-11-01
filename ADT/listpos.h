@@ -10,7 +10,7 @@
 #include "boolean.h"
 
 /*  Kamus Umum */
-#define CAPACITY 100
+#define CAPACITY 5
 /* Kapasitas penyimpanan */
 #define IDX_UNDEF -1
 /* Indeks tak terdefinisi*/
@@ -125,7 +125,7 @@ void sort(ListPos *l, boolean asc);
 /* Proses : Mengurutkan l dengan salah satu algoritma sorting,
    algoritma bebas */
 
-/* ********** MENAMBAH DAN MENGHAPUS ELEMEN DI AKHIR ********** */
+/* ********** MENAMBAH DAN MENGHAPUS ELEMEN ********** */
 /* *** Menambahkan elemen terakhir *** */
 void insertLast(ListPos *l, ElType val);
 /* Proses: Menambahkan val sebagai elemen terakhir List */
@@ -138,5 +138,11 @@ void deleteLast(ListPos *l, ElType *val);
 /* F.S. val adalah nilai elemen terakhir l sebelum penghapusan, */
 /*      Banyaknya elemen List berkurang satu */
 /*      List l mungkin menjadi kosong */
+
+/* ********** MENUKAR ELEMEN KE LAST ********** */
+void swapLast(ListPos *l, ElType val);
+/* I.S. List l tidak kosong dan val asumsi valid */
+/* F.S. val menjadi elemen terakhir pada list, */
+/*      Pada indeks elemen yang tadinya berisi val, nilainya menjadi nilai dari elemen terakhir */
 
 #endif
