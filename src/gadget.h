@@ -1,7 +1,7 @@
 #ifndef GADGET_H
 #define GADGET_H
 
-#include "ADT/listpos.h"
+#include "../ADT/listpos.h"
 #include <stdio.h>
 
 /* *** Menyimpan Harga Gadget *** */
