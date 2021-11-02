@@ -4,6 +4,7 @@
 #include "../ADT/boolean.h"
 #include "../ADT/listpos.h"
 
+/* Definisi elemen */
 typedef struct {
    ListPos gadget; /* untuk inventory gadget */
    int money; /* menyimpan uang player */
@@ -11,14 +12,19 @@ typedef struct {
    // NANTI TAMBAHIN YANG LAIN JUGA!!
 } Player;
 
+/* ********* AKSES (Selektor) ********* */
+/* Jika p adalah Player, maka akses elemen : */
 #define GADGET(p) (p).gadget
 #define MONEY(p) (p).money
 #define TIME(p) (p).time
 
-/* Inisialisasi Player */
+/* *** Kreator *** */
 void createPlayer (Player *p);
-/* I.S. Nama player terdefinisi */
-/* F.S. Membuat player dengan atribut gadget, money, time, dan ... */
+/* I.S. sembarang */
+/* F.S. Membuat player dengan atribut sebagai berikut : */
+/*      Gadget = Listpos kosong */
+/*      Uang = 0 yen */
+/*      Waktu = 0 satuan */
 
 /* *** Primitif Uang *** */
 /* Menambah uang */
