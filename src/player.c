@@ -2,10 +2,13 @@
 #include <stdlib.h>
 #include "player.h"
 
-/* Inisialisasi Player */
+/* *** Kreator *** */
 void createPlayer (Player *p){
-/* I.S. Nama player terdefinisi */
-/* F.S. Membuat player dengan atribut gadget, money, time, dan ... */
+/* I.S. sembarang */
+/* F.S. Membuat player dengan atribut sebagai berikut : */
+/*      Gadget = Listpos kosong */
+/*      Uang = 0 yen */
+/*      Waktu = 0 satuan */
     
     // Membentuk penyimpanan sementara untuk listpos gadget
     ListPos g;
