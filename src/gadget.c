@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "gadget.h"
-#include "ADT/listpos.h"
+#include "../ADT/listpos.h"
 
 /* *** Menyimpan Harga Gadget *** */
 int gadgetPrice(int n){
