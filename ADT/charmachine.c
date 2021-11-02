@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 char currentChar;
+char currentFileChar;
 boolean eot;
 
 static FILE * tape;
@@ -60,5 +61,5 @@ void advfile() {
 		      Jika  currentChar = MARK maka EOP akan menyala (true) */
 
 	/* Algoritma */
-	retval = fscanf(filetape,"%c",&currentChar);
+	retval = fscanf(filetape,"%c",&currentFileChar);
 }
