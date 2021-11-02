@@ -1,6 +1,3 @@
-#ifndef PLAYER_H
-#define PLAYER_H
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "player.h"
@@ -19,5 +16,3 @@ void useMoney (Player *p, int val){
 /* F.S. Uang player bertambah sejumlah val */
     MONEY(*p) -= val;
 }
-
-#endif
