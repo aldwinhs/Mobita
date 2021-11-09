@@ -15,15 +15,14 @@ int main(){
     printf("3. Exit\n");
     
     startWord();
-    takeWord(currentWord, &input);
+    input = takeWord(currentWord);
     
     while(input != 3 && input != 1 && input != 2){
         printf("input salah\n");
         advWord();
-        takeWord(currentWord, &input);
-
-        currentWord.content[0]
+        input = takeWord(currentWord);
     }
+    
 
     
 

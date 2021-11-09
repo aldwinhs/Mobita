@@ -97,6 +97,12 @@ void copyWordFile(){
 	}
 }
 
-void takeWord(Word word, char* output){
-	
+char takeWord(Word word){
+	int i;
+   char output[100];
+   for ( i = 0; i < word.length; i++){
+      output[i] = word.contents[i];
+   }
+   output[i] = '\0';
+   return output;
 }
