@@ -61,6 +61,7 @@ void displayToDo(CollOfItems itemsinConfig, int currTime) {
     }
 }
 
+// [TO DO] [Opsional] Hapus Item di TO_DO untuk item yang sudah diantarkan (sudah di DROP_OFF)
 /* TEST CASE */
 /*
 int main() {
