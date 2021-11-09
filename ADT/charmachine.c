@@ -58,3 +58,11 @@ void advfile() {
 	/* Algoritma */
 	retval = fscanf(filetape,"%c",&currentChar);
 }
+
+void close(){
+   fclose(tape);
+}
+
+void closeFile(){
+   fclose(filetape);
+}

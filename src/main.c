@@ -6,7 +6,7 @@
 #include"../ADT/wordmachine.h"
 
 int main(){
-    char input;
+    const char* input;
     boolean exit;
     printf("Main Menu:\n");
     printf("1. New Game\n");
@@ -14,30 +14,31 @@ int main(){
     printf("3. Exit\n");
     
     startWord();
-    input = takeWord(currentWord);
+    // input = takeWord(currentWord);
+
+    input = myName();
     
     // while(input != 3 && input != 1 && input != 2){
     //     printf("input salah\n");
     //     advWord();
     //     input = takeWord(currentWord);
     // }
-    
-    // printf("%c", input);
-    // fclose(tape);
+    if(input == "anjay") printf("kunti");
+    printf("%s", input);
 
-    while (input != 'exit'){
-        printf("ENTER COMMAND: ")
-        advWord();
-        input = takeWord(currentWord);
-        if(){
+    // while (input.contents != 'exit'){
+    //     printf("ENTER COMMAND: ");
+    //     advWord();
+    //     input = takeWord(currentWord);
+    //     if(){
 
-        }else if(){
+    //     }else if(){
 
-        }else if(){
+    //     }else if(){
 
-        }
-    }
-    
+    //     }
+    // }
+
 
 
 
@@ -45,4 +46,9 @@ int main(){
 
 
     return 0;
+}
+
+const char* myName() {
+  char name[6] = "Flavio";
+  return name;
 }

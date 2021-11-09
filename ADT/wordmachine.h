@@ -74,7 +74,7 @@ void copyWordFile();
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi CAPACITY, maka sisa kata terpotong */
 
-char takeWord(Word word);
+Word takeWord(Word word);
 
 #endif
 

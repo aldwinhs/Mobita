@@ -41,4 +41,8 @@ void advfile();
           currentChar mungkin = MARK
           Jika  currentChar = MARK maka EOP akan menyala (true) */
 
+void close();
+
+void closeFile();
+
 #endif

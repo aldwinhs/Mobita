@@ -38,7 +38,7 @@ void advWord(){
 void copyWord(){
 	ignoreBlank();
 	currentWord.length = 0;
-	while((currentChar != BLANK) && (currentWord.length < CAPACITY)){
+	while((currentChar != BLANK) && (currentWord.length < CAPACITY) && (currentChar != NEWLINE)){
 		currentWord.contents[currentWord.length] = currentChar;
 		adv();
 		currentWord.length++;
@@ -97,12 +97,13 @@ void copyWordFile(){
 	}
 }
 
-char takeWord(Word word){
+Word takeWord(Word word){
 	int i;
-   char output[100];
+   Word output;
    for ( i = 0; i < word.length; i++){
-      output[i] = word.contents[i];
+      output.contents[i] = word.contents[i];
    }
-   output[i] = '\0';
+   output.contents[i] = '\0';
+   output.length = i;
    return output;
 }
