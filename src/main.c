@@ -2,9 +2,8 @@
 
 #include<stdio.h>
 #include<stdlib.h>
-#include"ADT/boolean.h"
-#include "ADT/charmachine.h"
-#include"ADT/wordmachine.h"
+#include"../ADT/boolean.h"
+#include"../ADT/wordmachine.h"
 
 int main(){
     char input;
@@ -17,13 +16,27 @@ int main(){
     startWord();
     input = takeWord(currentWord);
     
-    while(input != 3 && input != 1 && input != 2){
-        printf("input salah\n");
+    // while(input != 3 && input != 1 && input != 2){
+    //     printf("input salah\n");
+    //     advWord();
+    //     input = takeWord(currentWord);
+    // }
+    
+    // printf("%c", input);
+    // fclose(tape);
+
+    while (input != 'exit'){
+        printf("ENTER COMMAND: ")
         advWord();
         input = takeWord(currentWord);
-    }
-    
+        if(){
 
+        }else if(){
+
+        }else if(){
+
+        }
+    }
     
 
 
