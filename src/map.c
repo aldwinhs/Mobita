@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include "../ADT/boolean.h"
 #include "../ADT/matrix.h"
+#include "../ADT/stack.h"
 #include "../pcolor/pcolor.h"
 #include "player.h"
 #include "map.h"
 
 
-void printMap(Matrix mloc, Player p, Matrix mhub){
+void printMap(Matrix mloc, Player p, Matrix mhub, Stack s){
     for(int a=0;a<COLS(mloc)+2;a++){
         printf("*");
     }
@@ -17,8 +18,16 @@ void printMap(Matrix mloc, Player p, Matrix mhub){
             int c = ELMT(mloc, i,j);
             if (c != '.') {
                 if (c == LOC(p)) {
-                    print_yellow((char)c);
-                } else if (c == '8' && ELMT(mhub, 0, (int)LOC(p)-64) == 1) {
+                    print_yellow((char)c); 
+                
+                } else if ((char)c==TOP(s)) {
+                    print_blue((char)c);
+                } else if ((char)c==TOP(s)) {
+                    print_red((char)c);
+                }
+                
+                
+                else if (c == '8' && ELMT(mhub, 0, (int)LOC(p)-64) == 1) {
                     print_green((char)c);
                 } else if (ELMT(mhub, c-64, (int)LOC(p)-64) == 1) {
                     print_green((char)c);
@@ -83,7 +92,8 @@ int main() {
         } 
     }   
     printf("\n");
-    printMap(m, p, m1);             //buat print map nya
+    Stack s;
+    printMap(m, p, m1, s);             //buat print map nya
     printf("\n");
     return 0;
 }
