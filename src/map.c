@@ -2,12 +2,19 @@
 #include "../ADT/boolean.h"
 #include "../ADT/matrix.h"
 #include "../ADT/stack.h"
+#include "../ADT/queue.h"
 #include "../pcolor/pcolor.h"
 #include "player.h"
 #include "map.h"
 
-
-void printMap(Matrix mloc, Player p, Matrix mhub, Stack s){
+/* 
+    mloc : matriks  buat simpen map
+    p    : player
+    mhub : matriks hubungan antarlokasi
+    s    : stack buat dropoff
+    q    : queue buat todolist
+*/
+void printMap(Matrix mloc, Player p, Matrix mhub, Stack s, Queue q){
     for(int a=0;a<COLS(mloc)+2;a++){
         printf("*");
     }
@@ -22,7 +29,7 @@ void printMap(Matrix mloc, Player p, Matrix mhub, Stack s){
                 
                 } else if ((char)c==TOP(s)) {
                     print_blue((char)c);
-                } else if ((char)c==TOP(s)) {
+                } else if ((char)c==HEAD(q)) {
                     print_red((char)c);
                 }
                 
@@ -59,7 +66,7 @@ int main() {
     
     ELMT(m, 0, 0) = '8';        //masukin koordinat dari lokasi
     ELMT(m, 9, 0) = 'A'; 
-    ELMT(m, 0, 14) = 'B';
+    ELMT(m, 0, 14) = 'B';       //ini ELMT harusnya buat matriks, tapi malah dianggep list
     ELMT(m, 0, 8) = 'C';
     ELMT(m, 0, 13) = 'D';
     ELMT(m, 1, 2) = 'E';
