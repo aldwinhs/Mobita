@@ -12,31 +12,35 @@
 #define CAPACITY_TAS 100
 
 /* ADT item yang ini sekadar untuk testing, nanti dihapus */
-typedef struct {
-    char *lokSrc;
-    char *lokDes;
-    char *jenisItem;
-    int waktuMasuk;
-    int waktuHangus; // waktuHangus -1 jika bukan perishable item
-    int price;
-    // [TO DO] Perlu ditambahkan apa lagi?
+typedef struct
+{
+  char *lokSrc;
+  char *lokDes;
+  char *jenisItem;
+  int waktuMasuk;
+  int waktuHangus; // waktuHangus -1 jika bukan perishable item
+  int price;
+  // [TO DO] Perlu ditambahkan apa lagi?
 } Item;
 
 typedef Item item; // [TO DO] Item soon diganti sama ADT Item
-typedef struct {
-    item buffer[CAPACITY_TAS]; /* tabel penyimpan elemen */
-    int idxTop;              /* alamat TOP: elemen puncak */
-    int heavyItem; // amount of heavyItem in Tas
-    int currCapacity; // currCapacity tidak lain dan tidak bukan adalah idxTop + 1;
-    int maxCapacity; // maxCapacity bisa berubah
+typedef struct
+{
+  item buffer[CAPACITY_TAS]; /* tabel penyimpan elemen */
+  int idxTop;                /* alamat TOP: elemen puncak */
+  int heavyItem;             // amount of heavyItem in Tas
+  int currCapacity;          // currCapacity tidak lain dan tidak bukan adalah idxTop + 1;
+  int maxCapacity;           // maxCapacity bisa berubah
 } Tas;
 typedef Tas CollOfItems;
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika s adalah Tas, maka akses elemen : */
 #define IDX_TOP(s) (s).idxTop
-#define     TOP(s) (s).buffer[(s).idxTop]
-
+#define TOP(s) (s).buffer[(s).idxTop]
+#define SUM_HEAVY(s) (s).heavyItem
+#define MAX_TAS(s) (s).maxCapacity
+#define CURRENT_CAP(s) (s).currCapacity
 /* *** Konstruktor/Kreator *** */
 void CreateTas(Tas *s);
 /* I.S. sembarang; */
@@ -71,7 +75,5 @@ void displayToDo(CollOfItems itemsinConfig, int currTime);
 /* Menampilkan TO DO LIST */
 /* I.S. terdapat setidaknya satu item pada file konfigurasi dengan urutan sesuai spesifikasi */
 /* F.S. menampilkan setiap item yang waktu pesanan masuknya  lebih kecil atau sama dengan waktu sekarang */
-
-
 
 #endif

@@ -1,82 +1,60 @@
-#include "../ADT/stack.h"
-#include "../ADT/boolean.h"
-#include "pick_up.h"
 #include "drop_off.h"
-#include "player.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-void dropOffItem(Player *p, Stack *S, Item *T, ElTypeStack *item)
+void dropOffItem(Player *p, Tas *S, Ability *A, Item *item)
 {
-    if (isEmptyStack(*S))
+    if (isTasEmpty(*S))
     {
         printf("Tidak terdapat pesanan yang dapat diantarkan!");
     }
     else
     {
-        pop(S, item);
-        if (*item == 'N')
+        rmvFromTas(S, item);
+        if (compare2(item->jenisItem, "N"))
         {
-            addMoney(p, 200);
             printf("Pesanan Normal Item berhasil diantarkan\n");
-            printf("Uang yang didapatkan: 200\n");
         }
-        else if (*item == 'H')
+        else if (compare2(item->jenisItem, "H"))
         {
-            addMoney(p, 400);
             printf("Pesanan berupa Heavy Item berhasil diantarkan\n");
-            printf("Uang yang didapatkan: 400\n");
-            SPEED(*T) += 10;
-            SUM_HEAVY(*T)
+            SPEED(*A) += 10;
+            SUM_HEAVY(*S)
             --;
         }
-        else if (*item == 'P')
+        else if (compare2(item->jenisItem, "P"))
         {
-            addMoney(p, 400);
+
             printf("Pesanan berupa Perishable Item berhasil diantarkan\n");
-            printf("Uang yang didapatkan: 400\n");
             // dapet ability Increase Capacity
         }
-        else if (*item == 'V')
+        else if (compare2(item->jenisItem, "V"))
         {
-            addMoney(p, 600);
             printf("Pesanan berupa VIP Item Item berhasil diantarkan\n");
-            printf("Uang yang didapatkan: 600\n");
             // ability Return To Sender
         }
         else
         { //  tidak terdapat item dalam posisi tersebut
             printf("Tidak terdapat pesanan yang dapat diantarkan!\n");
         }
+        addMoney(p, item->price);
+        printf("Uang yang didapatkan: %d\n", item->price);
     }
 }
 
-int main()
+boolean compare2(char *array1, char *array2)
 {
-    char item;
-    Player P;
-    // createPlayer(&P);
-    MONEY(P) = 0;
-    TIME(P) = 0;
-    Stack S;
-    Item T;
-    CreateStack(&S);
-    CreateItem(&T);
-    for (int i = 0; i < 5; i++)
+
+    int i;
+    boolean compare = false;
+    i = 0;
+    while (array1[i] == array2[i] && compare == false)
     {
-        scanf("\n%c", &item);
-        pickUpItem(&S, &T, item);
-        heavyItemTime(T, &P);
-        printf("%d\n", TIME(P));
+        if (array1[i] == '\0' || array2[i] == '\0')
+        {
+            compare = true;
+        }
+        i++;
     }
-    printf("%c", TOP(S));
-    ElTypeStack val;
-    while (!isEmptyStack(S))
-    {
-        dropOffItem(&P, &S, &T, &val);
-        printf("%d\n", MONEY(P));
-    }
-    printf("%d", SUM_HEAVY(T));
-    return 0;
+    return compare;
 }
-// gcc -o main pick_up.c ../ADT/stack.c player.c ../ADT/listpos.c drop_off.c
