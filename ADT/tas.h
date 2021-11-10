@@ -9,7 +9,7 @@
 // [TO DO] include lokasi tempat ADT Item
 
 #define IDX_UNDEF -1
-#define CAPACITY 100
+#define CAPACITY_TAS 100
 
 /* ADT item yang ini sekadar untuk testing, nanti dihapus */
 typedef struct {
@@ -19,12 +19,16 @@ typedef struct {
     int waktuMasuk;
     int waktuHangus; // waktuHangus -1 jika bukan perishable item
     int price;
+    // [TO DO] Perlu ditambahkan apa lagi?
 } Item;
 
 typedef Item item; // [TO DO] Item soon diganti sama ADT Item
 typedef struct {
-  item buffer[CAPACITY]; /* tabel penyimpan elemen */
-  int idxTop;              /* alamat TOP: elemen puncak */
+    item buffer[CAPACITY_TAS]; /* tabel penyimpan elemen */
+    int idxTop;              /* alamat TOP: elemen puncak */
+    int heavyItem; // amount of heavyItem in Tas
+    int currCapacity; // currCapacity tidak lain dan tidak bukan adalah idxTop + 1;
+    int maxCapacity; // maxCapacity bisa berubah
 } Tas;
 typedef Tas CollOfItems;
 
