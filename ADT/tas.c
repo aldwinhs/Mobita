@@ -1,8 +1,6 @@
 #include "tas.h"
 #include <stdio.h>
 
-int MaxCapacity = 3; // Menginisialisasi MaxCapacity
-int currCapacity = 0; // Menginisialisasi Kapasitas Sekarang, currCapacity tidak lain dan tidak bukan adalah IDX_TOP + 1
 /* *** Konstruktor/Kreator *** */
 void CreateTas(Tas *s){
 /* I.S. sembarang; */
@@ -10,6 +8,9 @@ void CreateTas(Tas *s){
 /* - Index top bernilai IDX_UNDEF */
 /* Proses : Melakukan alokasi, membuat sebuah s kosong */
 	IDX_TOP(*s) = IDX_UNDEF;
+    (*s).heavyItem = 0;
+    (*s).maxCapacity = 3;
+    (*s).currCapacity = 0;
 }
 
 /* ************ Prototype ************ */
@@ -24,7 +25,7 @@ boolean isTasLiterallyFull(Tas s){
 
 boolean isTasFull(Tas s){
 /* Mengirim true jika tabel penampung nilai s Tas penuh */
-    return (IDX_TOP(s) == MaxCapacity - 1);
+    return (IDX_TOP(s) == (s.maxCapacity - 1));
 }
 
 /* ************ Menambahkan sebuah elemen ke Tas ************ */
@@ -35,7 +36,10 @@ void addToTas(Tas *s, item val){
 	if(!isTasFull(*s) && !isTasLiterallyFull(*s)) {
         IDX_TOP(*s)++;
         TOP(*s) = val;
-        currCapacity++;
+        (*s).currCapacity++;
+        if(val.jenisItem == "heavy_item") { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
+            (*s).heavyItem++;
+        }
     } // Else do nothing [TO DO] (Apakah perlu ditambahkan pesan bahwa tas sudah penuh?)
 }
 
@@ -47,7 +51,10 @@ void rmvFromTas(Tas *s, item *val){
 	if(!isTasEmpty(*s)) {
         *val = TOP(*s);
         IDX_TOP(*s)--;
-        currCapacity--;
+        (*s).currCapacity--;
+        if((*val).jenisItem == "heavy_item") { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
+            (*s).heavyItem--;
+        }
     } // Else do nothing [TO DO] (Apakah perlu ditambahkan pesan bahwa tas sudah kosong?)
 }
 
@@ -79,9 +86,9 @@ void displayToDo(CollOfItems itemsinConfig, int currTime) {
 /*
 int main() {
     Tas berisi;
-    Item item1 = {"A", "G", "Superstition", 6, 9, 400, 0};
-    Item item2 = {"D", "F", "Letinga", 14, 29, 213, 0};
-    Item item3 = {"D", "T", "Tolikan", 15, 89, 613, 0};
+    Item item1 = {"A", "G", "heavy_item", 6, 9, 400};
+    Item item2 = {"D", "F", "Letinga", 14, 29, 213};
+    Item item3 = {"D", "T", "Tolikan", 15, 89, 613};
     CreateTas(&berisi);
     addToTas(&berisi, item1);
     addToTas(&berisi, item2);
