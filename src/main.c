@@ -25,7 +25,16 @@ int main(){
     //     advWord();
     //     input = takeWord(currentWord);
     // }
+    
+    startWordFile("./test/ayam.txt");printf("%s", currentWord);
+    for (int i = 0; i < 3; i++)
+    {
+        advWordFile();
+        printf("%s", currentWord);
+    }
+    
 
+    closeFile();
 
     // while (input.contents != 'exit'){
     //     printf("ENTER COMMAND: ");
