@@ -3,6 +3,8 @@
 #include <stdlib.h>
 
 void dropOffItem(Player *p, Tas *S, Ability *A, Item *item)
+/* I.S Sembarang */
+/* F.S item dikeluarkan dari Tas*/
 {
     if (isTasEmpty(*S))
     {
@@ -18,15 +20,19 @@ void dropOffItem(Player *p, Tas *S, Ability *A, Item *item)
         else if (compare2(item->jenisItem, "H"))
         {
             printf("Pesanan berupa Heavy Item berhasil diantarkan\n");
-            SPEED(*A) += 10;
-            SUM_HEAVY(*S)
+            SPEED(*A) += 11; // mendabatkan ability speed_boost
+            if (SPEED(*A) > 11)
+            {
+                SPEED(*A)
+                --;
+            }
+            SUM_HEAVY(*S) //jumlah heavy item di dalam tas berkurang
             --;
         }
         else if (compare2(item->jenisItem, "P"))
         {
-
             printf("Pesanan berupa Perishable Item berhasil diantarkan\n");
-            // dapet ability Increase Capacity
+            Increase_Capacity(S); // mendapatkan ability increase capacity tas
         }
         else if (compare2(item->jenisItem, "V"))
         {
@@ -40,21 +46,4 @@ void dropOffItem(Player *p, Tas *S, Ability *A, Item *item)
         addMoney(p, item->price);
         printf("Uang yang didapatkan: %d\n", item->price);
     }
-}
-
-boolean compare2(char *array1, char *array2)
-{
-
-    int i;
-    boolean compare = false;
-    i = 0;
-    while (array1[i] == array2[i] && compare == false)
-    {
-        if (array1[i] == '\0' || array2[i] == '\0')
-        {
-            compare = true;
-        }
-        i++;
-    }
-    return compare;
 }

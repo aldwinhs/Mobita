@@ -8,6 +8,4 @@
 
 void dropOffItem(Player *p, Tas *S, Ability *T, Item *item);
 
-boolean compare2(char *array1, char *array2);
-
 #endif
