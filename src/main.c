@@ -4,9 +4,10 @@
 #include<stdlib.h>
 #include"../ADT/boolean.h"
 #include"../ADT/wordmachine.h"
+#include<string.h>
 
 int main(){
-    const char* input;
+    Word input;
     boolean exit;
     printf("Main Menu:\n");
     printf("1. New Game\n");
@@ -14,17 +15,17 @@ int main(){
     printf("3. Exit\n");
     
     startWord();
-    // input = takeWord(currentWord);
-
-    input = myName();
+    input = takeWord(currentWord);
+    if(isWordString(input, "anja")){
+        printf("mantap");
+    }
     
     // while(input != 3 && input != 1 && input != 2){
     //     printf("input salah\n");
     //     advWord();
     //     input = takeWord(currentWord);
     // }
-    if(input == "anjay") printf("kunti");
-    printf("%s", input);
+
 
     // while (input.contents != 'exit'){
     //     printf("ENTER COMMAND: ");
@@ -46,9 +47,4 @@ int main(){
 
 
     return 0;
-}
-
-const char* myName() {
-  char name[6] = "Flavio";
-  return name;
 }

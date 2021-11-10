@@ -76,5 +76,10 @@ void copyWordFile();
 
 Word takeWord(Word word);
 
+boolean isWordString(Word word, char string[]);
+
+int takeNum(Word word);
+// dipastikan selalu angka
+
 #endif
 

@@ -2,6 +2,7 @@
 
 #include "wordmachine.h"
 #include <stdio.h>
+#include<string.h>
 boolean endWord;
 Word currentWord;
 
@@ -106,4 +107,27 @@ Word takeWord(Word word){
    output.contents[i] = '\0';
    output.length = i;
    return output;
+}
+
+boolean isWordString(Word word, char string[]){
+   int i;
+   if(word.length == strlen(string)){
+      
+      for ( i = 0; i < word.length; i++){
+         if(word.contents[i] != string[i]){
+            return false;
+         }
+      }
+      return true;
+   }
+   return false;
+}
+
+int takeNum(Word word){
+   int result = 0;int i;
+   for ( i = 0; i < word.length; i++){
+      result *= 10;
+      result += (int) (word.contents[i] - '0');
+   }
+   return result;
 }
