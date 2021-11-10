@@ -55,6 +55,7 @@ void pickUpItem(Tas *S, char *locSrc, char *locDes, char *jenisItem, int waktuma
 }
 
 boolean isVIPitem(Tas S)
+/* menghasilkan true jika pesanan pada top merupakan VIP ITEM sehingga tidak dapat melakukan pick_up pesanan lain */
 {
 
     Item T = TOP(S);
@@ -67,13 +68,14 @@ boolean isVIPitem(Tas S)
 }
 
 boolean isItem(char *jenisitem)
+/* menghasilkan true jika jenis pesanan valid */
 {
     return (*jenisitem == 'N' || *jenisitem == 'H' || *jenisitem == 'P' || *jenisitem == 'V');
 }
 
 boolean compare(char *array1, char *array2)
+// membandingkan string
 {
-
     int i;
     boolean compare = false;
     i = 0;

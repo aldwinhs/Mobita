@@ -14,12 +14,15 @@ void Speed_Boost(Player *P, Tas *S, Ability *A)
     }
     else
     {
-        if (SPEED(*A) % 2 == 0)
+        if (SPEED(*A) != 0)
         {
-            changeTime(P, -1); // berkurang 1 setiap ability SPEEDBOOST mod 2 == 0;
+            SPEED(*A)
+            --;
+            if (SPEED(*A) % 2 != 0)
+            {
+                changeTime(P, -1); // berkurang 1 setiap ability SPEEDBOOST mod 2 == 0;
+            }
         }
-        SPEED(*A)
-        --;
     }
 }
 void Cancel_Speed_Bost(Ability *A)
@@ -48,18 +51,22 @@ void Return_to_Sender(Tas *S)
 {
     item item;
     rmvFromTas(S, &item);
-    if (compare3(item.jenisItem, "P"))
+    if (compare2(item.jenisItem, "P"))
     {
     }
     //insertlastdi todo list
 }
 
 boolean isHaveHeavyItem(Tas T)
+// mengirimkan true jika terdapat heavy item di tas
 {
     return (SUM_HEAVY(T) > 0);
 }
 
 void heavyItemTime(Tas T, Player *P)
+// I.S waktu terdefinisi
+// F.S Setiap pindah ke 1 lokasi maka waktu akan bertambah 1 unit (1+1 =
+// 2 unit). Efek ini dapat menumpuk.
 {
     if (isHaveHeavyItem(T))
     {
@@ -74,7 +81,7 @@ void PerishableTime(Tas *T, Player P)
     {
         item = (*T).buffer[i];
         int duration;
-        if (compare3(item.jenisItem, "P"))
+        if (compare2(item.jenisItem, "P"))
         {
             duration = TIME(P) - item.waktuMasuk;
             (*T).buffer[i].waktuHangus -= duration;
@@ -85,7 +92,7 @@ void PerishableTime(Tas *T, Player P)
         }
     }
 }
-boolean compare3(char *array1, char *array2)
+boolean compare2(char *array1, char *array2)
 {
 
     int i;
@@ -120,4 +127,5 @@ void removeitem(Tas *S, int i)
         rmvFromTas(S, &item);
         addToTas(&S2, item);
     }
+    free(&S2);
 }
