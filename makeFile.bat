@@ -1,0 +1,1 @@
+gcc src/main.c ADT/charmachine.c ADT/wordmachine.c -o mobita
