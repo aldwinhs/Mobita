@@ -32,7 +32,9 @@ void printMap(Matrix mloc, Player p, Matrix mhub, Stack s, Queue q){
                 } else if ((char)c==HEAD(q)) {
                     print_red((char)c);
                 }
-                
+                else if (LOC(p)=='8' && ELMT(mhub, c-64, 0)==1) {
+                    print_green((char)c);
+                }
                 
                 else if (c == '8' && ELMT(mhub, 0, (int)LOC(p)-64) == 1) {
                     print_green((char)c);
