@@ -3,13 +3,14 @@
 
 #include "../ADT/boolean.h"
 #include "../ADT/listpos.h"
+#include "../ADT/point.h"
 
 /* Definisi elemen */
 typedef struct {
    ListPos gadget; /* untuk inventory gadget */
    int money; /* menyimpan uang player */
    int time; /* menyimpan waktu player */
-   // NANTI TAMBAHIN YANG LAIN JUGA!!
+   POINT position; /* menyimpan posisi pemain */
 } Player;
 
 /* ********* AKSES (Selektor) ********* */
@@ -17,6 +18,7 @@ typedef struct {
 #define GADGET(p) (p).gadget
 #define MONEY(p) (p).money
 #define TIME(p) (p).time
+#define POSITION(p) (p).position
 
 /* *** Kreator *** */
 void createPlayer (Player *p);
