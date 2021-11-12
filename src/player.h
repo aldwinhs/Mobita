@@ -10,7 +10,7 @@ typedef struct {
    ListPos gadget; /* untuk inventory gadget */
    int money; /* menyimpan uang player */
    int time; /* menyimpan waktu player */
-   POINT position; /* menyimpan posisi pemain */
+   char location; /* menyimpan posisi pemain */
 } Player;
 
 /* ********* AKSES (Selektor) ********* */
@@ -18,7 +18,7 @@ typedef struct {
 #define GADGET(p) (p).gadget
 #define MONEY(p) (p).money
 #define TIME(p) (p).time
-#define POSITION(p) (p).position
+#define LOC(P) (P).location
 
 /* *** Kreator *** */
 void createPlayer (Player *p);

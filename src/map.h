@@ -8,12 +8,6 @@
 #include "../pcolor/pcolor.h"
 #include "player.h"
 
-typedef struct {
-    char loc;
-} Player;  //sementara pake ini, sebelum ditambahin ke ADT Player
-
-#define LOC(P) (P).loc
-
 void printMap(Matrix mloc, Player p, Matrix mhub, Stack s, Queue q);
 
 #endif
