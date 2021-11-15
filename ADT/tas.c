@@ -36,11 +36,13 @@ void addToTas(Tas *s, item val){
 	if(!isTasFull(*s) && !isTasLiterallyFull(*s)) {
         IDX_TOP(*s)++;
         TOP(*s) = val;
+        TOP(*s).beenPickedUp = true;
         (*s).currCapacity++;
         if(val.jenisItem == "heavy_item") { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
             (*s).heavyItem++;
         }
     } // Else do nothing [TO DO] (Apakah perlu ditambahkan pesan bahwa tas sudah penuh?)
+    // Kalau item dilakukan pick up dan dimasukan ke dalam tas,
 }
 
 /* ************ Menghapus sebuah elemen Tas ************ */
@@ -51,10 +53,12 @@ void rmvFromTas(Tas *s, item *val){
 	if(!isTasEmpty(*s)) {
         *val = TOP(*s);
         IDX_TOP(*s)--;
+        TOP(*s).beenDroppedOf = true;
         (*s).currCapacity--;
         if((*val).jenisItem == "heavy_item") { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
             (*s).heavyItem--;
         }
+
     } // Else do nothing [TO DO] (Apakah perlu ditambahkan pesan bahwa tas sudah kosong?)
 }
 
@@ -75,7 +79,7 @@ void displayToDo(CollOfItems itemsinConfig, int currTime) {
     int amountOfItems = 4;
     int i;
     for(i = 0; i < amountOfItems;i++) {
-        if(itemsinConfig.buffer[i].waktuMasuk <= currTime) {
+        if(itemsinConfig.buffer[i].waktuMasuk <= currTime && !(itemsinConfig.buffer[i].beenDroppedOf) && !(itemsinConfig.buffer[i].beenPickedUp) {
             printf("%d. %s -> %s (%s)\n", i + 1, itemsinConfig.buffer[i].lokSrc, itemsinConfig.buffer[i].lokDes, itemsinConfig.buffer[i].jenisItem);
         }
     }

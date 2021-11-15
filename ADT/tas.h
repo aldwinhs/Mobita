@@ -20,6 +20,8 @@ typedef struct
   int waktuMasuk;
   int waktuHangus; // waktuHangus -1 jika bukan perishable item
   int price;
+  boolean beenPickedUp; // asumsi initialnya False, tapi default di C bukan False, belum tau cara handle [TO DO]
+  boolean beenDroppedOf; // initialnya False
   // [TO DO] Perlu ditambahkan apa lagi?
 } Item;
 
