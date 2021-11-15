@@ -5,7 +5,7 @@
 #include "../ADT/boolean.h"
 #include "player.h"
 
-void pickUpItem(Tas *S, char *lokSrc, char *locDes, char *jenisItem, int waktumasuk, int waktuhangus);
+void pickUpItem(Tas *S, Item T);
 /* I.S Sembarang */
 /* F.S item masuk ke dalam Tas*/
 

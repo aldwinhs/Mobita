@@ -1,10 +1,16 @@
 /* Main Mobita */
 
+/* Importing Functions */
 #include<stdio.h>
 #include<stdlib.h>
-#include"../ADT/boolean.h"
-#include"../ADT/wordmachine.h"
-#include<string.h>
+#include"readFile.h"
+#include"ability.h"
+#include"gadget.h"
+#include"map.h"
+#include"player.h"
+#include"pick_up.h"
+#include"help.h"
+#include"drop_off.h"
 
 int main(){
     Word input;
@@ -15,26 +21,24 @@ int main(){
     printf("3. Exit\n");
     
     startWord();
-    input = takeWord(currentWord);
-    if(isWordString(input, "anja")){
-        printf("mantap");
+    
+    while(!isWordString(currentWord,"1") && !isWordString(currentWord,"2") && !isWordString(currentWord,"3")){
+        printf("input salah\n");
+        advWord();
     }
-    
-    // while(input != 3 && input != 1 && input != 2){
-    //     printf("input salah\n");
-    //     advWord();
-    //     input = takeWord(currentWord);
-    // }
-    
-    startWordFile("./test/ayam.txt");printf("%s", currentWord);
-    for (int i = 0; i < 3; i++)
-    {
-        advWordFile();
-        printf("%s", currentWord);
-    }
-    
 
-    closeFile();
+    if(isWordString(currentWord,"1")){
+        printf("Masukan nama konfigurasi level: ");
+        advWord();
+        input = takeWord(currentWord);
+        char fileloc[] = input.contents;
+        readFile(fileloc);
+        
+
+    }else if (isWordString(currentWord,"2")){
+
+    }
+
 
     // while (input.contents != 'exit'){
     //     printf("ENTER COMMAND: ");
