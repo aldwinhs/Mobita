@@ -7,7 +7,7 @@
 typedef Item ElType;
 typedef struct node* Address;
 typedef struct node {
-    ElType info;
+    ElType info; // kalo dilokalku ga eror nah udah engga, mengeleg keknya
     Address next;
 } Node;
 
@@ -15,6 +15,5 @@ typedef struct node {
 #define NEXT(p) (p)->next
 
 Address newNode(ElType val);
-
 
 #endif

@@ -42,7 +42,7 @@ void heavyItemTime(Tas T, Player *P);
 // I.S sembarang
 // F.S Setiap pindah ke 1 lokasi maka waktu akan bertambah 1 unit (1+1 = 2 unit). Efek ini dapat menumpuk.
 
-void PerishableTime(Tas *T, Player P);
+void PerishableTime(Tas *T, Player P,int duration);
 // I.S terdapat perishable item di tas
 // F.S Perishable Item harus diantarkan ke lokasi drop off dalam waktu yang
 // ditentukan. Jika waktu habis, maka item akan dikeluarkan secara otomatis

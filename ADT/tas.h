@@ -53,6 +53,10 @@ void CreateTas(Tas *s);
 /* ************ Prototype ************ */
 boolean isTasEmpty(Tas s);
 /* Mengirim true jika s kosong: lihat definisi di atas */
+
+boolean isTasLiterallyFull(Tas s);
+/* Mengirim true jika tabel penampung nilai s Tas penuh */
+
 boolean isTasFull(Tas s);
 /* Mengirim true jika tabel penampung nilai s Tas penuh */
 
@@ -67,5 +71,11 @@ void rmvFromTas(Tas *s, item *val);
 /* Menghapus val dari Tas s */
 /* I.S. s tidak mungkin kosong */
 /* F.S. val adalah nilai elemen TOP yang lama, IDX_TOP berkurang 1 */
+
+/* ************ Meningkatkan kapasitas Tas ************** */
+void addCapTas(Tas *s, int val);
+/* Menambah kapasitas tas */
+/* I.S. s dan val terdefinisi */
+/* F.S. max capacity tas bertambah sesuai val */
 
 #endif
