@@ -9,5 +9,10 @@
 #include "player.h"
 
 void printMap(Matrix mloc, Player p, Matrix mhub, Stack s, Queue q);
+// mencetak map yang ada
+
+void lokasiSekarang(Player p, Matrix m);
+// menampilkan posisi mobita saat ini
+
 
 #endif
