@@ -45,7 +45,7 @@ boolean isEmpty(ListPos l){
 	return (length(l)== 0);
 }
 /* *** Test List penuh *** */
-boolean isFull(ListPos l){
+boolean isFullList(ListPos l){
 /* Mengirimkan true jika List l penuh, mengirimkan false jika tidak */
 	return (length(l) == CAPACITY);
 }
