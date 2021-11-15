@@ -53,7 +53,7 @@ void ignoreBlankF();
    I.S. : currentChar sembarang 
    F.S. : currentChar ? BLANK atau currentChar = MARK */
 
-void startWordFile();
+void startWordFile(char fileloc[]);
 /* I.S. : currentChar sembarang 
    F.S. : endWord = true, dan currentChar = MARK; 
           atau endWord = false, currentWord adalah kata yang sudah diakuisisi,
@@ -80,6 +80,8 @@ boolean isWordString(Word word, char string[]);
 
 int takeNum(Word word);
 // dipastikan selalu angka
+
+void printWord(Word word);
 
 #endif
 

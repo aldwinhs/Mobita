@@ -2,45 +2,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "player.h"
-void pickUpItem(Tas *S, char *locSrc, char *locDes, char *jenisItem, int waktumasuk, int waktuhangus)
-/* I.S Sembarang */
-/* F.S item masuk ke dalam Tas*/
+
+
+void pickUpItem(Tas *S, Item T)
 {
-    int price;
     if (!isTasFull(*S))
     {
         if (!isVIPitem(*S))
         {
-            if (*jenisItem == 'N')
+
+            if (compare(T.jenisItem, "N"))
             {
                 printf("Pesanan berupa Normal Item berhasil diambil!\n");
-                price = 200;
+                T.price = 200;
             }
-            else if (*jenisItem == 'H')
+            else if (compare(T.jenisItem, "H"))
             {
                 printf("Pesanan berupa Heavy Item berhasil diambil!\n");
                 SUM_HEAVY(*S) += 1;
-                price = 400;
+                T.price = 400;
             }
-            else if (*jenisItem == 'P')
+            else if (compare(T.jenisItem, "P"))
             {
                 printf("Pesanan berupa Perishable item berhasil diambil!\n");
-                price = 400;
+                T.price = 400;
             }
-            else if (*jenisItem == 'V')
+            else if (compare(T.jenisItem, "V"))
             {
                 printf("Pesanan berupa VIP item berhasil diambil!\n");
-                price = 600;
+                T.price = 600;
             }
             else
             { //  tidak terdapat jenisItemdalam posisi tersebut
                 printf("Pesanan tidak ditemukan!\n");
             }
 
-            if (isItem(jenisItem))
+            if (isItem(T.jenisItem))
             {
-                Item Curritem = {locSrc, locDes, jenisItem, waktumasuk, waktuhangus, price};
-                addToTas(S, Curritem);
+                addToTas(S, T);
             }
         }
         else
@@ -53,6 +52,7 @@ void pickUpItem(Tas *S, char *locSrc, char *locDes, char *jenisItem, int waktuma
         printf("Tas Penuh!\n");
     }
 }
+
 
 boolean isVIPitem(Tas S)
 /* menghasilkan true jika pesanan pada top merupakan VIP ITEM sehingga tidak dapat melakukan pick_up pesanan lain */
@@ -89,3 +89,55 @@ boolean compare(char *array1, char *array2)
     }
     return compare;
 }
+
+// void pickUpItem(Tas *S, char *locSrc, char *locDes, char *jenisItem, int waktumasuk, int waktuhangus)
+// /* I.S Sembarang */
+// /* F.S item masuk ke dalam Tas*/
+// {
+//     int price;
+//     if (!isTasFull(*S))
+//     {
+//         if (!isVIPitem(*S))
+//         {
+//             if (*jenisItem == 'N')
+//             {
+//                 printf("Pesanan berupa Normal Item berhasil diambil!\n");
+//                 price = 200;
+//             }
+//             else if (*jenisItem == 'H')
+//             {
+//                 printf("Pesanan berupa Heavy Item berhasil diambil!\n");
+//                 SUM_HEAVY(*S) += 1;
+//                 price = 400;
+//             }
+//             else if (*jenisItem == 'P')
+//             {
+//                 printf("Pesanan berupa Perishable item berhasil diambil!\n");
+//                 price = 400;
+//             }
+//             else if (*jenisItem == 'V')
+//             {
+//                 printf("Pesanan berupa VIP item berhasil diambil!\n");
+//                 price = 600;
+//             }
+//             else
+//             { //  tidak terdapat jenisItemdalam posisi tersebut
+//                 printf("Pesanan tidak ditemukan!\n");
+//             }
+
+//             if (isItem(jenisItem))
+//             {
+//                 Item Curritem = {locSrc, locDes, jenisItem, waktumasuk, waktuhangus, price};
+//                 addToTas(S, Curritem);
+//             }
+//         }
+//         else
+//         {
+//             printf("VIP Item harus dilayani terlebih dahulu\n");
+//         }
+//     }
+//     else
+//     {
+//         printf("Tas Penuh!\n");
+//     }
+// }
