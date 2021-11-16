@@ -18,10 +18,10 @@ void CreateMatrix(int nRow, int nCol, Matrix *m){
 }
 
 /* *** Selektor "DUNIA Matrix" *** */
-boolean isIdxValid(int i, int j){
-/* Mengirimkan true jika i, j adalah Index yang valid untuk matriks apa pun */
-    return ((i>=0) && (i<ROW_CAP) && (j>=0) && (j<COL_CAP));
-}
+// boolean isIdxValid(int i, int j){
+// /* Mengirimkan true jika i, j adalah Index yang valid untuk matriks apa pun */
+//     return ((i>=0) && (i<ROW_CAP) && (j>=0) && (j<COL_CAP));
+// }
 
 /* *** Selektor: Untuk sebuah matriks m yang terdefinisi: *** */
 Index getLastIdxRow(Matrix m){
@@ -33,13 +33,13 @@ Index getLastIdxCol(Matrix m){
 /* Mengirimkan Index kolom terbesar m */
     return COLS(m)-1;
 }
-boolean isIdxEff(Matrix m, Index i, Index j){
-/* Mengirimkan true jika i, j adalah Index efektif bagi m */
-    return ((i>=0) && (i<ROWS(m)) && (j>=0) && (j<COLS(m)));
-}
+// boolean isIdxEff(Matrix m, Index i, Index j){
+// /* Mengirimkan true jika i, j adalah Index efektif bagi m */
+//     return ((i>=0) && (i<ROWS(m)) && (j>=0) && (j<COLS(m)));
+// }
 ElType getElmtDiagonal(Matrix m, Index i){
 /* Mengirimkan elemen m(i,i) */
-    return ELMT(m, i, i);
+    return ELMTM(m, i, i);
 }
 
 /* ********** Assignment  Matrix ********** */
@@ -65,7 +65,7 @@ void readMatrix(Matrix *m, int nRow, int nCol){
     {
         for ( j = 0; j < nCol; j++)
         {
-            scanf("%d", &ELMT(*m, i, j));
+            scanf("%d", &ELMTM(*m, i, j));
         }
     }
     
@@ -88,11 +88,11 @@ void displayMatrix(Matrix m){
         {
             if (j != getLastIdxCol(m))
             {
-                printf("%d ", ELMT(m, i, j));
+                printf("%d ", ELMTM(m, i, j));
             }
             else
             {
-                printf("%d", ELMT(m, i, j));
+                printf("%d", ELMTM(m, i, j));
             }
                 
         }
@@ -114,7 +114,7 @@ Matrix addMatrix(Matrix m1, Matrix m2){
     {
         for ( j = 0; j < COLS(m1); j++)
         {
-            ELMT(m,i,j) = ELMT(m1,i,j) + ELMT(m2,i,j);
+            ELMTM(m,i,j) = ELMTM(m1,i,j) + ELMTM(m2,i,j);
         }
         
     }
@@ -129,7 +129,7 @@ Matrix subtractMatrix(Matrix m1, Matrix m2){
     {
         for ( j = 0; j < COLS(m1); j++)
         {
-            ELMT(m,i,j) = ELMT(m1,i,j) - ELMT(m2,i,j);
+            ELMTM(m,i,j) = ELMTM(m1,i,j) - ELMTM(m2,i,j);
         }
         
     }
@@ -147,9 +147,9 @@ Matrix multiplyMatrix(Matrix m1, Matrix m2){
             sum = 0;
             for ( k = 0; k < COLS(m1) ; k++)
             {
-                sum += ELMT(m1,i,k) * ELMT(m2,k,j);
+                sum += ELMTM(m1,i,k) * ELMTM(m2,k,j);
             }
-            ELMT(m,i,j) = sum;
+            ELMTM(m,i,j) = sum;
         }
         
     }
@@ -163,7 +163,7 @@ Matrix multiplyConst(Matrix m, ElType x){
     {
         for ( j = 0; j < COLS(m); j++)
         {
-            ELMT(m2,i,j) = ELMT(m,i,j) * x;
+            ELMTM(m2,i,j) = ELMTM(m,i,j) * x;
         }
         
     }
@@ -177,7 +177,7 @@ void pMultiplyConst(Matrix *m, ElType k){
     {
         for ( j = 0; j < COLS(*m); j++)
         {
-            ELMT(*m,i,j) = ELMT(*m,i,j) * k;
+            ELMTM(*m,i,j) = ELMTM(*m,i,j) * k;
         }
         
     }
@@ -204,7 +204,7 @@ boolean isEqual(Matrix m1, Matrix m2){
         {
             for ( j = 0; j < COLS(m1); j++)
             {
-                if (ELMT(m1,i,j)!=ELMT(m2,i,j))
+                if (ELMTM(m1,i,j)!=ELMTM(m2,i,j))
                 {
                     return false;
                 }
@@ -249,7 +249,7 @@ boolean isSymmetric(Matrix m){
         {
             for ( j = 0; j < COLS(m); j++)
             {
-                if (ELMT(m,i,j)!=ELMT(m,j,i))
+                if (ELMTM(m,i,j)!=ELMTM(m,j,i))
                 {
                     return false;
                 }
@@ -277,7 +277,7 @@ boolean isIdentity(Matrix m){
             {
                 if (i==j)
                 {
-                    if (ELMT(m,i,j)!=1)
+                    if (ELMTM(m,i,j)!=1)
                     {
                         return false;
                     }
@@ -285,7 +285,7 @@ boolean isIdentity(Matrix m){
                 }
                 else
                 {
-                    if (ELMT(m,i,j)!=0)
+                    if (ELMTM(m,i,j)!=0)
                     {
                         return false;
                     }
@@ -308,7 +308,7 @@ boolean isSparse(Matrix m){
     {
         for ( j = 0; j < COLS(m); j++)
         {
-            if (ELMT(m,i,j)!=0)
+            if (ELMTM(m,i,j)!=0)
             {
                 jml++;
             }
@@ -332,7 +332,7 @@ float determinant(Matrix m){
 /* Menghitung nilai determinan m */
     if (ROWS(m)==1)
     {
-        return (ELMT(m,0,0));
+        return (ELMTM(m,0,0));
     }
     else
     {
@@ -348,7 +348,7 @@ float determinant(Matrix m){
                 {
                     if (i!=t)
                     {
-                        ELMT(tmp,x,y) = ELMT(m,t,j);y++;
+                        ELMTM(tmp,x,y) = ELMTM(m,t,j);y++;
                     }
                     
                 }
@@ -356,11 +356,11 @@ float determinant(Matrix m){
             }
             if (i%2==0)
             {
-                det += ELMT(m,i,0) * determinant(tmp);
+                det += ELMTM(m,i,0) * determinant(tmp);
             }
             else
             {
-                det -= ELMT(m,i,0) * determinant(tmp); 
+                det -= ELMTM(m,i,0) * determinant(tmp); 
             }
             
         }
@@ -377,7 +377,7 @@ void transpose(Matrix *m){
     {
         for ( j = 0; j < COLS(*m); j++)
         {
-            ELMT(tmp,i,j) = ELMT(*m,j,i); 
+            ELMTM(tmp,i,j) = ELMTM(*m,j,i); 
         }
         
     }
