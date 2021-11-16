@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include "../ADT/boolean.h"
 #include "../ADT/matrix.h"
-// #include "../ADT/stack.h"
 #include "../ADT/point.h"
-// #include "../ADT/queue.h"
+#include "../ADT/tas.h"
 #include "../pcolor/pcolor.h"
 #include "mapBaru.h"
 
@@ -25,7 +24,7 @@ void mapKosong(MatrixMap *m){
 }
 
 
-void printMap(MatrixMap m, Player p, Matrix mhub){
+void printMap(MatrixMap m, Player p, Matrix mhub, Tas pickup, Tas dropoff){
     int a, b, c, d;
     for(a=0; a<COLSMAP(m)+2 ;a++){
         printf("* ");
@@ -36,25 +35,34 @@ void printMap(MatrixMap m, Player p, Matrix mhub){
         for(c=0; c<COLSMAP(m); c++) {
             char ch = LOCC(ELMTMAP(m, b, c));
             if(ch =='0'){
-                printf(" ");
+                printf("  ");
             } else {
                 // nentuin warna
                 if (ch == LOCC(POSISI(p))) {
+                    printf(" ");
                     print_yellow(ch);
+                } else if (ch == (TOP(pickup)).lokSrc[0]) {
                     printf(" ");
-                } else if (ch == '8' && (ELMTM(mhub, 0, (int)ch-64)==1)) {
+                    print_red(ch);
+                } else if (ch == (TOP(dropoff)).lokSrc[0]) {
+                    printf(" ");
+                    print_blue(ch);
+                }else if (ch == '8' && (ELMTM(mhub, 0, (int)LOCC(POSISI(p))-64)==1)) {
+                    printf(" ");
                     print_green(ch);
+                } else if (LOCC(POSISI(p))=='8' && ELMTM(mhub, 0, (int)ch-64)==1) {
                     printf(" ");
-                } else if (ELMT(mhub, (int)ch-64, (int)LOCC(POSISI(p))-64)==1){
                     print_green(ch);
+                } else if (ELMTM(mhub, (int)ch-64, (int)LOCC(POSISI(p))-64)==1){
                     printf(" ");
+                    print_green(ch);
                 } else {
-                    printf("%c", ch);
                     printf(" ");
+                    printf("%c", ch);
                 }
             }
         }
-        printf("*\n");
+        printf(" *\n");
     }
     for(d=0; d<COLSMAP(m)+2 ;d++){
         printf("* ");

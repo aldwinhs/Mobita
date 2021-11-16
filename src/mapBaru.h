@@ -2,9 +2,8 @@
 #define MAPBARU_H
 
 #include "../ADT/boolean.h"
-// #include "../ADT/matrix.h"
-// #include "../ADT/stack.h"
-// #include "../ADT/queue.h"
+#include "../ADT/matrix.h"
+#include "../ADT/tas.h"
 #include "../pcolor/pcolor.h"
 #include "player.h"
 
@@ -33,8 +32,8 @@ void mapKosong(MatrixMap *m);
 // I.S. m terdefinisi dan siap diisi
 // F.S. mengisi semua elemen m dengan point kosong
 
-void printMap(MatrixMap m, Player p, Matrix mhub);
-// I.F. sembarang
+void printMap(MatrixMap m, Player p, Matrix mhub, Tas pickup, Tas dropoff);
+// I.F. m, p, mhub, pickup, dropoff terdefinisi
 // F.S. MAP tercetak pada layar dengan ketentuan-ketentuan warna tertentu
 
 #endif
