@@ -65,7 +65,7 @@ int main() {
     Tas berisi1, berisi2;
     Item item1 = {"A", "G", "heavy_item", 6, 9, 400};
     Item item2 = {"D", "F", "Letinga", 14, 29, 213};
-    Item item3 = {"P", "T", "Tolikan", 15, 89, 613};
+    Item item3 = {"A", "J", "Tolikan", 15, 89, 613};
     CreateTas(&berisi1);
     CreateTas(&berisi2);
     addToTas(&berisi1, item1);
