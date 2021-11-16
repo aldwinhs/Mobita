@@ -3,6 +3,7 @@
 
 #include "../ADT/boolean.h"
 #include "../ADT/matrix.h"
+#include "../ADT/point.h"
 #include "../ADT/tas.h"
 #include "../pcolor/pcolor.h"
 #include "player.h"

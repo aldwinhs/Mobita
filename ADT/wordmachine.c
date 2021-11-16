@@ -136,7 +136,7 @@ void takeString(Word word, char string[]){
    for ( i = 0; i < word.length; i++){
       string[i] = word.contents[i];
    }
-   string[i] = word.contents[i];
+   string[i] = '\0';
 }
 void stringCat(char string1[], char string2[]){
    int i;

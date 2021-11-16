@@ -1,9 +1,4 @@
 #include <stdio.h>
-#include "../ADT/boolean.h"
-#include "../ADT/matrix.h"
-#include "../ADT/point.h"
-#include "../ADT/tas.h"
-#include "../pcolor/pcolor.h"
 #include "map.h"
 
 
@@ -22,7 +17,6 @@ void mapKosong(MatrixMap *m){
         }
     }
 }
-
 
 void printMap(MatrixMap m, Player p, Matrix mhub, Tas pickup, Tas dropoff){
     int a, b, c, d;

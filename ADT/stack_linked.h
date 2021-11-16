@@ -5,18 +5,19 @@
 
 #include "boolean.h"
 #include "tas.h"
+#include "node.h"
 #include <stdlib.h>
 
 /* Stack dengan representasi berkait dengan pointer */
-typedef struct node* Address;
-typedef struct node {
-    item info;
-    Address next;
-} Node;
+// typedef struct nodee* Address_MODY;
+// typedef struct nodee {
+//     item info;
+//     Address_MODY next;
+// } Nodee;
 
 /* Type stack dengan ciri Top: */
 typedef struct {
-    Address addrTop; /* alamat Top: elemen puncak */
+    AddressNode addrTop; /* alamat Top: elemen puncak */
 } Stack;
 
 /* Selektor */
@@ -26,10 +27,7 @@ typedef struct {
 #define      TOPLS(s) (s).addrTop->info
 
 /* Prototype manajemen memori */
-Address newNode(item x);
-/* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x,
-   atau
-   NULL jika alokasi gagal */
+
 
 /* ********* PROTOTYPE REPRESENTASI LOJIK STACK ***************/
 boolean isEmptyDif(Stack s);

@@ -19,16 +19,17 @@ int main(){
     Word input;
     boolean exit = false;
     Matrix AdjMtrx;
+    
     // ADT yang dipakai
     Tas tas;
     Ability ability;
     Player player;
     Item item;
     CollOfItems itemInConfig;
+    MatrixMap map, daftarlokasi;
     
     // Create
     createPlayer(&player);
-    CreateMatrix(18,18,&AdjMtrx);
     
     
     printf("Main Menu:\n");
@@ -50,7 +51,7 @@ int main(){
         char fileName[50];
         takeString(currentWord, fileName);
         stringCat(fileloc,fileName);
-        readFile(fileloc,&AdjMtrx, &itemInConfig);
+        readFile(fileloc,&AdjMtrx, &map, &daftarlokasi, &itemInConfig);
         
 
     }else if (isWordString(currentWord,"2")){
@@ -58,7 +59,7 @@ int main(){
     }else{
         exit = true;
     }
-    ///// COMAND ////
+    ///// COMMAND ////
     while (!exit){  
         printf("ENTER COMMAND : ");
         advWord();
@@ -103,10 +104,9 @@ int main(){
             else {
                 if (MONEY(player) < gadgetPrice(buy)) printf("Uang tidak cukup untuk membeli gadget.\n");
                 else{
-                    if (!isFullList(GADGET(player))) { 
-                        insertLast(&GADGET(player), buy);
+                    if (!isFullListLP(GADGET(player))) { 
+                        insertLastLP(&GADGET(player), buy);
                         MONEY(player) -= gadgetPrice(buy);
-                        displayListLP(GADGET(player));
                 		printf("\n");
                     }
                     else printf("Inventory telah penuh! Gunakan gadget yang Anda miliki terlebih dahulu sebelum membeli gadget lain.\n");

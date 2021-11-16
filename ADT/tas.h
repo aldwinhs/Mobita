@@ -8,7 +8,7 @@
 #include "boolean.h"
 // [TO DO] include lokasi tempat ADT Item
 
-#define IDX_UNDEF -1
+#define IDX_UNDEF_MOD -1
 #define CAPACITY_TAS 100
 
 /* ADT item yang ini sekadar untuk testing, nanti dihapus */

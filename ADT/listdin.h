@@ -10,7 +10,7 @@
 #include "boolean.h"
 
 /*  Kamus Umum */
-#define IDX_UNDEF -1
+#define IDX_UNDEFLD -1
 /* Indeks tak terdefinisi*/
 
 /* Definisi elemen dan koleksi objek */
@@ -52,7 +52,7 @@ void dealocate(ListDin *l);
 
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
-int length(ListDin l);
+int lengthLD(ListDin l);
 /* Mengirimkan banyaknya elemen efektif list */
 /* Mengirimkan nol jika list l kosong */
 /* *** Daya tampung container *** */
@@ -72,10 +72,10 @@ boolean isIdxEff(ListDin l, IdxType i);
 
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test list kosong *** */
-boolean isEmpty(ListDin l);
+boolean isEmptyLD(ListDin l);
 /* Mengirimkan true jika list l kosong, mengirimkan false jika tidak */
 /* *** Test list penuh *** */
-boolean isFull(ListDin l);
+boolean isFullLD(ListDin l);
 /* Mengirimkan true jika list l penuh, mengirimkan false jika tidak */
 
 /* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
@@ -113,7 +113,7 @@ boolean isListEqual(ListDin l1, ListDin l2);
 
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : list boleh kosong!! *** */
-IdxType indexOf(ListDin l, ElType val);
+IdxType indexOfLD(ListDin l, ElType val);
 /* Search apakah ada elemen List l yang bernilai val */
 /* Jika ada, menghasilkan indeks i terkecil, dengan elemen ke-i = val */
 /* Jika tidak ada, mengirimkan IDX_UNDEF */
@@ -127,7 +127,7 @@ void extremes(ListDin l, ElType *max, ElType *min);
         min berisi nilai minimum l */
 
 /* ********** OPERASI LAIN ********** */
-void copyList(ListDin lIn, ListDin *lOut);
+void copyListLD(ListDin lIn, ListDin *lOut);
 /* I.S. lIn terdefinisi tidak kosong, lOut sembarang */
 /* F.S. lOut berisi salinan dari lIn (identik, nEff dan capacity sama) */
 /* Proses : Menyalin isi lIn ke lOut */
@@ -150,12 +150,12 @@ void sort(ListDin *l, boolean asc);
 
 /* ********** MENAMBAH DAN MENGHAPUS ELEMEN DI AKHIR ********** */
 /* *** Menambahkan elemen terakhir *** */
-void insertLast(ListDin *l, ElType val);
+void insertLastLD(ListDin *l, ElType val);
 /* Proses: Menambahkan val sebagai elemen terakhir list */
 /* I.S. List l boleh kosong, tetapi tidak penuh */
 /* F.S. val adalah elemen terakhir l yang baru */
 /* ********** MENGHAPUS ELEMEN ********** */
-void deleteLast(ListDin *l, ElType *val);
+void deleteLastLD(ListDin *l, ElType *val);
 /* Proses : Menghapus elemen terakhir list */
 /* I.S. List tidak kosong */
 /* F.S. val adalah nilai elemen terakhir l sebelum penghapusan, */

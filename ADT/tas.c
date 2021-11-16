@@ -5,9 +5,9 @@
 void CreateTas(Tas *s){
 /* I.S. sembarang; */
 /* F.S. Membuat sebuah Tas S kosong dengan kondisi sbb: */
-/* - Index top bernilai IDX_UNDEF */
+/* - Index top bernilai IDX_UNDEF_MOD */
 /* Proses : Melakukan alokasi, membuat sebuah s kosong */
-	IDX_TOP(*s) = IDX_UNDEF;
+	IDX_TOP(*s) = IDX_UNDEF_MOD;
     (*s).heavyItem = 0;
     (*s).maxCapacity = 3;
     (*s).currCapacity = 0;
@@ -16,7 +16,7 @@ void CreateTas(Tas *s){
 /* ************ Prototype ************ */
 boolean isTasEmpty(Tas s){
 /* Mengirim true jika s kosong: lihat definisi di atas */
-	return (IDX_TOP(s) == IDX_UNDEF);
+	return (IDX_TOP(s) == IDX_UNDEF_MOD);
 }
 boolean isTasLiterallyFull(Tas s){
 /* Mengirim true jika tabel penampung nilai s Tas penuh */

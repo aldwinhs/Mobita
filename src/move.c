@@ -1,8 +1,4 @@
 #include <stdio.h>
-#include "../ADT/boolean.h"
-#include "../ADT/matrix.h"
-#include "player.h"
-#include "map.h"
 #include "move.h"
 
 void daftarTujuan(Player *p, Matrix mhub, MatrixMap mpoint, MatrixMap *m, int *val){
