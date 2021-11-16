@@ -7,10 +7,12 @@
 typedef struct
 {
    int Speed_Boost; // setiap mendapat ability speedboost tambah 10
-   int time;
+   int Return;
 } Ability;
 
 #define SPEED(t) (t).Speed_Boost
+#define RETURN(t) (t).Return
+
 void Speed_Boost(Player *P, Tas *S, Ability *A);
 // Waktu akan bertambah 1 unit setiap Mobita berpindah 2 lokasi. Efek
 // ini berlangsung hingga Mobita telah melewati 10 lokasi (berlaku selama 5

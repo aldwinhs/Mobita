@@ -102,11 +102,11 @@ List concat(List l1, List l2) ;
 
 boolean fSearch(List L, Address P);
 
-ElType max(List l);
+ElType maxx(List l);
 
 Address adrMax(List l);
 
-ElType min(List l);
+ElType minn(List l);
 
 Address adrMin(List l);
 

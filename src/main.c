@@ -3,7 +3,6 @@
 /* Importing Functions */
 #include<stdio.h>
 #include<stdlib.h>
-#include<string.h>
 #include"readFile.h"
 #include"ability.h"
 #include"gadget.h"
@@ -12,6 +11,7 @@
 #include"pick_up.h"
 #include"help.h"
 #include"drop_off.h"
+#include "to_do_list.h"
 
 int main(){
     
@@ -24,6 +24,7 @@ int main(){
     Ability ability;
     Player player;
     Item item;
+    CollOfItems itemInConfig;
     
     // Create
     createPlayer(&player);
@@ -46,11 +47,10 @@ int main(){
         printf("Masukan nama konfigurasi level: ");
         advWord();
         char fileloc[] = "./test/";
-        input = takeWord(currentWord);
         char fileName[50];
-        strcpy(fileName,input.contents);
-        strcat(fileloc,fileName);
-        readFile(fileloc,&AdjMtrx);
+        takeString(currentWord, fileName);
+        stringCat(fileloc,fileName);
+        readFile(fileloc,&AdjMtrx, &itemInConfig);
         
 
     }else if (isWordString(currentWord,"2")){
@@ -64,6 +64,15 @@ int main(){
         advWord();
         if (isWordString(currentWord, "MOVE")){
 
+
+            /// WAKTU PLAYER
+            int duration = TIME(player); //ini buat pengurangaan durasi perishable item
+            TIME(player)++; //waktu normal nambah 1
+            heavyItemTime(tas, &player); // efek heavy item
+            Speed_Boost(&player,&tas, &ability);
+            duration = TIME(player) - duration;
+            //Hapus Item Perishable yang hangus
+            PerishableTime(&tas, player, duration); //fungsi buat ngurangin waktu hangus + hapus kalo waktu hangus 0
         }
         else if (isWordString(currentWord, "PICK_UP")){
             // remove dari to do list baru di pick_up
@@ -77,10 +86,10 @@ int main(){
 
         }
         else if (isWordString(currentWord, "TO_DO")){
-
+            displayToDo(itemInConfig, TIME(player));
         }
         else if (isWordString(currentWord, "IN_PROGRESS")){
-           displayInProgr(tas);
+            displayInProgr(tas);
         }
         else if (isWordString(currentWord, "BUY")){
             int buy;
@@ -97,7 +106,7 @@ int main(){
                     if (!isFullList(GADGET(player))) { 
                         insertLast(&GADGET(player), buy);
                         MONEY(player) -= gadgetPrice(buy);
-                        displayList(GADGET(player));
+                        displayListLP(GADGET(player));
                 		printf("\n");
                     }
                     else printf("Inventory telah penuh! Gunakan gadget yang Anda miliki terlebih dahulu sebelum membeli gadget lain.\n");
@@ -111,12 +120,11 @@ int main(){
             advWord();
             inv = takeNum(currentWord);
 
-            if (indexOf(GADGET(player), inv) != IDX_UNDEF){
+            if (indexOfLP(GADGET(player), inv) != IDX_UNDEF){
                 ElType remove;
                 swapLast(&GADGET(player), inv); 
-                deleteLast(&GADGET(player), &remove);
+                deleteLastLP(&GADGET(player), &remove);
                 useGadget(GADGET(player), inv);
-                displayList(GADGET(player));
                 printf("\n");
 
                 // Implementasi Gadget
@@ -160,14 +168,7 @@ int main(){
             printf("Masukan Perintah Yang benar");
         }
 
-        /// WAKTU PLAYER
-        int duration = TIME(player); //ini buat pengurangaan durasi perishable item
-        TIME(player)++; //waktu normal nambah 1
-        heavyItemTime(tas, &player); // efek heavy item
-        Speed_Boost(&player,&tas, &ability);
-        duration = TIME(player) - duration;
-        //Hapus Item Perishable yang hangus
-        PerishableTime(&tas, player, duration); //fungsi buat ngurangin waktu hangus + hapus kalo waktu hangus 0
+
 
         // isHeadQuarter
         // isTodoList NULL
@@ -182,7 +183,7 @@ int main(){
 
 
 
-
+    close();
     return 0;
 }
 // Adt yang dibutuhin di pick_up drop_off sama ability

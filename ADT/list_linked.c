@@ -205,7 +205,7 @@ Address searchPrec(List L, ElType X){
 }
 */
 
-ElType max(List l){
+ElType maxx(List l){
     Address P = l;
     int maxnum = INFO(P).waktuMasuk;
     ElType save;
@@ -235,7 +235,7 @@ Address adrMax(List l){
     return addmaxnum;
 }
 
-ElType min(List l){
+ElType minn(List l){
     Address P = l;
     int minnum= INFO(P).waktuMasuk;
     while(P != NULL) {

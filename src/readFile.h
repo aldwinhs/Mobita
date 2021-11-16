@@ -5,6 +5,6 @@
 #include "../ADT/wordmachine.h"
 #include"../ADT/matrix.h"
 
-void readFile(char fileloc[], Matrix* AdjMtrx);
+void readFile(char fileloc[], Matrix *AdjMtrx, CollOfItems *itemInConfig);
 
 #endif

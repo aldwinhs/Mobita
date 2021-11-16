@@ -131,3 +131,19 @@ int takeNum(Word word){
    }
    return result;
 }
+void takeString(Word word, char string[]){
+   int i;
+   for ( i = 0; i < word.length; i++){
+      string[i] = word.contents[i];
+   }
+   string[i] = word.contents[i];
+}
+void stringCat(char string1[], char string2[]){
+   int i;
+   int len1 = strlen(string1);
+   int len2 = strlen(string2);
+   for ( i = 0; i < len2; i++){
+      string1[i+len1] = string2[i];
+   }
+   string1[i+len1] = '\0';
+}
