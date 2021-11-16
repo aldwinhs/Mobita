@@ -39,7 +39,7 @@ void displayToDo(CollOfItems itemsinConfig, int currTime) {
         insertLast(&ori, itemsinConfig.buffer[i]);
     }
     while(!isEmpty(ori)) {
-        minItem = min(ori);
+        minItem = minn(ori);
         idks = indexOf(&ori, minItem);
         insertFirst(&copy, minItem);
         deleteAt(&ori, idks, &minItem);

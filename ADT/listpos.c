@@ -143,7 +143,7 @@ boolean isListEqual(ListPos l1, ListPos l2){
 
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : List boleh kosong!! *** */
-int indexOf(ListPos l, ElType val){
+int indexOfLP(ListPos l, ElType val){
 /* Search apakah ada elemen List l yang bernilai val */
 /* Jika ada, menghasilkan indeks i terkecil, dengan ELMT(l,i) = val */
 /* Jika tidak ada atau jika l kosong, mengirimkan IDX_UNDEF */
@@ -244,7 +244,7 @@ void insertLast(ListPos *l, ElType val){
 /* ********** MENGHAPUS ELEMEN DI AKHIR ********** */
 	ELMT(*l, length(*l)) = val;
 }
-void deleteLast(ListPos *l, ElType *val){
+void deleteLastLP(ListPos *l, ElType *val){
 /* Proses : Menghapus elemen terakhir List */
 /* I.S. List tidak kosong */
 /* F.S. val adalah nilai elemen terakhir l sebelum penghapusan, */
