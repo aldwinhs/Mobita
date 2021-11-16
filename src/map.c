@@ -55,6 +55,15 @@ void printMap(Matrix mloc, Player p, Matrix mhub, Stack s, Queue q){
     printf("\n");
 }
 
+void lokasiSekarang(Player p, Matrix m){
+    char c = LOC(p);
+    if (c=='8') {
+        printf("8 (%d, %d)", ELMT(m, 0, 0));
+    } else {
+        printf("%c (%d, %d)", c, ELMT(m, (int)c-64,0), ELMT(m, (int)c-64,1));
+    }
+}
+
 int main() {
     Matrix m;           //matriks mapnya nanti
     ROWS(m) = 10;       //bakal diisi '.' semua (dalam int)
