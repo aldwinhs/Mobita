@@ -1,8 +1,8 @@
 #ifndef MOBITA_TO_DO_LIST_H
 #define MOBITA_TO_DO_LIST_H
 
-#include "../ADT/tas.h"
 #include "../ADT/stack_linked.h"
+#include "../ADT/list_linked.h"
 #include <stdio.h>
 
 void displayInProgr(Tas s);

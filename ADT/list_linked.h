@@ -100,4 +100,26 @@ List concat(List l1, List l2) ;
 /* menghasilkan l3 yang baru (dengan elemen list l1 dan l2 secara beurutan). */
 /* Tidak ada alokasi/dealokasi pada prosedur ini */
 
+boolean fSearch(List L, Address P);
+
+ElType max(List l);
+
+Address adrMax(List l);
+
+ElType min(List l);
+
+Address adrMin(List l);
+
+void delAll(List *l);
+
+void inverseList(List *l);
+
+List fCopyList(List l);
+
+void cpAllocList(List lin, List *lout);
+
+List fInverseList(List l);
+
+void splitList(List *l1, List *l2, List l);
+
 #endif

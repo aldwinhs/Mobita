@@ -6,7 +6,7 @@ void displayToDo(CollOfItems itemsinConfig, int currTime) {
     // [TO DO] Untuk testcase aja dibuat 4, nanti 4 diganti dengan banyak item yang dibaca file konfigurasi
     int amountOfItems = 4;
     int i;
-    for(i = 0; i < amountOfItems;i++) {
+    for(i = 0; i < amountOfItems;i++) { // belum di sort
         if(itemsinConfig.buffer[i].waktuMasuk <= currTime && !(itemsinConfig.buffer[i].beenDroppedOf) && !(itemsinConfig.buffer[i].beenPickedUp)) {
             printf("%d. %s -> %s (%s)\n", i + 1, itemsinConfig.buffer[i].lokSrc, itemsinConfig.buffer[i].lokDes, itemsinConfig.buffer[i].jenisItem);
         }
@@ -28,19 +28,57 @@ void displayInProgr(Tas s) {
 /* Stack Linked List Version */
 
 void displayToDo(CollOfItems itemsinConfig, int currTime) {
-    int i;
-    Stack new;
-    CreateStack(&new);
-    int N; // N Adalah banyak item di file konfigurasi
+    List ori, copy;
+    ElType minItem, throw;
+    int i, N, idks, num = 1; // N adalah banyak item di file konfigurasi
+
+    CreateList(&ori);
+    CreateList(&copy);
+
     for(i = 0; i < N; i++) {
-        push(&new, itemsinConfig.buffer[i]);
+        insertLast(&ori, itemsinConfig.buffer[i]);
     }
-    for(i = 0; i < N; i++) {
-        if(TOP(new).waktuHangus <= currTime && !(TOP(new).beenDroppedOf) && !(TOP(new).beenPickedUp)) {
-            printf("%d. %s (Tujuan: %s)\n", i + 1); // LANJUT DI SINI
+    while(!isEmpty(ori)) {
+        minItem = min(ori);
+        idks = indexOf(&ori, minItem);
+        insertFirst(&copy, minItem);
+        deleteAt(&ori, idks, &minItem);
+    }
+    for(i = 0; i < N; i ++) {
+        if(INFO(FIRST(copy)).waktuMasuk <= currTime && !(INFO(FIRST(copy)).beenDroppedOf) && !(INFO(FIRST(copy)).beenPickedUp)) {
+            if (INFO(FIRST(copy)).jenisItem == "P") {
+                printf("%d. %s -> %s (%s, sisa waktu %d)\n", num, INFO(FIRST(copy)).lokSrc, INFO(FIRST(copy)).lokDes, INFO(FIRST(copy)).jenisItem, INFO(FIRST(copy)).waktuHangus);
+            } else {
+                printf("%d. %s -> %s (%s)\n", num, INFO(FIRST(copy)).lokSrc, INFO(FIRST(copy)).lokDes, INFO(FIRST(copy)).jenisItem);
+            }
+            num++;
+            deleteFirst(&copy, &throw);
         }
     }
+    /*
+    int i, num, N; // N Adalah banyak item di file konfigurasi
+    item throw;
+    Stack new;
+    CreateStack(&new);
+    // ListPos toBeSorted;
+    // CreateListPos(&toBeSorted);
 
+    for(i = 0; i < N; i++) {
+        push(&new, itemsinConfig.buffer[i]);
+         // ELMT(toBeSorted, i) = itemsinConfig.buffer[i].waktuMasuk;
+    }
+    // sort(&toBeSorted, true);
+    for (i = 0; i < N; i++) {
+        if (TOPLS(new).waktuMasuk <= currTime && !(TOPLS(new).beenDroppedOf) && !(TOPLS(new).beenPickedUp)) {
+            if (TOPLS(new).jenisItem == "P") {
+                printf("%d. %s -> %s (%s, sisa waktu %d)\n", num, TOPLS(new).lokSrc, TOPLS(new).lokDes, TOPLS(new).jenisItem, TOPLS(new).waktuHangus);
+            } else {
+                printf("%d. %s -> %s (%s)\n", num, TOPLS(new).lokSrc, TOPLS(new).lokDes, TOPLS(new).jenisItem); // LANJUT DI SINI
+            }
+            pop(&new, &throw);
+        }
+    }
+     */
 }
 
 void displayInProgr(Tas s) {
@@ -53,7 +91,7 @@ void displayInProgr(Tas s) {
         push(&new, s.buffer[i]);
     }
     for(i = 0; i < CURRENT_CAP(s); i++) {
-        printf("%d. %s (Tujuan: %s)\n", i + 1, TOP(new).lokSrc, TOP(new).lokDes); // ini print kebalik [NANTI EDIT LAGI]
+        printf("%d. %s (Tujuan: %s)\n", i + 1, TOPLS(new).jenisItem, TOPLS(new).lokDes);
         pop(&new, &throw);
     }
 }

@@ -38,7 +38,7 @@ void addToTas(Tas *s, item val){
         TOP(*s) = val;
         TOP(*s).beenPickedUp = true;
         (*s).currCapacity++;
-        if(val.jenisItem == "heavy_item") { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
+        if(val.jenisItem == "H") { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
             (*s).heavyItem++;
         }
     } // Else do nothing [TO DO] (Apakah perlu ditambahkan pesan bahwa tas sudah penuh?)
@@ -55,7 +55,7 @@ void rmvFromTas(Tas *s, item *val){
         IDX_TOP(*s)--;
         TOP(*s).beenDroppedOf = true;
         (*s).currCapacity--;
-        if((*val).jenisItem == "heavy_item") { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
+        if((*val).jenisItem == "H") { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
             (*s).heavyItem--;
         }
 

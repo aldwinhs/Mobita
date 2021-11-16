@@ -18,7 +18,7 @@ Address newNode(item x) {
    NULL jika alokasi gagal */
 
 /* ********* PROTOTYPE REPRESENTASI LOJIK STACK ***************/
-boolean isEmpty(Stack s) {
+boolean isEmptyDif(Stack s) {
     return(ADDR_TOPLS(s) == NULL);
 }
 /* Mengirim true jika Stack kosong: ADDR_TOP(s) = NULL */
@@ -32,10 +32,10 @@ void push(Stack *s, item x) {
     q = newNode(x);
 
     if(q != NULL) {
-        if(isEmpty(*s)) {
+        if(isEmptyDif(*s)) {
             ADDR_TOPLS(*s) = q;
         } else {
-            NEXTLS(q) = ADDR_TOP(*s);
+            NEXTLS(q) = ADDR_TOPLS(*s);
             ADDR_TOPLS(*s) = q;
         }
     }

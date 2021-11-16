@@ -32,7 +32,7 @@ Address newNode(item x);
    NULL jika alokasi gagal */
 
 /* ********* PROTOTYPE REPRESENTASI LOJIK STACK ***************/
-boolean isEmpty(Stack s);
+boolean isEmptyDif(Stack s);
 /* Mengirim true jika Stack kosong: ADDR_TOP(s) = NULL */
 void CreateStack(Stack *s);
 /* I.S. sembarang */
