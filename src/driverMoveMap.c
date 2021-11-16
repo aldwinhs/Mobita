@@ -9,10 +9,10 @@
 #include "../pcolor/pcolor.h"
 #include "../pcolor/pcolor.c"
 #include "player.h"
-#include "mapBaru.h"
-#include "mapBaru.c"
-#include "moveBaru.h"
-#include "moveBaru.c"
+#include "map.h"
+#include "map.c"
+#include "move.h"
+#include "move.c"
 
 
 int main() {
