@@ -88,4 +88,3 @@ void takeString(Word word, char string[]);
 void stringCat(char string1[], char string2[]);
 
 #endif
-
