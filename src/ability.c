@@ -73,23 +73,28 @@ void heavyItemTime(Tas T, Player *P)
         changeTime(P, SUM_HEAVY(T));
     }
 }
-void PerishableTime(Tas *T, Player P)
+void PerishableTime(Tas *T, Player P,int duration)
 {
-    int i;
+    int i, j, N;
     Item item;
-    for (i = 0; i < CURRENT_CAP(*T); i++)
+    N = CURRENT_CAP(*T);
+    j = 0;
+    for (i = 0; i <= N - 1; i++)
     {
-        item = (*T).buffer[i];
-        int duration;
-        if (compare2(item.jenisItem, "P"))
+        item = (*T).buffer[j];
+        if (compare2(item.jenisItem, "P") == true)
         {
-            duration = TIME(P) - item.waktuMasuk;
-            (*T).buffer[i].waktuHangus -= duration;
-            if ((*T).buffer[i].waktuHangus == 0)
+            // printf("item ke = %d\n", j);
+            (*T).buffer[j].waktuHangus -= duration;
+            // printf("waktuhangusnya = %d\n", (*T).buffer[j].waktuHangus);
+            if ((*T).buffer[j].waktuHangus <= 0)
             {
-                removeitem(T, i);
+                // hapus Perishable item indeks i
+                removeitem(T, j);
+                j--; // karena item berkurang satu maka indeksnya mundur
             }
         }
+        j++;
     }
 }
 boolean compare2(char *array1, char *array2)
@@ -111,21 +116,32 @@ boolean compare2(char *array1, char *array2)
 
 void removeitem(Tas *S, int i)
 {
+    printf("masuk sini\n");
     Tas S2;
     Item item;
     CreateTas(&S2);
     MAX_TAS(S2) = MAX_TAS(*S);
     int j;
-    for (j = 0; j <= i; j++)
+    int N = CURRENT_CAP(*S) - i;
+    if (IDX_TOP(*S) == i)
     {
         rmvFromTas(S, &item);
-        addToTas(&S2, item);
     }
-    rmvFromTas(S, &item);
-    for (j = 0; j < CURRENT_CAP(S2); j++)
+    else
     {
+        for (j = 1; j < N; j++)
+        {
+            rmvFromTas(S, &item);
+            // printf("yang dipindah: %s\n", item.jenisItem);
+            addToTas(&S2, item);
+        }
         rmvFromTas(S, &item);
-        addToTas(&S2, item);
+        // printf("yang keluar: %s\n", item.jenisItem);
+        for (j = 0; j <= CURRENT_CAP(S2); j++)
+        {
+            rmvFromTas(&S2, &item);
+            // printf("yang dimasukin: %s\n", item.jenisItem);
+            addToTas(S, item);
+        }
     }
-    free(&S2);
 }

@@ -1,3 +1,4 @@
+
 #include "list_linked.h"
 #include <stdio.h>
 
@@ -10,7 +11,7 @@ boolean isEmpty(List l){
 }
 
 ElType getElmt(List l, int idx){
-    ElType nomer = 0 ;
+    int nomer = 0 ;
     Address P = l;
     while (nomer < idx) {
         nomer += 1;
@@ -20,7 +21,7 @@ ElType getElmt(List l, int idx){
 }
 
 void setElmt(List *l, int idx, ElType val){
-    ElType nomer = 0 ;
+    int nomer = 0 ;
     Address P = *l;
     while (nomer < idx) {
         nomer += 1;
@@ -34,7 +35,7 @@ int indexOf(List l, ElType val){
     Address P = l ;
     boolean found = false;
     while (P != NULL && !found) {
-        if (INFO(P) == val) {
+        if (INFO(P).lokSrc == val.lokSrc && INFO(P).lokDes == val.lokDes && INFO(P).jenisItem == val.jenisItem && INFO(P).waktuMasuk == val.waktuMasuk && INFO(P).waktuHangus == val.waktuHangus) {
             found = true;
         }
         else {
@@ -147,18 +148,18 @@ void deleteAt(List *l, int idx, ElType *val){
     }
 }
 
-void displayList(List l){
-    Address P = l ;
-    printf("[");
-    if (!isEmpty(l)) {
-        while (NEXT(P) != NULL) {
-            printf("%d,", INFO(P));
-            P = NEXT(P);
-        }
-        printf("%d", INFO(P));
-    }
-    printf("]");
-}
+// void displayList(List l){
+//     Address P = l ;
+//     printf("[");
+//     if (!isEmpty(l)) {
+//         while (NEXT(P) != NULL) {
+//             printf("%d,", INFO(P));
+//             P = NEXT(P);
+//         }
+//         printf("%d", INFO(P));
+//     }
+//     printf("]");
+// }
 
 int length(List l){
     int panjang = 0;
@@ -184,7 +185,7 @@ boolean fSearch(List L, Address P){
     }
     return ketemu;
 }
-
+/*
 Address searchPrec(List L, ElType X){
     Address Q = NULL, P= FIRST(L);
     boolean found= false;
@@ -202,27 +203,29 @@ Address searchPrec(List L, ElType X){
     }
     return Q;
 }
+*/
 
 ElType max(List l){
     Address P = l;
-    ElType maxnum= INFO(P);
+    int maxnum = INFO(P).waktuMasuk;
+    ElType save;
     while(P != NULL) {
-        if(INFO(P) > maxnum) {
-            maxnum = INFO(P);
+        if(INFO(P).waktuMasuk > maxnum) {
+            save = INFO(P);
         }
         else {
             P = NEXT(P);
         }
     }
-    return maxnum;
+    return save;
 }
 
 Address adrMax(List l){
     Address P = l, addmaxnum = l;
-    ElType maxnum = INFO(P);
+    int maxnum = INFO(P).waktuMasuk;
     while(P != NULL) {
-        if(INFO(P) > maxnum) {
-            maxnum = INFO(P);
+        if(INFO(P).waktuMasuk > maxnum) {
+            maxnum = INFO(P).waktuMasuk;
             addmaxnum = P;
         }
         else {
@@ -234,24 +237,24 @@ Address adrMax(List l){
 
 ElType min(List l){
     Address P = l;
-    ElType minnum= INFO(P);
+    int minnum= INFO(P).waktuMasuk;
     while(P != NULL) {
-        if(INFO(P) < minnum) {
-            minnum = INFO(P);
+        if(INFO(P).waktuMasuk < minnum) {
+            minnum = INFO(P).waktuMasuk;
         }
         else {
             P = NEXT(P);
         }
     }
-    return minnum;
+    return INFO(P);
 }
 
 Address adrMin(List l){
     Address P = l, addminnum = l;
-    ElType minnum = INFO(P);
+    int minnum = INFO(P).waktuMasuk;
     while(P != NULL) {
-        if(INFO(P) < minnum) {
-            minnum = INFO(P);
+        if(INFO(P).waktuMasuk < minnum) {
+            minnum = INFO(P).waktuMasuk;
             addminnum = P;
         }
         else {
@@ -259,17 +262,6 @@ Address adrMin(List l){
         }
     }
     return addminnum;
-}
-
-float average(List l){
-    int panjang = length(l);
-    float total = 0;
-    Address p = l;
-    while(p != NULL) {
-        total += INFO(p);
-        p = NEXT(p);
-    }
-    return total / panjang;
 }
 
 /****************** PROSES TERHADAP LIST ******************/
@@ -308,6 +300,29 @@ void inverseList(List *l){
     *l = akhir;
 }
 
+List fCopyList(List l){
+    List kopian;
+    Address P = l, baru;
+    boolean gagal = false;
+    CreateList(&kopian);
+    while(P != NULL && !gagal) {
+        baru = newNode(INFO(P));
+        if(baru != NULL) {
+            insertLast(&kopian, INFO(P));
+        }
+        else {
+            delAll(&kopian);
+            gagal = true;
+        }
+        P = NEXT(P);
+    }
+    return kopian;
+}
+
+void cpAllocList(List lin, List *lout){
+    *lout = fCopyList(lin);
+}
+
 List fInverseList(List l)
 {
     List sementara;
@@ -326,31 +341,8 @@ void copyList(List *l1, List *l2){
     *l2 = *l1;
 }
 
-List fCopyList(List l){
-    List kopian;
-    Address P = l, baru;
-    boolean gagal = false;
-    CreateList(&kopian);
-    while(P != NULL && !gagal) {
-        baru = newNode(INFO(P));
-        if(baru != NULL) {
-            insertLast(&kopian, INFO(P));
-        } 
-        else {
-            delAll(&kopian);
-            gagal = true;
-        }
-        P = NEXT(P);
-    }
-    return kopian;
-}
-
-void cpAllocList(List lin, List *lout){
-    *lout = fCopyList(lin);
-}
-
 void splitList(List *l1, List *l2, List l){
-    int indeks, panjang = length(l) / 2;;
+    int indeks, panjang = length(l) / 2;
     CreateList(l1);
     CreateList(l2);
     Address P;

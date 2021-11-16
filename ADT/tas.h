@@ -53,6 +53,10 @@ void CreateTas(Tas *s);
 /* ************ Prototype ************ */
 boolean isTasEmpty(Tas s);
 /* Mengirim true jika s kosong: lihat definisi di atas */
+
+boolean isTasLiterallyFull(Tas s);
+/* Mengirim true jika tabel penampung nilai s Tas penuh */
+
 boolean isTasFull(Tas s);
 /* Mengirim true jika tabel penampung nilai s Tas penuh */
 
@@ -68,14 +72,10 @@ void rmvFromTas(Tas *s, item *val);
 /* I.S. s tidak mungkin kosong */
 /* F.S. val adalah nilai elemen TOP yang lama, IDX_TOP berkurang 1 */
 
-void displayInProgr(Tas s);
-/* Menampilkan pesanan yang sedang diantarkan */
-/* I.S. s tidak mungkin kosong */
-/* F.S. menampilkan pesanan yang sedang dikerjakan sesuai urutan mulai dari yang ada pada Top Stack */
-
-void displayToDo(CollOfItems itemsinConfig, int currTime);
-/* Menampilkan TO DO LIST */
-/* I.S. terdapat setidaknya satu item pada file konfigurasi dengan urutan sesuai spesifikasi */
-/* F.S. menampilkan setiap item yang waktu pesanan masuknya  lebih kecil atau sama dengan waktu sekarang */
+/* ************ Meningkatkan kapasitas Tas ************** */
+void addCapTas(Tas *s, int val);
+/* Menambah kapasitas tas */
+/* I.S. s dan val terdefinisi */
+/* F.S. max capacity tas bertambah sesuai val */
 
 #endif

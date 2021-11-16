@@ -38,7 +38,7 @@ void addToTas(Tas *s, item val){
         TOP(*s) = val;
         TOP(*s).beenPickedUp = true;
         (*s).currCapacity++;
-        if(val.jenisItem == "heavy_item") { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
+        if(val.jenisItem == "H") { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
             (*s).heavyItem++;
         }
     } // Else do nothing [TO DO] (Apakah perlu ditambahkan pesan bahwa tas sudah penuh?)
@@ -55,38 +55,23 @@ void rmvFromTas(Tas *s, item *val){
         IDX_TOP(*s)--;
         TOP(*s).beenDroppedOf = true;
         (*s).currCapacity--;
-        if((*val).jenisItem == "heavy_item") { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
+        if((*val).jenisItem == "H") { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
             (*s).heavyItem--;
         }
 
     } // Else do nothing [TO DO] (Apakah perlu ditambahkan pesan bahwa tas sudah kosong?)
 }
 
-void displayInProgr(Tas s) {
-    int i, saveIdxTop;
-    saveIdxTop = s.idxTop;
-
-    printf("Pesanan yang sedang diantarkan:\n");
-    for (i = 0; i < (saveIdxTop + 1); i++) {
-        printf("%d. %s (Tujuan: %s)\n", i + 1, s.buffer[i].jenisItem, s.buffer[i].lokDes);
-        s.idxTop--;
-    }
-    s.idxTop = saveIdxTop;
+/* ************ Meningkatkan kapasitas Tas ************** */
+void addCapTas(Tas *s, int val){
+/* Menambah kapasitas tas */
+/* I.S. s dan val terdefinisi */
+/* F.S. max capacity tas bertambah sesuai val */
+    if (val < 100) (*s).maxCapacity = (*s).maxCapacity + val;
+    else (*s).maxCapacity = CAPACITY_TAS;
 }
-
-void displayToDo(CollOfItems itemsinConfig, int currTime) {
-    // [TO DO] Untuk testcase aja dibuat 4, nanti 4 diganti dengan banyak item yang dibaca file konfigurasi
-    int amountOfItems = 4;
-    int i;
-    for(i = 0; i < amountOfItems;i++) {
-        if(itemsinConfig.buffer[i].waktuMasuk <= currTime && !(itemsinConfig.buffer[i].beenDroppedOf) && !(itemsinConfig.buffer[i].beenPickedUp) {
-            printf("%d. %s -> %s (%s)\n", i + 1, itemsinConfig.buffer[i].lokSrc, itemsinConfig.buffer[i].lokDes, itemsinConfig.buffer[i].jenisItem);
-        }
-    }
-}
-
 // [TO DO] Apakah perlu hapus Item di TO_DO untuk item yang sudah diantarkan (sudah di DROP_OFF)
-/* TEST CASE */
+/* BROKEN TEST CASE */
 /*
 int main() {
     Tas berisi;
