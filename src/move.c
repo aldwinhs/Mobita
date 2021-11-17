@@ -27,7 +27,7 @@ void MOVE(Player *p, Matrix mhub, ListDin mpoint){
     ListDin daftartujuan;
     CreateListDin(&daftartujuan, 27);
     daftarTujuan(p, mhub, mpoint, &daftartujuan, &jmlhlokasi);
-    printf("jmlh pilihan : %d\n", jmlhlokasi);
+    // printf("jumlh pilihan : %d\n", jmlhlokasi);
     printf("Posisi yang ingin dituju? (0 jika ingin membatalkan) ");
     scanf("%d", &pilihan);
     while (pilihan<0 || pilihan>jmlhlokasi) {

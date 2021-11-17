@@ -90,30 +90,30 @@
 //     printf("\n");
 //     printMap(mMap, p, m1, berisi1, berisi2);
 
-    // MatrixMap mpoint;
-    // CreateMatrixMap(18, 1, &mpoint);
+//     // MatrixMap mpoint;
+//     // CreateMatrixMap(18, 1, &mpoint);
 
-    ListDin mpoint;
-    CreateListDin(&mpoint, 27);
+//     ListDin mpoint;
+//     CreateListDin(&mpoint, 27);
     
-    ELMTLD(mpoint, 0) = p8;
-    ELMTLD(mpoint, 1) = pa;
-    ELMTLD(mpoint, 2) = pb;
-    ELMTLD(mpoint, 3) = pc;
-    ELMTLD(mpoint, 4) = pd;
-    ELMTLD(mpoint, 5) = pe;
-    ELMTLD(mpoint, 6) = pf;
-    ELMTLD(mpoint, 7) = pg;
-    ELMTLD(mpoint, 8) = ph;
-    ELMTLD(mpoint, 9) = pi;
-    ELMTLD(mpoint, 10) = pj;
-    ELMTLD(mpoint, 11) = pk;
-    ELMTLD(mpoint, 12) = pl;
-    ELMTLD(mpoint, 13) = pm;
-    ELMTLD(mpoint, 14) = pn;
-    ELMTLD(mpoint, 15) = po;
-    ELMTLD(mpoint, 16) = pp;
-    ELMTLD(mpoint, 17) = pq;
+//     ELMTLD(mpoint, 0) = p8;
+//     ELMTLD(mpoint, 1) = pa;
+//     ELMTLD(mpoint, 2) = pb;
+//     ELMTLD(mpoint, 3) = pc;
+//     ELMTLD(mpoint, 4) = pd;
+//     ELMTLD(mpoint, 5) = pe;
+//     ELMTLD(mpoint, 6) = pf;
+//     ELMTLD(mpoint, 7) = pg;
+//     ELMTLD(mpoint, 8) = ph;
+//     ELMTLD(mpoint, 9) = pi;
+//     ELMTLD(mpoint, 10) = pj;
+//     ELMTLD(mpoint, 11) = pk;
+//     ELMTLD(mpoint, 12) = pl;
+//     ELMTLD(mpoint, 13) = pm;
+//     ELMTLD(mpoint, 14) = pn;
+//     ELMTLD(mpoint, 15) = po;
+//     ELMTLD(mpoint, 16) = pp;
+//     ELMTLD(mpoint, 17) = pq;
 
 //     // printf("\n");
 //     // for(i=0;i<ROWSMAP(mpoint);i++) {
