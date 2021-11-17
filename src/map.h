@@ -5,6 +5,7 @@
 #include "../ADT/matrix.h"
 #include "../ADT/point.h"
 #include "../ADT/tas.h"
+#include "../ADT/queue.h"
 #include "../pcolor/pcolor.h"
 #include "player.h"
 
@@ -33,7 +34,7 @@ void mapKosong(MatrixMap *m);
 // I.S. m terdefinisi dan siap diisi
 // F.S. mengisi semua elemen m dengan point kosong
 
-void printMap(MatrixMap m, Player p, Matrix mhub, Tas pickup, Tas dropoff);
+void printMap(MatrixMap m, Player p, Matrix mhub, Queue pickup, Tas dropoff);
 // m adalah matriks map
 // p adalah player
 // mhub adalah matriks adjacency

@@ -13,6 +13,8 @@ typedef struct
 #define SPEED(t) (t).Speed_Boost
 #define RETURN(t) (t).Return
 
+void CreateAbility(Ability *A);
+
 void Speed_Boost(Player *P, Tas *S, Ability *A);
 // Waktu akan bertambah 1 unit setiap Mobita berpindah 2 lokasi. Efek
 // ini berlangsung hingga Mobita telah melewati 10 lokasi (berlaku selama 5

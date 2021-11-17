@@ -5,14 +5,15 @@
 #define QUEUE_H
 
 #include "boolean.h"
+#include "tas.h"
 
-#define IDX_UNDEF -1
-#define CAPACITY 100
+#define IDX_UNDEFF -1
+#define CAPACITYQUEUE 100
 
 /* Definisi elemen dan address */
-typedef int ElType;
+typedef Item ElTypequeue;
 typedef struct {
-	ElType buffer[CAPACITY]; 
+	ElTypequeue buffer[CAPACITYQUEUE]; 
 	int idxHead;
 	int idxTail;
 } Queue;
@@ -29,28 +30,28 @@ typedef struct {
 void CreateQueue(Queue *q);
 /* I.S. sembarang */
 /* F.S. Sebuah q kosong terbentuk dengan kondisi sbb: */
-/* - Index head bernilai IDX_UNDEF */
-/* - Index tail bernilai IDX_UNDEF */
+/* - Index head bernilai IDX_UNDEFF */
+/* - Index tail bernilai IDX_UNDEFF */
 /* Proses : Melakukan alokasi, membuat sebuah q kosong */
 
 /* ********* Prototype ********* */
-boolean isEmpty(Queue q);
+boolean isEmptyQ(Queue q);
 /* Mengirim true jika q kosong: lihat definisi di atas */
 boolean isFull(Queue q);
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
-/* yaitu jika index head bernilai 0 dan index tail bernilai CAPACITY-1 */
+/* yaitu jika index head bernilai 0 dan index tail bernilai CAPACITYQUEUE-1 */
 int length(Queue q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, ElType val);
+void enqueue(Queue *q, ElTypequeue val);
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur".
         Jika q penuh semu, maka perlu dilakukan aksi penggeseran "maju" elemen-elemen q
         menjadi rata kiri untuk membuat ruang kosong bagi TAIL baru  */
 
-void dequeue(Queue *q, ElType *val);
+void dequeue(Queue *q, ElTypequeue *val);
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., HEAD dan IDX_HEAD "mundur"; 

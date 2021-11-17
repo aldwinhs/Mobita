@@ -161,15 +161,15 @@ void deleteAtLL(ListLL *l, int idx, item *val){
 //     printf("]");
 // }
 
-// int length(ListLL l){
-//     int panjang = 0;
-//     AddressNode akhir = l;
-//     while (akhir != NULL) {
-//         panjang++ ;
-//         akhir = NEXT(akhir);
-//     }
-//     return panjang;
-// }
+int lengthLL(ListLL l){
+    int panjang = 0;
+    AddressNode akhir = l;
+    while (akhir != NULL) {
+        panjang++ ;
+        akhir = NEXT(akhir);
+    }
+    return panjang;
+}
 
 // boolean fSearch(ListLL L, AddressNode P){
 //     AddressNode awal;
@@ -177,7 +177,7 @@ void deleteAtLL(ListLL *l, int idx, item *val){
 //     awal = FIRST(L);
 //     while(awal != NULL && !ketemu) {
 //         if(awal == P) {
-//             ketemu = true;
+//             ketemu  = true;
 //         }
 //         else{
 //             awal = NEXT(awal);
@@ -205,20 +205,18 @@ AddressNode searchPrec(ListLL L, item X){
 }
 */
 
-item maxx(ListLL l){
-    AddressNode P = l;
-    int maxnum = INFO(P).waktuMasuk;
-    item save;
-    while(P != NULL) {
-        if(INFO(P).waktuMasuk > maxnum) {
-            save = INFO(P);
-        }
-        else {
-            P = NEXT(P);
-        }
-    }
-    return save;
-}
+// item maxx(ListLL l){
+//     AddressNode P = l;
+//     int maxnum = INFO(P).waktuMasuk;
+//     item save;
+//     while(P != NULL) {
+//         if(INFO(P).waktuMasuk > maxnum) {
+//             save = INFO(P);
+//         }
+//         P = NEXT(P);
+//     }
+//     return save;
+// }
 
 // AddressNode adrMax(ListLL l){
 //     AddressNode P = l, addmaxnum = l;
@@ -236,17 +234,17 @@ item maxx(ListLL l){
 // }
 
 item minn(ListLL l){
-    AddressNode P = l;
-    int minnum= INFO(P).waktuMasuk;
-    while(P != NULL) {
+    AddressNode P = l, saveAddress;
+    saveAddress = P;
+    int i, minnum = INFO(P).waktuMasuk;
+    for(i = 0; i < lengthLL(l); i++) {
         if(INFO(P).waktuMasuk < minnum) {
             minnum = INFO(P).waktuMasuk;
+            saveAddress = P;
         }
-        else {
-            P = NEXT(P);
-        }
+        P = NEXT(P);
     }
-    return INFO(P);
+    return INFO(saveAddress);
 }
 
 // AddressNode adrMin(ListLL l){

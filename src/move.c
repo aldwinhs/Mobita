@@ -22,22 +22,34 @@ void daftarTujuan(Player *p, Matrix mhub, ListDin mpoint, ListDin *m, int *val){
     *val = count;
 }
 
-void MOVE(Player *p, Matrix mhub, ListDin mpoint){
+void MOVE(Player *p, Matrix mhub, ListDin mpoint, boolean *move){
     int pilihan, jmlhlokasi;
     ListDin daftartujuan;
     CreateListDin(&daftartujuan, 27);
+    posisiMobita(p);
     daftarTujuan(p, mhub, mpoint, &daftartujuan, &jmlhlokasi);
     // printf("jumlh pilihan : %d\n", jmlhlokasi);
-    printf("Posisi yang ingin dituju? (0 jika ingin membatalkan) ");
+    printf("Posisi yang ingin dituju? (0 jika ingin membatalkan)\n");
+    printf("ENTER COMMAND FOR MOVE : ");
     scanf("%d", &pilihan);
     while (pilihan<0 || pilihan>jmlhlokasi) {
-        printf("Masukan tidak valid!\n");
-        printf("Posisi yang ingin dituju? (0 jika ingin membatalkan) ");
+        printf("\nMasukan tidak valid!\n");
+        printf("Posisi yang ingin dituju? (0 jika ingin membatalkan)\n");
+        printf("ENTER COMMAND FOR MOVE : ");
         scanf("%d", &pilihan);
     }
     if (pilihan != 0) {
         POSISI(*p) = ELMTLD(daftartujuan, pilihan-1);
+        posisiMobita(p);
+        *move = true;
     } else {
         printf("Instruksi MOVE berhasil dibatalkan!\n");
+        *move = false;
+        
     }
+}
+
+void posisiMobita(Player *p){
+    POINT pnt = POSISI(*p);
+    printf("Posisi Mobita saat ini : %c (%d,%d)\n", LOCC(pnt), Absis(pnt)+1, Ordinat(pnt)+1);
 }

@@ -1,5 +1,5 @@
 /* File: node.c */
-/* Implementasi Node */
+/* Implementasi  Node */
 
 #include "node.h"
 #include <stdlib.h>

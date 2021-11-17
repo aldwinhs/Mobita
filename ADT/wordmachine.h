@@ -23,26 +23,26 @@ extern Word currentWord;
 void ignoreBlank();
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : currentChar sembarang 
-   F.S. : currentChar ? BLANK atau currentChar = MARK */
+   F.S. : currentChar ? BLANK atau currentChar = NEWLINE */
 
 void startWord();
 /* I.S. : currentChar sembarang 
-   F.S. : endWord = true, dan currentChar = MARK; 
+   F.S. : endWord = true, dan currentChar = NEWLINE; 
           atau endWord = false, currentWord adalah kata yang sudah diakuisisi,
           currentChar karakter pertama sesudah karakter terakhir kata */
 
 void advWord();
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi 
    F.S. : currentWord adalah kata terakhir yang sudah diakuisisi, 
-          currentChar adalah karakter pertama dari kata berikutnya, mungkin MARK
-          Jika currentChar = MARK, endWord = true.		  
+          currentChar adalah karakter pertama dari kata berikutnya, mungkin NEWLINE
+          Jika currentChar = NEWLINE, endWord = true.		  
    Proses : Akuisisi kata menggunakan procedure copyWord */
 
 void copyWord();
 /* Mengakuisisi kata, menyimpan dalam currentWord
    I.S. : currentChar adalah karakter pertama dari kata
    F.S. : currentWord berisi kata yang sudah diakuisisi; 
-          currentChar = BLANK atau currentChar = MARK; 
+          currentChar = BLANK atau currentChar = NEWLINE; 
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi CAPACITY, maka sisa kata terpotong */
 
@@ -51,40 +51,35 @@ void copyWord();
 void ignoreBlankF();
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : currentChar sembarang 
-   F.S. : currentChar ? BLANK atau currentChar = MARK */
+   F.S. : currentChar ? BLANK atau currentChar = NEWLINE */
 
 void startWordFile(char fileloc[]);
-/* I.S. : currentChar sembarang 
-   F.S. : endWord = true, dan currentChar = MARK; 
-          atau endWord = false, currentWord adalah kata yang sudah diakuisisi,
-          currentChar karakter pertama sesudah karakter terakhir kata */
+/* I.S. : currentWord sembarang 
+   F.S. : currentWord terisi dengan kata pertama dari file */
 
 void advWordFile();
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi 
    F.S. : currentWord adalah kata terakhir yang sudah diakuisisi, 
-          currentChar adalah karakter pertama dari kata berikutnya, mungkin MARK
-          Jika currentChar = MARK, endWord = true.		  
+          currentChar adalah karakter pertama dari kata berikutnya.		  
    Proses : Akuisisi kata menggunakan procedure copyWord */
 
 void copyWordFile();
 /* Mengakuisisi kata, menyimpan dalam currentWord
    I.S. : currentChar adalah karakter pertama dari kata
    F.S. : currentWord berisi kata yang sudah diakuisisi; 
-          currentChar = BLANK atau currentChar = MARK; 
+          currentChar = BLANK atau currentChar = NEWLINE; 
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi CAPACITY, maka sisa kata terpotong */
 
 Word takeWord(Word word);
-
+// Mengeluarkan Word dengan konten terakhir
 boolean isWordString(Word word, char string[]);
-
+// Mengeluarkan true bila string pada word sama dengan string yang dibandingkan
 int takeNum(Word word);
-// dipastikan selalu angka
-
-void printWord(Word word);
-
+// Mengeluarkan integer dari sebuah Word
 void takeString(Word word, char string[]);
-
+// Mengeluarkan string dengan konten dari Word
 void stringCat(char string1[], char string2[]);
+// Menggabungkan string 1 dengan string 2
 
 #endif

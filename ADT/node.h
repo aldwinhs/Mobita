@@ -6,7 +6,7 @@
 
 typedef struct node* AddressNode;
 typedef struct node {
-    item info; // kalo dilokalku ga eror nah udah engga, mengeleg keknya
+    item info; // kalo dilokalku ga  eror nah udah engga, mengeleg keknya
     AddressNode next;
 } Node;
 

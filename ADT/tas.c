@@ -36,11 +36,12 @@ void addToTas(Tas *s, item val){
 	if(!isTasFull(*s) && !isTasLiterallyFull(*s)) {
         IDX_TOP(*s)++;
         TOP(*s) = val;
-        TOP(*s).beenPickedUp = true;
+        // TOP(*s).beenPickedUp = true;
         (*s).currCapacity++;
-        if(val.jenisItem == "H") { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
-            (*s).heavyItem++;
-        }
+        // udah ada
+        // if(val.jenisItem == 'H') { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
+        //     (*s).heavyItem++;
+        // } // okee
     } // Else do nothing [TO DO] (Apakah perlu ditambahkan pesan bahwa tas sudah penuh?)
     // Kalau item dilakukan pick up dan dimasukan ke dalam tas,
 }
@@ -53,11 +54,11 @@ void rmvFromTas(Tas *s, item *val){
 	if(!isTasEmpty(*s)) {
         *val = TOP(*s);
         IDX_TOP(*s)--;
-        TOP(*s).beenDroppedOf = true;
+        // TOP(*s).beenDroppedOf = true;
         (*s).currCapacity--;
-        if((*val).jenisItem == "H") { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
-            (*s).heavyItem--;
-        }
+        // if((*val).jenisItem == "H") { // [TO DO] heavy_item nanti disesuain lagi sama nama heavy_item yg dibuat Mahesa
+        //     (*s).heavyItem--;
+        // }
 
     } // Else do nothing [TO DO] (Apakah perlu ditambahkan pesan bahwa tas sudah kosong?)
 }

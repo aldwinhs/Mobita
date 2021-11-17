@@ -9,6 +9,7 @@
 #include"map.h"
 #include"player.h"
 #include"pick_up.h"
+#include"move.h"
 #include"help.h"
 #include"drop_off.h"
 #include "to_do_list.h"
@@ -19,26 +20,38 @@ int main(){
     Word input;
     boolean exit = false;
     Matrix AdjMtrx;
-    
     // ADT yang dipakai
     Tas tas;
     Ability ability;
     Player player;
-    Item item;
+    Item items;
     CollOfItems itemInConfig;
-    MatrixMap map, daftarlokasi;
+    MatrixMap map;
+    ListDin daftarlokasi;
+    Queue daftaritem;
+    ListLL l;
+    boolean moves;
+    boolean foundP;
+    Item buang;
+    int nToDo;
+    int duration;
+    boolean founditem;
+    int indeksitem;
+    int indeksgadget;
+    indeksitem =0;
     
     // Create
     createPlayer(&player);
-    
-    
+    CreateTas(&tas);
+    CreateTas(&itemInConfig);
+    CreateAbility(&ability);
+    mobitastart();
     printf("Main Menu:\n");
     printf("1. New Game\n");
     printf("2. Load Game\n");
     printf("3. Exit\n");
-    
+    printf("ENTER COMMAND : ");
     startWord();
-    
     while(!isWordString(currentWord,"1") && !isWordString(currentWord,"2") && !isWordString(currentWord,"3")){
         printf("input salah\n");
         advWord();
@@ -47,11 +60,11 @@ int main(){
     if(isWordString(currentWord,"1")){
         printf("Masukan nama konfigurasi level: ");
         advWord();
-        char fileloc[] = "./test/";
+        char fileloc[50] = "./config/";
         char fileName[50];
         takeString(currentWord, fileName);
         stringCat(fileloc,fileName);
-        readFile(fileloc,&AdjMtrx, &map, &daftarlokasi, &itemInConfig);
+        readFile(fileloc,&AdjMtrx, &map, &daftarlokasi, &itemInConfig, &nToDo);
         
 
     }else if (isWordString(currentWord,"2")){
@@ -59,49 +72,126 @@ int main(){
     }else{
         exit = true;
     }
+    int i;
+    IDX_TOP(itemInConfig) = nToDo - 1;
+    itemInConfig.currCapacity = nToDo;
+    itemInConfig.maxCapacity = nToDo;
+    // QUEUE daftar item
+    daftaritem = sortedqueue(itemInConfig, nToDo);
+    for (i=0;i<nToDo;i++){
+		daftaritem.buffer[i].beenPickedUp = false;
+		daftaritem.buffer[i].beenDroppedOf = false;
+	}
+    // for (int k = 0; k<nToDo;k++){
+    //     printf("waktu = %d\n", daftaritem.buffer[k].waktuMasuk);
+    //     printf("jenisItem = %c\n", daftaritem.buffer[k].jenisItem);
+    // }
     ///// COMMAND ////
     while (!exit){  
         printf("ENTER COMMAND : ");
         advWord();
         if (isWordString(currentWord, "MOVE")){
 
-
+            MOVE(&player, AdjMtrx, daftarlokasi, &moves);
             /// WAKTU PLAYER
-            int duration = TIME(player); //ini buat pengurangaan durasi perishable item
-            TIME(player)++; //waktu normal nambah 1
-            heavyItemTime(tas, &player); // efek heavy item
-            Speed_Boost(&player,&tas, &ability);
-            duration = TIME(player) - duration;
-            //Hapus Item Perishable yang hangus
-            PerishableTime(&tas, player, duration); //fungsi buat ngurangin waktu hangus + hapus kalo waktu hangus 0
+            if (moves){
+                duration = TIME(player); //ini buat pengurangaan durasi perishable item
+                TIME(player)++; //waktu normal nambah 1
+                heavyItemTime(tas, &player); // efek heavy item
+                Speed_Boost(&player,&tas, &ability);
+                duration = TIME(player) - duration;
+                //Hapus Item Perishable yang hangus
+                PerishableTime(&tas, player, duration); //fungsi buat ngurangin waktu hangus + hapus kalo waktu hangus 0
+            }
+            printf("Waktu saat ini: %d\n", TIME(player));
         }
         else if (isWordString(currentWord, "PICK_UP")){
+            founditem = false;
+            // cek lokasi apakah tempat pick_up benar
+            // if (POSISI(POSISI(*player).C == item pertama di to_do_list))
             // remove dari to do list baru di pick_up
-            pickUpItem(&tas, item);
+            // nyoba
+            // items.jenisItem = 'N';
+            // items.lokSrc = 'A';
+            // items.lokDes = 'A';
+            // items.price = 0;
+            // items.waktuHangus =1;
+            // items.waktuMasuk =1;
+            // items.beenDroppedOf = false;
+            // items.beenDroppedOf = true;
+            // nyoba kalo udah buat ganti aja bang gery
+            while (founditem == false){
+                if (daftaritem.buffer[indeksitem].beenPickedUp== false){
+                    founditem = true;
+                }
+                else {
+                    indeksitem = indeksitem+1;
+                }
+            }
+            if (daftaritem.buffer[indeksitem].lokSrc == LOCC(POSISI(player)) && founditem == true){
+                pickUpItem(&tas, daftaritem.buffer[indeksitem]);
+                // daftaritem.buffer[indeksitem].beenPickedUp = true;
+                dequeue(&daftaritem, &buang);
+            }
+            else {
+                printf("Pesanan tidak ditemukan!\n");
+            }
         }
         else if (isWordString(currentWord, "DROP_OFF")){
-            dropOffItem(&player, &tas, &ability, &item); 
+            // cek lokasi apakah tempat drop_off benar
+            // if (POSISI(*player).C == TOP(tas).lokDes[0]){
+            if (LOCC(POSISI(player)) == TOP(tas).lokDes){
+                dropOffItem(&player, &tas, &ability, &items); 
+            }   
+            else {
+                printf("Tidak dapat pesanan yang dapat diantarkan!\n");
+            }
             // sudah ada mekanisme mendapat ability, price , efek heavy dll
         }
         else if (isWordString(currentWord, "MAP")){
-
+            // printf("%d", nToDo);
+            printMap(map, player, AdjMtrx, daftaritem, tas);
+            //printMap(map, player, AdjMtrx, currentToDo(&itemInConfig, TIME(player), nToDo), tas);
+            // printf("Map berhasil \n");
+            
+            //ini buat nyoba
+            // Tas berisi1;
+            // Item item1 = {'A', 'G', 'H', 6, 9, 400};
+            // CreateTas(&berisi1);
+            // addToTas(&berisi1, item1);
+            // printMap(map, player, AdjMtrx, berisi1, tas);
+            // printf("jumlah row : %d\n", ROWSMAP(map));
+            // printf("jumlah col : %d\n", COLSMAP(map));
         }
         else if (isWordString(currentWord, "TO_DO")){
-            displayToDo(itemInConfig, TIME(player));
+            // displayToDo(itemInConfig, TIME(player), nToDo);
+            // TIME(player) =2;//nyoba
+            // moveToDo(&daftaritem, &l, TIME(player));
+            // displayl
+            // printf("%c -> %c", INFO(l))
+            // printf("%c", )
+            displayToDo(daftaritem, TIME(player));
+            
+            // printf("To Do berhasil \n");
         }
         else if (isWordString(currentWord, "IN_PROGRESS")){
             displayInProgr(tas);
         }
         else if (isWordString(currentWord, "BUY")){
+            if (LOCC(ELMTLD(daftarlokasi, 0)) != LOCC(POSISI(player))) {
+                printf("Command ini hanya dapat dipanggil ketika Anda berada di Headquarter!\n");
+                continue;
+            }
+
             int buy;
             boolean keluar = false;
             printf("Uang yang tersedia : %i Yen\n", MONEY(player));
             printGadget();
-            printf("ENTER COMMAND : ");
+            printf("ENTER COMMAND FOR BUY: ");
             advWord();
             buy = takeNum(currentWord);
             
-            if (buy == 0) keluar = true;
+            if (buy == 0) continue;
             else if ((buy >= 1) && (buy <= 4)){
                 if (MONEY(player) < gadgetPrice(buy)) printf("Uang tidak cukup untuk membeli gadget.\n");
                 else{
@@ -121,11 +211,11 @@ int main(){
             int inv;
             boolean keluar = false;
             printInventory(GADGET(player));
-            printf("ENTER COMMAND : ");
+            printf("\nENTER COMMAND FOR INVENTORY: ");
             advWord();
             inv = takeNum(currentWord);
 
-            if (inv == 0) keluar = true;
+            if (inv == 0) continue;
             else if ((inv >= 1) && (inv <= 4)){
                 if (indexOfLP(GADGET(player), inv) != IDX_UNDEFLP){
                     ElType remove;
@@ -137,7 +227,26 @@ int main(){
                     // Implementasi Gadget
                     // Kain Pembungkus Waktu
                     if (inv == 1){
+                        // asumsi di taas ada perishable item 
+                         foundP = false; //udah kudefine diatas //salah nama tyt HAHAHA GPP
+                        indeksgadget = CURRENT_CAP(tas);
                         // Mengembalikan waktu dari perishable item ke durasi semula
+                        // tas itemInConfig 
+                        // while (foundP == false){ ngantuk
+                        //     if (tas.buffer[indeksgadget].jenisItem = "P"){
+                            //      for (int i = 0; i<nToDo; i++){
+                                //         if (tas.buffer[indeksgadget].jenisItem == itemInConfig.buffer[i].jenisItem && tas.buffer[indeksgadget].lokSrc == itemInConfig.buffer[i].lokSrc && tas.buffer[indeksgadget].lokDes == itemInConfig.buffer[i].lokDes && tas.buffer[indeksgadget].waktuMasuk == itemInConfig.buffer[i].waktuMasuk){
+                            //}                         tas.buffer[indeksgadget].waktuHangus =  itemInConfig.buffer[i].waktuHangus;
+                            //                          foundP = true;
+                                    //}
+                        //     }    
+                        //     else {
+                            //   indeksgadget = indeksgadget -1; 
+                                
+                        //     }
+                        // }
+
+                        // if (foundp == false) insertLastLP(&GADGET(player), 1);
                     }
                     // Senter Pembesar
                     else if (inv == 2){
@@ -150,13 +259,13 @@ int main(){
                     else if (inv == 3){
                         // Move tanpa menambah unit waktu
                         // OPSI 1
-                        changeTime(&player, (-1));
+                        // changeTime(&player, (-1));
                         // OPSI 2
                         // bikin boolean PKSactive = false di awal
                         // disini PKSactive = true
                         // di mekanisme waktu, if PKSactive, berarti ganambah waktu
                         // OPSI 3
-                        // panggil cara kerja move.. 
+                        MOVE(&player, AdjMtrx, daftarlokasi, &moves);
                     } 
                     // Mesin Waktu
                     else if (inv == 4){
@@ -176,15 +285,16 @@ int main(){
             help();
         }
         else{
-            printf("Masukan Perintah Yang benar");
+            printf("Masukan Perintah Yang benar\n");
         }
 
+        if((LOCC(ELMTLD(daftarlokasi, 0)) == LOCC(POSISI(player))) &&  isFinished(itemInConfig, nToDo)){
+            congratulations();
+            // printf(jumlah item??)
+            printf("Lama waktu permainan : %d\n", TIME(player));
+            exit = true;
+        }
 
-
-        // isHeadQuarter
-        // isTodoList NULL
-        // exit = true
-        // BONUS : SAVE GAME
     }
 
 
@@ -194,8 +304,9 @@ int main(){
 
 
 
-    close();
-    return 0;
+    // close();
+    // return 0;
+    // printf("masuk sini\n");
 }
 // Adt yang dibutuhin di pick_up drop_off sama ability
 // pick_up.c drop_off.c ability.c ../ADT/tas.c 

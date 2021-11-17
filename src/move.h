@@ -18,11 +18,15 @@ void daftarTujuan(Player *p, Matrix mhub, ListDin mPoint, ListDin *m, int *val);
 // m adalah listdin untuk menyimpan lokasi mana saja yang bisa dicapai player
 // val berisi jumlah lokasi yang bisa dicapai
 
-void MOVE(Player *p, Matrix mhub, ListDin mMap);
+void MOVE(Player *p, Matrix mhub, ListDin mMap, boolean *move);
 // p adalah player
 // mhub adalah matrix adjacency
 // mMap adalah listdin dengan ukuran jumlahLokasix1, berguna untuk menyimpan semua lokasi yang ada
 // I.S. p, mhub, mMap terdefinisi
 // F.S. memindahkan posisi player p ke posisi lain yang dituju
+
+void posisiMobita(Player *p);
+// I.S. p terdefinisi
+// F.S. menampilkan posisi mobita saat ini
 
 #endif

@@ -11,23 +11,23 @@ void pickUpItem(Tas *S, Item T)
         if (!isVIPitem(*S))
         {
 
-            if (compare(T.jenisItem, "N"))
+            if (T.jenisItem== 'N')
             {
                 printf("Pesanan berupa Normal Item berhasil diambil!\n");
                 T.price = 200;
             }
-            else if (compare(T.jenisItem, "H"))
+            else if (T.jenisItem== 'H')
             {
                 printf("Pesanan berupa Heavy Item berhasil diambil!\n");
                 SUM_HEAVY(*S) += 1;
                 T.price = 400;
             }
-            else if (compare(T.jenisItem, "P"))
+            else if (T.jenisItem== 'P')
             {
                 printf("Pesanan berupa Perishable item berhasil diambil!\n");
                 T.price = 400;
             }
-            else if (compare(T.jenisItem, "V"))
+            else if (T.jenisItem== 'V')
             {
                 printf("Pesanan berupa VIP item berhasil diambil!\n");
                 T.price = 600;
@@ -40,6 +40,7 @@ void pickUpItem(Tas *S, Item T)
             if (isItem(T.jenisItem))
             {
                 addToTas(S, T);
+                T.beenPickedUp = true;
             }
         }
         else
@@ -63,14 +64,13 @@ boolean isVIPitem(Tas S)
     {
         return false;
     }
-    char *vip = "V";
-    return compare(vip, T.jenisItem);
+    return (T.jenisItem == 'V');
 }
 
-boolean isItem(char *jenisitem)
+boolean isItem(char jenisitem)
 /* menghasilkan true jika jenis pesanan valid */
 {
-    return (*jenisitem == 'N' || *jenisitem == 'H' || *jenisitem == 'P' || *jenisitem == 'V');
+    return (jenisitem == 'N' || jenisitem == 'H' || jenisitem == 'P' || jenisitem == 'V');
 }
 
 boolean compare(char *array1, char *array2)

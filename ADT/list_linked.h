@@ -89,8 +89,8 @@ void deleteAtLL(ListLL *l, int idx, item *val);
 // /* Jika ListLL kosong : menulis [] */
 // /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
 
-// int length(ListLL l);
-// /* Mengirimkan banyaknya elemen ListLL; mengirimkan 0 jika ListLL kosong */
+int lengthLL(ListLL l);
+/* Mengirimkan banyaknya elemen ListLL; mengirimkan 0 jika ListLL kosong */
 
 /****************** PROSES TERHADAP ListLL ******************/
 // ListLL concatLL(ListLL l1, ListLL l2) ;

@@ -10,4 +10,10 @@ void help();
 /* I.S. tidak terdefinisi */
 /* F.S. Ditampilkannya semua menu yang ada beserta kegunaannya */
 
+void mobitastart();
+/* Menampilkan tulisan mobita */
+
+void congratulations();
+/* Menampilkan tulisan congratulations */
+
 #endif //MOBITA_HELP_H

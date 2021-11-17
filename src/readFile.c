@@ -4,14 +4,16 @@
 #include"readFile.h"
 
 
-void readFile(char fileloc[], Matrix *AdjMtrx, MatrixMap *map, MatrixMap *daftarlokasi, CollOfItems *itemInConfig){
+void readFile(char fileloc[], Matrix *AdjMtrx, MatrixMap *map, ListDin *daftarlokasi, CollOfItems *itemInConfig, int *nToDo){
     
-    int i, j, nTodo, barisMap, kolomMap,totalLokasi,x,y;
+    int i, j, barisMap, kolomMap,totalLokasi,x,y;
     char inputString[50];
     char input[2];
     char temp;
     POINT Koordinat;
+    int a;
     
+    printf("Loading...\n");
     startWordFile(fileloc);
     barisMap = takeNum(currentWord);
     advWordFile();
@@ -26,9 +28,9 @@ void readFile(char fileloc[], Matrix *AdjMtrx, MatrixMap *map, MatrixMap *daftar
     
     advWordFile();
     totalLokasi = takeNum(currentWord)+1;
-    CreateMatrixMap(totalLokasi, 1, daftarlokasi);
+    CreateListDin(daftarlokasi,totalLokasi);
 
-    ELMTMAP(*daftarlokasi,0,0) = Koordinat;
+    ELMTLD(*daftarlokasi,0) = Koordinat;
     ELMTMAP(*map, x, y) = Koordinat;
 
     for(i = 0; i < totalLokasi-1 ; i++){
@@ -39,7 +41,7 @@ void readFile(char fileloc[], Matrix *AdjMtrx, MatrixMap *map, MatrixMap *daftar
         advWordFile();
         y = takeNum(currentWord)-1;
         Koordinat = MakePOINT(temp,x,y);
-        ELMTMAP(*daftarlokasi,i+1,0) = Koordinat;
+        ELMTLD(*daftarlokasi,i+1) = Koordinat;
         ELMTMAP(*map, x, y) = Koordinat;
     }
 
@@ -54,20 +56,20 @@ void readFile(char fileloc[], Matrix *AdjMtrx, MatrixMap *map, MatrixMap *daftar
     } 
     
     advWordFile();
-    nTodo = takeNum(currentWord);
+    *nToDo = takeNum(currentWord);
     
-    for(i = 0; i < nTodo; i++){
+    for(i = 0; i < *nToDo; i++){
         advWordFile();
         (*itemInConfig).buffer[i].waktuMasuk = takeNum(currentWord);
         advWordFile();
-        takeString(currentWord, inputString);
-        (*itemInConfig).buffer[i].lokSrc = inputString;
+        // takeString(currentWord, inputString);
+        (*itemInConfig).buffer[i].lokSrc = currentWord.contents[0];
         advWordFile();
-        takeString(currentWord, inputString);
-        (*itemInConfig).buffer[i].lokDes = inputString;
+        // takeString(currentWord, inputString);
+        (*itemInConfig).buffer[i].lokDes = currentWord.contents[0];
         advWordFile();
-        takeString(currentWord, inputString);
-        (*itemInConfig).buffer[i].jenisItem = inputString;
+        // takeString(currentWord, inputString);
+        (*itemInConfig).buffer[i].jenisItem = currentWord.contents[0];
         if (isWordString(currentWord, "P")){
             advWordFile();
             (*itemInConfig).buffer[i].waktuHangus = takeNum(currentWord);
@@ -77,12 +79,17 @@ void readFile(char fileloc[], Matrix *AdjMtrx, MatrixMap *map, MatrixMap *daftar
         (*itemInConfig).buffer[i].beenDroppedOf = false;
         (*itemInConfig).buffer[i].beenPickedUp = false;
         (*itemInConfig).buffer[i].price = 0;
-        // run bang
-        
     }
-    
+    // for (int i = 0; i<*nToDo;i++){
+
+    //     printf("jenis item : %c\n", (*itemInConfig).buffer[i].jenisItem);
+    // }
+    // for (int i = 0; i<*nToDo;i++){
+    //     printf("tempat tujuan: %c\n", (*itemInConfig).buffer[i].lokSrc);
+    // }
 
 
 
     closeFile();
+    printf("Done\n");
 }

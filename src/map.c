@@ -18,7 +18,7 @@ void mapKosong(MatrixMap *m){
     }
 }
 
-void printMap(MatrixMap m, Player p, Matrix mhub, Tas pickup, Tas dropoff){
+void printMap(MatrixMap m, Player p, Matrix mhub, Queue pickup, Tas dropoff){
     int a, b, c, d;
     for(a=0; a<COLSMAP(m)+2 ;a++){
         printf("* ");
@@ -35,10 +35,11 @@ void printMap(MatrixMap m, Player p, Matrix mhub, Tas pickup, Tas dropoff){
                 if (ch == LOCC(POSISI(p))) {
                     printf(" ");
                     print_yellow(ch);
-                } else if (ch == (TOP(pickup)).lokSrc[0]) {
+                    // PICK_UP  coba dirun aja
+                } else if ((!isEmptyQ(pickup)) && (ch == HEAD(pickup).lokSrc)){
                     printf(" ");
                     print_red(ch);
-                } else if (ch == (TOP(dropoff)).lokDes[0]) {
+                } else if ((!isTasEmpty(dropoff)) && (ch == (TOP(dropoff)).lokDes)) {
                     printf(" ");
                     print_blue(ch);
                 }else if (ch == '8' && (ELMTM(mhub, 0, (int)LOCC(POSISI(p))-64)==1)) {
@@ -61,4 +62,5 @@ void printMap(MatrixMap m, Player p, Matrix mhub, Tas pickup, Tas dropoff){
     for(d=0; d<COLSMAP(m)+2 ;d++){
         printf("* ");
     }
+    printf("\n");
 }

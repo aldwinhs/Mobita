@@ -13,11 +13,11 @@ void dropOffItem(Player *p, Tas *S, Ability *A, Item *item)
     else
     {
         rmvFromTas(S, item);
-        if (compare2(item->jenisItem, "N"))
+        if ((*item).jenisItem == 'N') //bekas tadi
         {
             printf("Pesanan Normal Item berhasil diantarkan\n");
         }
-        else if (compare2(item->jenisItem, "H"))
+        else if ((*item).jenisItem == 'H')
         {
             printf("Pesanan berupa Heavy Item berhasil diantarkan\n");
             SPEED(*A) += 11; // mendabatkan ability speed_boost
@@ -29,12 +29,12 @@ void dropOffItem(Player *p, Tas *S, Ability *A, Item *item)
             SUM_HEAVY(*S) //jumlah heavy item di dalam tas berkurang
             --;
         }
-        else if (compare2(item->jenisItem, "P"))
+        else if ((*item).jenisItem== 'P')
         {
             printf("Pesanan berupa Perishable Item berhasil diantarkan\n");
             Increase_Capacity(S); // mendapatkan ability increase capacity tas
         }
-        else if (compare2(item->jenisItem, "V"))
+        else if ((*item).jenisItem== 'V')
         {
             printf("Pesanan berupa VIP Item Item berhasil diantarkan\n");
             // ability Return To Sender
@@ -43,7 +43,7 @@ void dropOffItem(Player *p, Tas *S, Ability *A, Item *item)
         { //  tidak terdapat item dalam posisi tersebut
             printf("Tidak terdapat pesanan yang dapat diantarkan!\n");
         }
-        addMoney(p, item->price);
-        printf("Uang yang didapatkan: %d\n", item->price);
+        addMoney(p, (*item).price);
+        printf("Uang yang didapatkan: %d\n", (*item).price);
     }
 }

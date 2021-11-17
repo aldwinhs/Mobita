@@ -2,6 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void CreateAbility(Ability *A)
+{
+    SPEED(*A) = 0;
+    RETURN(*A) = 0;
+}
+
 void Speed_Boost(Player *P, Tas *S, Ability *A)
 // Waktu akan bertambah 1 unit setiap Mobita berpindah 2 lokasi. Efek
 // ini berlangsung hingga Mobita telah melewati 10 lokasi (berlaku selama 5
@@ -51,7 +57,7 @@ void Return_to_Sender(Tas *S)
 {
     item item;
     rmvFromTas(S, &item);
-    if (compare2(item.jenisItem, "P"))
+    if (item.jenisItem =='P')
     {
     }
     //insertlastdi todo list
@@ -82,7 +88,7 @@ void PerishableTime(Tas *T, Player P,int duration)
     for (i = 0; i <= N - 1; i++)
     {
         item = (*T).buffer[j];
-        if (compare2(item.jenisItem, "P") == true)
+        if (item.jenisItem == 'P')
         {
             // printf("item ke = %d\n", j);
             (*T).buffer[j].waktuHangus -= duration;

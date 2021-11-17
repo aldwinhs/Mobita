@@ -4,8 +4,9 @@
 
 #include "../ADT/wordmachine.h"
 #include"map.h"
+#include"move.h"
 #include"to_do_list.h"
 
-void readFile(char fileloc[], Matrix *AdjMtrx, MatrixMap *map, MatrixMap *daftarlokasi, CollOfItems *itemInConfig);
+void readFile(char fileloc[], Matrix *AdjMtrx, MatrixMap *map, ListDin *daftarlokasi, CollOfItems *itemInConfig, int *nTodo);
 
 #endif

@@ -11,13 +11,11 @@ void createPlayer (Player *p){
 /*      Waktu = 0 satuan */
     
     // Membentuk penyimpanan sementara untuk listpos gadget
-    ListPos g;
-    CreateListPos(&g);
-
+    CreateListPos(&GADGET(*p));
     // Assign data ke masing-masing atribut
-    GADGET(*p) = g;
     MONEY(*p) = 0;
     TIME(*p) = 0;
+    POSISI(*p) = MakePOINT('8', 0, 0);
 }
 
 /* *** Primitif Uang *** */

@@ -14,9 +14,9 @@
 /* ADT item yang ini sekadar untuk testing, nanti dihapus */
 typedef struct
 {
-  char *lokSrc;
-  char *lokDes;
-  char *jenisItem;
+  char lokSrc;
+  char lokDes;
+  char jenisItem;
   int waktuMasuk;
   int waktuHangus; // waktuHangus -1 jika bukan perishable item
   int price;
