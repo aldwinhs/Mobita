@@ -2,6 +2,8 @@
 #include "../ADT/boolean.h"
 #include "../ADT/matrix.h"
 #include "../ADT/matrix.c"
+#include "../ADT/listdin.h"
+#include "../ADT/listdin.c"
 #include "../ADT/tas.h"
 #include "../ADT/tas.c"
 #include "../ADT/point.h"
@@ -88,37 +90,30 @@ int main() {
     printf("\n");
     printMap(mMap, p, m1, berisi1, berisi2);
 
-    MatrixMap mpoint;
-    CreateMatrixMap(18, 1, &mpoint);
-    // masukin semua point
-    // int count=0;
-    // for(i=0;i<ROWSMAP(mMap);i++){
-    //     for(j=0;j<COLSMAP(mMap);j++){
-    //         if (LOCC(ELMTMAP(mMap, i, j)) != '0') {
-    //             ELMTMAP(mpoint, count, 0) = ELMTMAP(mMap, i, j);
-    //             count++;
-    //         }
-    //     }
-    // }
+    // MatrixMap mpoint;
+    // CreateMatrixMap(18, 1, &mpoint);
+
+    ListDin mpoint;
+    CreateListDin(&mpoint, 27);
     
-    ELMTMAP(mpoint, 0,0) = p8;
-    ELMTMAP(mpoint, 1,0) = pa;
-    ELMTMAP(mpoint, 2,0) = pb;
-    ELMTMAP(mpoint, 3,0) = pc;
-    ELMTMAP(mpoint, 4,0) = pd;
-    ELMTMAP(mpoint, 5,0) = pe;
-    ELMTMAP(mpoint, 6,0) = pf;
-    ELMTMAP(mpoint, 7,0) = pg;
-    ELMTMAP(mpoint, 8,0) = ph;
-    ELMTMAP(mpoint, 9,0) = pi;
-    ELMTMAP(mpoint, 10,0) = pj;
-    ELMTMAP(mpoint, 11,0) = pk;
-    ELMTMAP(mpoint, 12,0) = pl;
-    ELMTMAP(mpoint, 13,0) = pm;
-    ELMTMAP(mpoint, 14,0) = pn;
-    ELMTMAP(mpoint, 15,0) = po;
-    ELMTMAP(mpoint, 16,0) = pp;
-    ELMTMAP(mpoint, 17,0) = pq;
+    ELMTLD(mpoint, 0) = p8;
+    ELMTLD(mpoint, 1) = pa;
+    ELMTLD(mpoint, 2) = pb;
+    ELMTLD(mpoint, 3) = pc;
+    ELMTLD(mpoint, 4) = pd;
+    ELMTLD(mpoint, 5) = pe;
+    ELMTLD(mpoint, 6) = pf;
+    ELMTLD(mpoint, 7) = pg;
+    ELMTLD(mpoint, 8) = ph;
+    ELMTLD(mpoint, 9) = pi;
+    ELMTLD(mpoint, 10) = pj;
+    ELMTLD(mpoint, 11) = pk;
+    ELMTLD(mpoint, 12) = pl;
+    ELMTLD(mpoint, 13) = pm;
+    ELMTLD(mpoint, 14) = pn;
+    ELMTLD(mpoint, 15) = po;
+    ELMTLD(mpoint, 16) = pp;
+    ELMTLD(mpoint, 17) = pq;
 
     // printf("\n");
     // for(i=0;i<ROWSMAP(mpoint);i++) {

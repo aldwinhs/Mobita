@@ -1,11 +1,7 @@
 #include <stdio.h>
-#include "../ADT/boolean.h"
-#include "../ADT/matrix.h"
-#include "player.h"
-#include "map.h"
 #include "move.h"
 
-void daftarTujuan(Player *p, Matrix mhub, MatrixMap mpoint, MatrixMap *m, int *val){
+void daftarTujuan(Player *p, Matrix mhub, ListDin mpoint, ListDin *m, int *val){
     printf("Posisi yang dapat dicapai : \n");
     int skrng;
     if (LOCC(POSISI(*p)) == '8'){
@@ -17,8 +13,8 @@ void daftarTujuan(Player *p, Matrix mhub, MatrixMap mpoint, MatrixMap *m, int *v
     for(i=0;i<ROWS(mhub);i++){
         if (ELMTM(mhub, skrng, i) == 1) {
             POINT point;
-            point = ELMTMAP(mpoint, i, 0);
-            ELMTMAP(*m, count, 0) = point;
+            point = ELMTLD(mpoint, i);
+            ELMTLD(*m, count) = point;
             count++;
             printf("%d. %c (%d,%d)\n", count, LOCC(point), Absis(point)+1, Ordinat(point)+1);
         }
@@ -26,10 +22,10 @@ void daftarTujuan(Player *p, Matrix mhub, MatrixMap mpoint, MatrixMap *m, int *v
     *val = count;
 }
 
-void MOVE(Player *p, Matrix mhub, MatrixMap mpoint){
+void MOVE(Player *p, Matrix mhub, ListDin mpoint){
     int pilihan, jmlhlokasi;
-    MatrixMap daftartujuan;
-    CreateMatrixMap(26, 1, &daftartujuan);
+    ListDin daftartujuan;
+    CreateListDin(&daftartujuan, 27);
     daftarTujuan(p, mhub, mpoint, &daftartujuan, &jmlhlokasi);
     printf("jmlh pilihan : %d\n", jmlhlokasi);
     printf("Posisi yang ingin dituju? (0 jika ingin membatalkan) ");
@@ -40,7 +36,7 @@ void MOVE(Player *p, Matrix mhub, MatrixMap mpoint){
         scanf("%d", &pilihan);
     }
     if (pilihan != 0) {
-        POSISI(*p) = ELMTMAP(daftartujuan, pilihan-1,0);
+        POSISI(*p) = ELMTLD(daftartujuan, pilihan-1);
     } else {
         printf("Instruksi MOVE berhasil dibatalkan!\n");
     }
