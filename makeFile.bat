@@ -1,1 +1,1 @@
-gcc src/*.c ADT/*.c -o mobita
+gcc src/*.c ADT/*.c pcolor/pcolor.c -o mobita

@@ -11,7 +11,7 @@
 #include "point.h"
 
 /*  Kamus Umum */
-#define IDX_UNDEF -1
+#define IDX_UNDEFLD -1
 /* Indeks tak terdefinisi*/
 
 /* Definisi elemen dan koleksi objek */

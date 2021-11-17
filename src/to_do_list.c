@@ -25,24 +25,24 @@ void displayInProgr(Tas s) {
     s.idxTop = saveIdxTop;
 }
 */
-/* Stack Linked List Version */
+/* Stack Linked List_MODX Version */
 
 void displayToDo(CollOfItems itemsinConfig, int currTime) {
-    List ori, copy;
-    ElType minItem, throw;
+    ListLL ori, copy;
+    item minItem, throw;
     int i, N, idks, num = 1; // N adalah banyak item di file konfigurasi
 
-    CreateList(&ori);
-    CreateList(&copy);
+    CreateListLL(&ori);
+    CreateListLL(&copy);
 
     for(i = 0; i < N; i++) {
-        insertLast(&ori, itemsinConfig.buffer[i]);
+        insertLastLL(&ori, itemsinConfig.buffer[i]);
     }
-    while(!isEmpty(ori)) {
+    while(!isEmptyLL(ori)) {
         minItem = minn(ori);
-        idks = indexOf(&ori, minItem);
-        insertFirst(&copy, minItem);
-        deleteAt(&ori, idks, &minItem);
+        idks = indexOfLL(ori, minItem);
+        insertFirstLL(&copy, minItem);
+        deleteAtLL(&ori, idks, &minItem);
     }
     for(i = 0; i < N; i ++) {
         if(INFO(FIRST(copy)).waktuMasuk <= currTime && !(INFO(FIRST(copy)).beenDroppedOf) && !(INFO(FIRST(copy)).beenPickedUp)) {
@@ -52,7 +52,7 @@ void displayToDo(CollOfItems itemsinConfig, int currTime) {
                 printf("%d. %s -> %s (%s)\n", num, INFO(FIRST(copy)).lokSrc, INFO(FIRST(copy)).lokDes, INFO(FIRST(copy)).jenisItem);
             }
             num++;
-            deleteFirst(&copy, &throw);
+            deleteFirstLL(&copy, &throw);
         }
     }
     /*

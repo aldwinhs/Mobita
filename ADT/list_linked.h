@@ -1,7 +1,7 @@
 /* File : list_linked.h */
-/* contoh ADT list berkait dengan representasi fisik pointer  */
+/* contoh ADT ListLL berkait dengan representasi fisik pointer  */
 /* Representasi Address dengan pointer */
-/* ElType adalah integer */
+/* item adalah integer */
 
 #ifndef LIST_H
 #define LIST_H
@@ -9,117 +9,117 @@
 #include "boolean.h"
 #include "node.h"
 
-typedef Address List;
+typedef AddressNode ListLL;
 
 #define IDX_UNDEF (-1)
 #define FIRST(l) (l)
 
-/* Definisi List : */
-/* List kosong : FIRST(l) = NULL */
+/* Definisi ListLL : */
+/* ListLL kosong : FIRST(l) = NULL */
 /* Setiap elemen dengan Address p dapat diacu INFO(p), NEXT(p) */
-/* Elemen terakhir list: jika addressnya Last, maka NEXT(Last)=NULL */
+/* Elemen terakhir ListLL: jika addressnya Last, maka NEXT(Last)=NULL */
 
 /* PROTOTYPE */
-/****************** PEMBUATAN LIST KOSONG ******************/
-void CreateList(List *l);
+/****************** PEMBUATAN ListLL KOSONG ******************/
+void CreateListLL(ListLL *l);
 /* I.S. sembarang             */
-/* F.S. Terbentuk list kosong */
+/* F.S. Terbentuk ListLL kosong */
 
-/****************** TEST LIST KOSONG ******************/
-boolean isEmpty(List l);
-/* Mengirim true jika list kosong */
+/****************** TEST ListLL KOSONG ******************/
+boolean isEmptyLL(ListLL l);
+/* Mengirim true jika ListLL kosong */
 
 /****************** GETTER SETTER ******************/
-ElType getElmt(List l, int idx);
+item getElmtLL(ListLL l, int idx);
 /* I.S. l terdefinisi, idx indeks yang valid dalam l, yaitu 0..length(l) */
 /* F.S. Mengembalikan nilai elemen l pada indeks idx */
 
-void setElmt(List *l, int idx, ElType val);
+void setElmtLL(ListLL *l, int idx, item val);
 /* I.S. l terdefinisi, idx indeks yang valid dalam l, yaitu 0..length(l) */
 /* F.S. Mengubah elemen l pada indeks ke-idx menjadi val */
 
-int indexOf(List l, ElType val);
+int indexOfLL(ListLL l, item val);
 /* I.S. l, val terdefinisi */
-/* F.S. Mencari apakah ada elemen list l yang bernilai val */
+/* F.S. Mencari apakah ada elemen ListLL l yang bernilai val */
 /* Jika ada, mengembalikan indeks elemen pertama l yang bernilai val */
 /* Mengembalikan IDX_UNDEF jika tidak ditemukan */
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void insertFirst(List *l, ElType val);
+void insertFirstLL(ListLL *l, item val);
 /* I.S. l mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai val jika alokasi berhasil. */
 /* Jika alokasi gagal: I.S.= F.S. */
 
-void insertLast(List *l, ElType val);
+void insertLastLL(ListLL *l, item val);
 /* I.S. l mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
-/* menambahkan elemen list di akhir: elemen terakhir yang baru */
+/* menambahkan elemen ListLL di akhir: elemen terakhir yang baru */
 /* bernilai val jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 
-void insertAt(List *l, ElType val, int idx);
+void insertAtLL(ListLL *l, item val, int idx);
 /* I.S. l tidak mungkin kosong, idx indeks yang valid dalam l, yaitu 0..length(l) */
 /* F.S. Melakukan alokasi sebuah elemen dan */
-/* menyisipkan elemen dalam list pada indeks ke-idx (bukan menimpa elemen di i) */
+/* menyisipkan elemen dalam ListLL pada indeks ke-idx (bukan menimpa elemen di i) */
 /* yang bernilai val jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 
 /*** PENGHAPUSAN ELEMEN ***/
-void deleteFirst(List *l, ElType *val);
-/* I.S. List l tidak kosong  */
-/* F.S. Elemen pertama list dihapus: nilai info disimpan pada x */
+void deleteFirstLL(ListLL *l, item *val);
+/* I.S. ListLL l tidak kosong  */
+/* F.S. Elemen pertama ListLL dihapus: nilai info disimpan pada x */
 /*      dan alamat elemen pertama di-dealokasi */
-void deleteLast(List *l, ElType *val);
-/* I.S. list tidak kosong */
-/* F.S. Elemen terakhir list dihapus: nilai info disimpan pada x */
+void deleteLastLL(ListLL *l, item *val);
+/* I.S. ListLL tidak kosong */
+/* F.S. Elemen terakhir ListLL dihapus: nilai info disimpan pada x */
 /*      dan alamat elemen terakhir di-dealokasi */
 
-void deleteAt(List *l, int idx, ElType *val);
-/* I.S. list tidak kosong, idx indeks yang valid dalam l, yaitu 0..length(l) */
+void deleteAtLL(ListLL *l, int idx, item *val);
+/* I.S. ListLL tidak kosong, idx indeks yang valid dalam l, yaitu 0..length(l) */
 /* F.S. val diset dengan elemen l pada indeks ke-idx. */
 /*      Elemen l pada indeks ke-idx dihapus dari l */
 
 
-/****************** PROSES SEMUA ELEMEN LIST ******************/
-void displayList(List l);
-// void printInfo(List l);
-/* I.S. List mungkin kosong */
-/* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
-/* Jika list kosong : menulis [] */
-/* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
+/****************** PROSES SEMUA ELEMEN ListLL ******************/
+// void displayListt(ListLL l);
+// // void printInfo(ListLL l);
+// /* I.S. ListLL mungkin kosong */
+// /* F.S. Jika ListLL tidak kosong, iai ListLL dicetak ke kanan: [e1,e2,...,en] */
+// /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
+// /* Jika ListLL kosong : menulis [] */
+// /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
 
-int length(List l);
-/* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
+// int length(ListLL l);
+// /* Mengirimkan banyaknya elemen ListLL; mengirimkan 0 jika ListLL kosong */
 
-/****************** PROSES TERHADAP LIST ******************/
-List concat(List l1, List l2) ;
+/****************** PROSES TERHADAP ListLL ******************/
+// ListLL concatLL(ListLL l1, ListLL l2) ;
 /* I.S. l1 dan l2 sembarang */
 /* F.S. l1 dan l2 kosong, l3 adalah hasil konkatenasi l1 & l2 */
-/* Konkatenasi dua buah list : l1 dan l2    */
-/* menghasilkan l3 yang baru (dengan elemen list l1 dan l2 secara beurutan). */
+/* Konkatenasi dua buah ListLL : l1 dan l2    */
+/* menghasilkan l3 yang baru (dengan elemen ListLL l1 dan l2 secara beurutan). */
 /* Tidak ada alokasi/dealokasi pada prosedur ini */
 
-boolean fSearch(List L, Address P);
+// boolean fSearch(ListLL L, AddressNode P);
 
-ElType maxx(List l);
+item maxx(ListLL l);
 
-Address adrMax(List l);
+// AddressNode adrMax(ListLL l);
 
-ElType minn(List l);
+item minn(ListLL l);
 
-Address adrMin(List l);
+// AddressNode adrMin(ListLL l);
 
-void delAll(List *l);
+// void delAll(ListLL *l);
 
-void inverseList(List *l);
+// void inverseList(ListLL *l);
 
-List fCopyList(List l);
+// ListLL fCopyList(ListLL l);
 
-void cpAllocList(List lin, List *lout);
+// void cpAllocList(ListLL lin, ListLL *lout);
 
-List fInverseList(List l);
+// ListLL fInverseList(ListLL l);
 
-void splitList(List *l1, List *l2, List l);
+// void splitList(ListLL *l1, ListLL *l2, ListLL l);
 
 #endif

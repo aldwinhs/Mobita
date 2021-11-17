@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "to_do_list.h": "c",
+        "matrix.h": "c"
+    }
+}

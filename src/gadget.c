@@ -36,16 +36,16 @@ void printInventory(ListPos g){
 /* F.S. Print nama gadget yang terdapat di inventory */
 /*      Jika tidak memiliki gadget, akan mengeluarkan "-" */
     printf("1. ");
-    if (indexOf(g, 1) != IDX_UNDEF) printf("Kain Pembungkus Waktu\n");
+    if (indexOfLP(g, 1) != IDX_UNDEFLP) printf("Kain Pembungkus Waktu\n");
     else printf("-\n");
     printf("2. ");
-    if (indexOf(g, 2) != IDX_UNDEF) printf("Senter Pembesar\n");
+    if (indexOfLP(g, 2) != IDX_UNDEFLP) printf("Senter Pembesar\n");
     else printf("-\n");
     printf("3. ");
-    if (indexOf(g, 3) != IDX_UNDEF) printf("Pintu Kemana Saja\n");
+    if (indexOfLP(g, 3) != IDX_UNDEFLP) printf("Pintu Kemana Saja\n");
     else printf("-\n");
     printf("4. ");
-    if (indexOf(g, 4) != IDX_UNDEF) printf("Mesin Waktu\n");
+    if (indexOfLP(g, 4) != IDX_UNDEFLP) printf("Mesin Waktu\n");
     else printf("-\n");
     printf("Gadget mana yang ingin digunakan? (ketik 0 jika ingin kembali)\n\n");
 }

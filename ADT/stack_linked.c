@@ -2,18 +2,8 @@
 #include "stack_linked.h"
 
 /* Prototype manajemen memori */
-Address newNode(item x) {
-    Address p;
-    p = (Address) malloc(sizeof(Node));
-    if(p != NULL) {
-        INFOLS(p) = x;
-        NEXTLS(p) = NULL;
-        return p;
-    } else {
-        return NULL;
-    }
-}
-/* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x,
+
+/* Mengembalikan alamat sebuah Nodee hasil alokasi dengan info = x,
    atau
    NULL jika alokasi gagal */
 
@@ -28,7 +18,7 @@ void CreateStack(Stack *s) {
 /* I.S. sembarang */
 /* F.S. Membuat sebuah stack s yang kosong */
 void push(Stack *s, item x) {
-    Address q;
+    AddressNode q;
     q = newNode(x);
 
     if(q != NULL) {
@@ -47,7 +37,7 @@ void push(Stack *s, item x) {
 /* Pada dasarnya adalah operasi insertFirst pada list linier */
 void pop(Stack *s, item *x) {
     *x = TOPLS(*s);
-    Address p = ADDR_TOPLS(*s);
+    AddressNode p = ADDR_TOPLS(*s);
     ADDR_TOPLS(*s) = NEXTLS(p);
     NEXTLS(p) = NULL;
     free(p);

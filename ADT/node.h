@@ -4,16 +4,15 @@
 #include <stdlib.h>
 #include "tas.h"
 
-typedef Item ElType;
-typedef struct node* Address;
+typedef struct node* AddressNode;
 typedef struct node {
-    ElType info; // kalo dilokalku ga eror nah udah engga, mengeleg keknya
-    Address next;
+    item info; // kalo dilokalku ga eror nah udah engga, mengeleg keknya
+    AddressNode next;
 } Node;
 
 #define INFO(p) (p)->info
 #define NEXT(p) (p)->next
 
-Address newNode(ElType val);
+AddressNode newNode(item val);
 
 #endif

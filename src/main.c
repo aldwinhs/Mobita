@@ -19,16 +19,17 @@ int main(){
     Word input;
     boolean exit = false;
     Matrix AdjMtrx;
+    
     // ADT yang dipakai
     Tas tas;
     Ability ability;
     Player player;
     Item item;
     CollOfItems itemInConfig;
+    MatrixMap map, daftarlokasi;
     
     // Create
     createPlayer(&player);
-    CreateMatrix(18,18,&AdjMtrx);
     
     
     printf("Main Menu:\n");
@@ -50,7 +51,7 @@ int main(){
         char fileName[50];
         takeString(currentWord, fileName);
         stringCat(fileloc,fileName);
-        readFile(fileloc,&AdjMtrx, &itemInConfig);
+        readFile(fileloc,&AdjMtrx, &map, &daftarlokasi, &itemInConfig);
         
 
     }else if (isWordString(currentWord,"2")){
@@ -58,7 +59,7 @@ int main(){
     }else{
         exit = true;
     }
-    ///// COMAND ////
+    ///// COMMAND ////
     while (!exit){  
         printf("ENTER COMMAND : ");
         advWord();
@@ -93,72 +94,82 @@ int main(){
         }
         else if (isWordString(currentWord, "BUY")){
             int buy;
+            boolean keluar = false;
             printf("Uang yang tersedia : %i Yen\n", MONEY(player));
             printGadget();
             printf("ENTER COMMAND : ");
             advWord();
             buy = takeNum(currentWord);
             
-            if (buy == 0) printf("break");
-            else {
+            if (buy == 0) keluar = true;
+            else if ((buy >= 1) && (buy <= 4)){
                 if (MONEY(player) < gadgetPrice(buy)) printf("Uang tidak cukup untuk membeli gadget.\n");
                 else{
-                    if (!isFullList(GADGET(player))) { 
-                        insertLast(&GADGET(player), buy);
+                    if (!isFullListLP(GADGET(player))) { 
+                        insertLastLP(&GADGET(player), buy);
                         MONEY(player) -= gadgetPrice(buy);
-                        displayListLP(GADGET(player));
                 		printf("\n");
                     }
                     else printf("Inventory telah penuh! Gunakan gadget yang Anda miliki terlebih dahulu sebelum membeli gadget lain.\n");
                 }
+            } else {
+                printf("Input yang Anda masukkan salah, silahkan ulangi kembali!\n");
+            	continue;
             }
         }
         else if (isWordString(currentWord, "INVENTORY")){
             int inv;
+            boolean keluar = false;
             printInventory(GADGET(player));
             printf("ENTER COMMAND : ");
             advWord();
             inv = takeNum(currentWord);
 
-            if (indexOfLP(GADGET(player), inv) != IDX_UNDEF){
-                ElType remove;
-                swapLast(&GADGET(player), inv); 
-                deleteLastLP(&GADGET(player), &remove);
-                useGadget(GADGET(player), inv);
-                printf("\n");
+            if (inv == 0) keluar = true;
+            else if ((inv >= 1) && (inv <= 4)){
+                if (indexOfLP(GADGET(player), inv) != IDX_UNDEFLP){
+                    ElType remove;
+                    swapLast(&GADGET(player), inv); 
+                    deleteLastLP(&GADGET(player), &remove);
+                    useGadget(GADGET(player), inv);
+                    printf("\n");
 
-                // Implementasi Gadget
-                // Kain Pembungkus Waktu
-                if (inv == 1){
-                    // Mengembalikan waktu dari perishable item ke durasi semula
-                }
-                // Senter Pembesar
-                else if (inv == 2){
-                    // Meningkatkan kapasitas tas sebesar dua kali lipat
-                    // Ini ada fungsi buat ganti kapasitas tas ga yaa?
-                    if (tas.currCapacity * 2 <= CAPACITY_TAS) addCapTas(&tas, tas.currCapacity * 2);
-                    else addCapTas(&tas, 100);
-                }
-                // Pintu Kemana Saja
-                else if (inv == 3){
-                    // Move tanpa menambah unit waktu
-                    // OPSI 1
-                    changeTime(&player, (-1));
-                    // OPSI 2
-                    // bikin boolean PKSactive = false di awal
-                    // disini PKSactive = true
-                    // di mekanisme waktu, if PKSactive, berarti ganambah waktu
-                    // OPSI 3
-                    // panggil cara kerja move.. 
-                } 
-                // Mesin Waktu
-                else if (inv == 4){
-                    // Mengurangi unit waktu sebanyak 50
-                    if (TIME(player) >= 50) changeTime(&player, (-50));
-                    else changeTime(&player, TIME(player));
+                    // Implementasi Gadget
+                    // Kain Pembungkus Waktu
+                    if (inv == 1){
+                        // Mengembalikan waktu dari perishable item ke durasi semula
+                    }
+                    // Senter Pembesar
+                    else if (inv == 2){
+                        // Meningkatkan kapasitas tas sebesar dua kali lipat
+                        // Ini ada fungsi buat ganti kapasitas tas ga yaa?
+                        if (tas.currCapacity * 2 <= CAPACITY_TAS) addCapTas(&tas, tas.currCapacity * 2);
+                        else addCapTas(&tas, 100);
+                    }
+                    // Pintu Kemana Saja
+                    else if (inv == 3){
+                        // Move tanpa menambah unit waktu
+                        // OPSI 1
+                        changeTime(&player, (-1));
+                        // OPSI 2
+                        // bikin boolean PKSactive = false di awal
+                        // disini PKSactive = true
+                        // di mekanisme waktu, if PKSactive, berarti ganambah waktu
+                        // OPSI 3
+                        // panggil cara kerja move.. 
+                    } 
+                    // Mesin Waktu
+                    else if (inv == 4){
+                        // Mengurangi unit waktu sebanyak 50
+                        if (TIME(player) >= 50) changeTime(&player, (-50));
+                        else changeTime(&player, TIME(player));
+                    }
+                } else {
+                    printf("Tidak ada gadget yang dapat digunakan!\n");
                 }
             } else {
-                printf("Tidak ada gadget yang dapat digunakan!\n");
+                printf("Input yang Anda masukkan salah, silahkan ulangi kembali!\n");
+            	continue;
             }
         }
         else if (isWordString(currentWord, "HELP")){
