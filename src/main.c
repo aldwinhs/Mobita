@@ -61,7 +61,7 @@ int main(){
     if(isWordString(currentWord,"1")){
         printf("Masukan nama konfigurasi level: ");
         advWord();
-        char fileloc[50] = "./config/";
+        char fileloc[50] = "../config/";
         char fileName[50];
         takeString(currentWord, fileName);
         stringCat(fileloc,fileName);
