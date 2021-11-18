@@ -47,12 +47,12 @@ int main(){
     CreateAbility(&ability);
     mobitastart();
     printf("Main Menu:\n");
-    printf("1. New Game\n");
-    printf("2. Load Game\n");
-    printf("3. Exit\n");
-    printf("ENTER COMMAND : ");
+    printf("1. Play Game\n");
+    // printf("2. Load Game\n");
+    printf("2. Exit\n");
+    printf("ENTER CHOICE : ");
     startWord();
-    while(!isWordString(currentWord,"1") && !isWordString(currentWord,"2") && !isWordString(currentWord,"3")){
+    while(!isWordString(currentWord,"1") && !isWordString(currentWord,"2")){
         printf("input salah\n");
         advWord();
     }
@@ -65,10 +65,6 @@ int main(){
         takeString(currentWord, fileName);
         stringCat(fileloc,fileName);
         readFile(fileloc,&AdjMtrx, &map, &daftarlokasi, &itemInConfig, &nToDo);
-        
-
-    }else if (isWordString(currentWord,"2")){
-
     }else{
         exit = true;
     }
