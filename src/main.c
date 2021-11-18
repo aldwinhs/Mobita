@@ -201,25 +201,26 @@ int main(){
                     // Kain Pembungkus Waktu
                     if (inv == 1){
                         // asumsi di taas ada perishable item 
-                         foundP = false; //udah kudefine diatas //salah nama tyt HAHAHA GPP
-                        indeksgadget = CURRENT_CAP(tas);
+                        foundP = false; //udah kudefine diatas //salah nama tyt HAHAHA GPP
+                        indeksgadget = CURRENT_CAP(tas)-1;
                         // Mengembalikan waktu dari perishable item ke durasi semula
                         // tas itemInConfig 
-                        // while (foundP == false){ ngantuk
-                        //     if (tas.buffer[indeksgadget].jenisItem = "P"){
-                            //      for (int i = 0; i<nToDo; i++){
-                                //         if (tas.buffer[indeksgadget].jenisItem == itemInConfig.buffer[i].jenisItem && tas.buffer[indeksgadget].lokSrc == itemInConfig.buffer[i].lokSrc && tas.buffer[indeksgadget].lokDes == itemInConfig.buffer[i].lokDes && tas.buffer[indeksgadget].waktuMasuk == itemInConfig.buffer[i].waktuMasuk){
-                            //}                         tas.buffer[indeksgadget].waktuHangus =  itemInConfig.buffer[i].waktuHangus;
-                            //                          foundP = true;
-                                    //}
-                        //     }    
-                        //     else {
-                            //   indeksgadget = indeksgadget -1; 
-                                
-                        //     }
-                        // }
+                        while (foundP == false && indeksgadget !=-1){ 
+                            if (tas.buffer[indeksgadget].jenisItem = 'P'){
+                                for (int i = 0; i<nToDo; i++){
+                                    if (tas.buffer[indeksgadget].jenisItem == itemInConfig.buffer[i].jenisItem && tas.buffer[indeksgadget].lokSrc == itemInConfig.buffer[i].lokSrc && tas.buffer[indeksgadget].lokDes == itemInConfig.buffer[i].lokDes && tas.buffer[indeksgadget].waktuMasuk == itemInConfig.buffer[i].waktuMasuk){
+                                        tas.buffer[indeksgadget].waktuHangus =  itemInConfig.buffer[i].waktuHangus;
+                                        foundP = true;
+                                    }
+                                }
+                            }    
+                            else {
+                                indeksgadget = indeksgadget -1; 
+                            }
+                        }
 
-                        // if (foundp == false) insertLastLP(&GADGET(player), 1);
+                        if (foundP == false) insertLastLP(&GADGET(player), 1);
+                    
                     }
                     // Senter Pembesar
                     else if (inv == 2){
@@ -256,12 +257,18 @@ int main(){
         }
         else if (isWordString(currentWord, "HELP")){
             help();
+        }else if (isWordString(currentWord, "EXIT")){
+            printf("Apakah kamu yakin ingin keluar? (Y/N)\n");
+            advWord();
+            if (isWordString(currentWord, "Y")){
+                exit = true;
+            } 
         }
         else{
             printf("Masukan Perintah Yang benar\n");
         }
 
-        if((LOCC(ELMTLD(daftarlokasi, 0)) == LOCC(POSISI(player))) &&  isEmptyQ(daftaritem)){
+        if((LOCC(ELMTLD(daftarlokasi, 0)) == LOCC(POSISI(player))) &&  isEmptyQ(daftaritem) && isTasEmpty(tas)){
             congratulations();
             // printf(jumlah item??)
             printf("Lama waktu permainan : %d\n", TIME(player));

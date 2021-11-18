@@ -12,6 +12,7 @@ void help() {
     printf("7. BUY\t -> Untuk menampilkan gadget yang dapat kamu beli\n");
     printf("8. INVENTORY\t -> Untuk menampilkan gadget yang telah kamu beli dan siap dipakai\n");
     printf("9. HELP\t\t -> Untuk menampilkan list command dan kegunaannnya\n");
+	printf("9. EXIT\t\t -> Keluar dari permainan\n");
     // [TO DO] [OPSIONAL] printf("10. SAVE_GAME\t -> Untuk melakukan penyimpanan kondisi game sekarang untuk bisa dipakai kemudian\n");
 }
 
