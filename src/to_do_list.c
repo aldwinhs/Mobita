@@ -229,7 +229,8 @@ void displayToDo(Queue q, int currTime) {
     for(i = 0; i < length (q); i++) {
         if (HEAD(q).waktuMasuk <= currTime && !(HEAD(q).beenDroppedOf) && (HEAD(q).beenPickedUp == false)) {
             if (HEAD(q).jenisItem == 'P') {
-                printf("%d. %c -> %c (Perishable Item, sisa waktu %d)\n", iter, HEAD(q).lokSrc, HEAD(q).lokDes, HEAD(q).jenisItem, HEAD(q).waktuHangus);
+                printf("%d. %c -> %c ", iter, HEAD(q).lokSrc, HEAD(q).lokDes, HEAD(q).jenisItem);
+                printf("(Perishable Item, sisa waktu %d)\n", HEAD(q).waktuHangus);
             } else {
                 printf("%d. %c -> %c (%c)\n", iter, HEAD(q).lokSrc, HEAD(q).lokDes, HEAD(q).jenisItem);
             }
