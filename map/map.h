@@ -7,7 +7,7 @@
 #include "../ADT/tas.h"
 #include "../ADT/queue.h"
 #include "../pcolor/pcolor.h"
-#include "player.h"
+#include "../ADT/player.h"
 
 #define ROWSMAP_CAP 20
 #define COLSMAP_CAP 30
