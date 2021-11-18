@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "move.h"
 #include "../ADT/wordmachine.h"
-#include "../ADT/wordmachine.c"
 
 void daftarTujuan(Player *p, Matrix mhub, ListDin mpoint, ListDin *m, int *val){
     printf("Posisi yang dapat dicapai : \n");
