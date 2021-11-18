@@ -5,8 +5,8 @@
 #include "../ADT/boolean.h"
 #include "../ADT/listdin.h"
 #include "../ADT/matrix.h"
-#include "player.h"
-#include "map.h"
+#include "../ADT/player.h"
+#include "../map/map.h"
 
 void daftarTujuan(Player *p, Matrix mhub, ListDin mPoint, ListDin *m, int *val);
 // p adalah player
