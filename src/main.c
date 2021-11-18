@@ -8,7 +8,7 @@
 #include"../buy/buy.h"
 #include"../inventory/inventory.h"
 #include"map.h"
-#include"player.h"
+#include"../ADT/player.h"
 #include"pick_up.h"
 #include"move.h"
 #include"help.h"
