@@ -5,7 +5,8 @@
 #include<stdlib.h>
 #include"readFile.h"
 #include"ability.h"
-#include"gadget.h"
+#include"../buy/buy.h"
+#include"../inventory/inventory.h"
 #include"map.h"
 #include"player.h"
 #include"pick_up.h"
@@ -42,7 +43,6 @@ int main(){
     
     // Create
     createPlayer(&player);
-    MONEY(player) = 10000;
     CreateTas(&tas);
     CreateTas(&itemInConfig);
     CreateAbility(&ability);
