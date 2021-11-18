@@ -61,7 +61,15 @@ void displayInProgr(Tas s) {
     }
     if(!isTasEmpty(s)) {
         for(i = 0; i < CURRENT_CAP(s); i++) {
-            printf("%d. %c (Tujuan: %c)\n", i + 1, TOPLS(new).jenisItem, TOPLS(new).lokDes);
+            if(TOPLS(new).jenisItem == 'P') {
+                printf("%d. %s (Tujuan: %c)\n", i + 1, "Perishable Item", TOPLS(new).lokDes);
+            } else if(TOPLS(new).jenisItem == 'H') {
+                printf("%d. %s (Tujuan: %c)\n", i + 1, "Heavy Item", TOPLS(new).lokDes);
+            } else if(TOPLS(new).jenisItem == 'N') {
+                printf("%d. %s (Tujuan: %c)\n", i + 1, "Normal Item", TOPLS(new).lokDes);
+            } else if(TOPLS(new).jenisItem == 'V') {
+                printf("%d. %s (Tujuan: %c)\n", i + 1, "VIP Item", TOPLS(new).lokDes);
+            }
             pop(&new, &throw);
         }
     } else {
@@ -232,8 +240,12 @@ void displayToDo(Queue q, int currTime) {
             if (HEAD(q).jenisItem == 'P') {
                 printf("%d. %c -> %c ", iter, HEAD(q).lokSrc, HEAD(q).lokDes);
                 printf("(Perishable Item, sisa waktu %d)\n", HEAD(q).waktuHangus);
-            } else {
-                printf("%d. %c -> %c (%c)\n", iter, HEAD(q).lokSrc, HEAD(q).lokDes, HEAD(q).jenisItem);
+            } else if(HEAD(q).jenisItem == 'H'){
+                printf("%d. %c -> %c (%s)\n", iter, HEAD(q).lokSrc, HEAD(q).lokDes, "Heavy Item");
+            } else if(HEAD(q).jenisItem == 'N'){
+                printf("%d. %c -> %c (%s)\n", iter, HEAD(q).lokSrc, HEAD(q).lokDes, "Normal Item");
+            } else if(HEAD(q).jenisItem == 'V'){
+                printf("%d. %c -> %c (%s)\n", iter, HEAD(q).lokSrc, HEAD(q).lokDes, "VIP Item");
             }
             dequeue(&q, &throw);
             iter++;

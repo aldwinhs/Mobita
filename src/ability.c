@@ -122,7 +122,7 @@ boolean compare2(char *array1, char *array2)
 
 void removeitem(Tas *S, int i)
 {
-    printf("masuk sini\n");
+    // printf("masuk sini\n");
     Tas S2;
     Item item;
     CreateTas(&S2);
