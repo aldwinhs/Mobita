@@ -2,7 +2,7 @@
 
 #include "wordmachine.h"
 #include <stdio.h>
-#include<string.h>
+#include<stdlib.h>
 boolean endWord;
 Word currentWord;
 
@@ -111,7 +111,7 @@ Word takeWord(Word word){
 
 boolean isWordString(Word word, char string[]){
    int i;
-   if(word.length == strlen(string)){
+   if(word.length == stringLen(string)){
       
       for ( i = 0; i < word.length; i++){
          if(word.contents[i] != string[i]){
@@ -140,10 +140,18 @@ void takeString(Word word, char string[]){
 }
 void stringCat(char string1[], char string2[]){
    int i;
-   int len1 = strlen(string1);
-   int len2 = strlen(string2);
+   int len1 = stringLen(string1);
+   int len2 = stringLen(string2);
    for ( i = 0; i < len2; i++){
       string1[i+len1] = string2[i];
    }
    string1[i+len1] = '\0';
+}
+
+int stringLen(char string[]){
+   int i=0;
+   while (string[i] != '\0'){
+      i++;
+   }
+   return i;
 }
