@@ -106,32 +106,9 @@ int main(){
             printf("Waktu saat ini: %d\n", TIME(player));
         }
         else if (isWordString(currentWord, "PICK_UP")){
-            founditem = false;
-            // cek lokasi apakah tempat pick_up benar
-            // if (POSISI(POSISI(*player).C == item pertama di to_do_list))
-            // remove dari to do list baru di pick_up
-            // nyoba
-            // items.jenisItem = 'N';
-            // items.lokSrc = 'A';
-            // items.lokDes = 'A';
-            // items.price = 0;
-            // items.waktuHangus =1;
-            // items.waktuMasuk =1;
-            // items.beenDroppedOf = false;
-            // items.beenDroppedOf = true;
-            // nyoba kalo udah buat ganti aja bang gery
-            while (founditem == false){
-                if (daftaritem.buffer[indeksitem].beenPickedUp== false){
-                    founditem = true;
-                }
-                else {
-                    indeksitem = indeksitem+1;
-                }
-            }
-            if (daftaritem.buffer[indeksitem].lokSrc == LOCC(POSISI(player)) && founditem == true){
-                pickUpItem(&tas, daftaritem.buffer[indeksitem]);
-                // daftaritem.buffer[indeksitem].beenPickedUp = true;
+            if (!isEmptyQ(daftaritem) && daftaritem.buffer[IDX_HEAD(daftaritem)].lokSrc == LOCC(POSISI(player))){
                 dequeue(&daftaritem, &buang);
+                pickUpItem(&tas, buang);
             }
             else {
                 printf("Pesanan tidak ditemukan!\n");
@@ -288,7 +265,7 @@ int main(){
             printf("Masukan Perintah Yang benar\n");
         }
 
-        if((LOCC(ELMTLD(daftarlokasi, 0)) == LOCC(POSISI(player))) &&  isFinished(itemInConfig, nToDo)){
+        if((LOCC(ELMTLD(daftarlokasi, 0)) == LOCC(POSISI(player))) &&  isEmptyQ(daftaritem)){
             congratulations();
             // printf(jumlah item??)
             printf("Lama waktu permainan : %d\n", TIME(player));
@@ -298,15 +275,6 @@ int main(){
     }
 
 
-
-
-
-
-
-
-    // close();
-    // return 0;
-    // printf("masuk sini\n");
+    close();
+    return 0;
 }
-// Adt yang dibutuhin di pick_up drop_off sama ability
-// pick_up.c drop_off.c ability.c ../ADT/tas.c 
