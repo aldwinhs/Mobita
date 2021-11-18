@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "move.h"
+#include <string.h>
+#include <stdlib.h>
 
 void daftarTujuan(Player *p, Matrix mhub, ListDin mpoint, ListDin *m, int *val){
     printf("Posisi yang dapat dicapai : \n");
@@ -23,7 +25,8 @@ void daftarTujuan(Player *p, Matrix mhub, ListDin mpoint, ListDin *m, int *val){
 }
 
 void MOVE(Player *p, Matrix mhub, ListDin mpoint, boolean *move){
-    int pilihan, jmlhlokasi;
+    int jmlhlokasi;
+    char pilihan[10];
     ListDin daftartujuan;
     CreateListDin(&daftartujuan, 27);
     posisiMobita(p);
@@ -31,15 +34,17 @@ void MOVE(Player *p, Matrix mhub, ListDin mpoint, boolean *move){
     // printf("jumlh pilihan : %d\n", jmlhlokasi);
     printf("Posisi yang ingin dituju? (0 jika ingin membatalkan)\n");
     printf("ENTER COMMAND FOR MOVE : ");
-    scanf("%d", &pilihan);
-    while (pilihan<0 || pilihan>jmlhlokasi) {
+    scanf("%s", &pilihan);
+    int pilihanint = atoi(pilihan);
+    while (pilihanint<0 || pilihanint>jmlhlokasi) {
         printf("\nMasukan tidak valid!\n");
         printf("Posisi yang ingin dituju? (0 jika ingin membatalkan)\n");
         printf("ENTER COMMAND FOR MOVE : ");
-        scanf("%d", &pilihan);
+        scanf("%s", &pilihan);
+        pilihanint = atoi(pilihan);
     }
-    if (pilihan != 0) {
-        POSISI(*p) = ELMTLD(daftartujuan, pilihan-1);
+    if (pilihanint != 0 && pilihanint < lengthLD(daftartujuan)) {
+        POSISI(*p) = ELMTLD(daftartujuan, pilihanint-1);
         posisiMobita(p);
         *move = true;
     } else {
