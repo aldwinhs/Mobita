@@ -4,16 +4,16 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include"../file-reader/readFile.h"
-#include"ability.h"
+#include"../ability/ability.h"
 #include"../buy/buy.h"
 #include"../inventory/inventory.h"
-#include"map.h"
+#include"../map/map.h"
 #include"../ADT/player.h"
-#include"pick_up.h"
-#include"move.h"
-#include"help.h"
-#include"drop_off.h"
-#include "to_do_list.h"
+#include"../pick-up/pick_up.h"
+#include"../move/move.h"
+#include"../help/help.h"
+#include"../drop-off/drop_off.h"
+#include "../to-do-list/to_do_list.h"
 
 int main(){
     

@@ -1,1 +1,1 @@
-gcc src/*.c ADT/*.c file-reader/*.c drop-off/*.c buy/*.c ability/*.c inventory/*.c pick-up/*.c pcolor/pcolor.c -o src/mobita
+gcc src/*.c ADT/*.c file-reader/*.c drop-off/*.c buy/*.c ability/*.c inventory/*.c pick-up/*.c pcolor/pcolor.c -o src/mobita help/*.c map/*.c move/*.c to-do-list/*c
