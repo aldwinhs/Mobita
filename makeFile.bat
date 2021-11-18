@@ -1,1 +1,1 @@
-gcc src/*.c ADT/*.c pcolor/pcolor.c -o mobita
+gcc src/*.c ADT/*.c file-reader/*.c drop-off/*.c buy/*.c ability/*.c inventory/*.c pick-up/*.c pcolor/pcolor.c -o src/mobita
