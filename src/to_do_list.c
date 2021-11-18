@@ -226,7 +226,8 @@ Queue sortedqueue(CollOfItems T,int N){
 void displayToDo(Queue q, int currTime) {
     int i, iter = 1;
     item throw;
-    for(i = 0; i < length (q); i++) {
+    int N = length(q); //kalo langsung length(q) kalo lu dequeu bakal keganti lengthnya 
+    for(i = 0; i < N; i++) {
         if (HEAD(q).waktuMasuk <= currTime && !(HEAD(q).beenDroppedOf) && (HEAD(q).beenPickedUp == false)) {
             if (HEAD(q).jenisItem == 'P') {
                 printf("%d. %c -> %c ", iter, HEAD(q).lokSrc, HEAD(q).lokDes, HEAD(q).jenisItem);
