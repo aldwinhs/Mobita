@@ -3,7 +3,7 @@
 
 #include "../ADT/tas.h"
 #include "../ADT/boolean.h"
-#include "player.h"
+#include "../ADT/player.h"
 
 void pickUpItem(Tas *S, Item T);
 /* I.S Sembarang */
