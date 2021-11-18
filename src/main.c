@@ -256,6 +256,12 @@ int main(){
         }
         else if (isWordString(currentWord, "HELP")){
             help();
+        }else if (isWordString(currentWord, "EXIT")){
+            printf("Apakah kamu yakin ingin keluar? (Y/N)\n");
+            advWord();
+            if (isWordString(currentWord, "Y")){
+                exit = true;
+            } 
         }
         else{
             printf("Masukan Perintah Yang benar\n");
