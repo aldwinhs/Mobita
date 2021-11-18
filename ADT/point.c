@@ -17,29 +17,3 @@ POINT MakePOINT (char C, int X, int Y){
 	Ordinat(P) = Y;
 	return P;
 };
-
-/* *** KELOMPOK Interaksi dengan I/O device, BACA/TULIS  *** */                                                 
-void BacaPOINT (POINT * P){
-	/* Membaca nilai absis dan ordinat dari keyboard dan membentuk 
-   POINT P berdasarkan dari nilai absis dan ordinat tersebut */
-	/* Komponen X dan Y dibaca dalam 1 baris, dipisahkan 1 buah spasi */
-	/* Contoh: 1 2 
-   	akan membentuk POINT <1,2> */
-	/* I.S. Sembarang */
-	/* F.S. P terdefinisi */
-	int X,Y;
-	char C;
-	scanf("%C %f %f",&C, &X, &Y);
-	*P = MakePOINT (C,X,Y);
-}; 
-
-void TulisPOINT (POINT P){
-	/* Nilai P ditulis ke layar dengan format "(X,Y)" 
-   tanpa spasi, enter, atau karakter lain di depan, belakang, 
-   atau di antaranya 
-   Output X dan Y harus dituliskan dalam bilangan riil dengan 2 angka di belakang koma.
-	*/
-	/* I.S. P terdefinisi */
-	/* F.S. P tertulis di layar dengan format "C (X,Y)" */      
-	printf("%C (%.2f,%.2f)", LOCC(P), Absis(P), Ordinat(P));
-};            
