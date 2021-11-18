@@ -81,5 +81,7 @@ void takeString(Word word, char string[]);
 // Mengeluarkan string dengan konten dari Word
 void stringCat(char string1[], char string2[]);
 // Menggabungkan string 1 dengan string 2
+int stringLen(char string[]);
+// Menghitung lenght string
 
 #endif

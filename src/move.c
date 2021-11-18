@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "move.h"
+#include "../ADT/wordmachine.h"
 
 void daftarTujuan(Player *p, Matrix mhub, ListDin mpoint, ListDin *m, int *val){
     printf("Posisi yang dapat dicapai : \n");
@@ -31,12 +32,16 @@ void MOVE(Player *p, Matrix mhub, ListDin mpoint, boolean *move){
     // printf("jumlh pilihan : %d\n", jmlhlokasi);
     printf("Posisi yang ingin dituju? (0 jika ingin membatalkan)\n");
     printf("ENTER COMMAND FOR MOVE : ");
-    scanf("%d", &pilihan);
+    // scanf("%d", &pilihan);
+    advWord();
+    pilihan = takeNum(currentWord);
     while (pilihan<0 || pilihan>jmlhlokasi) {
         printf("\nMasukan tidak valid!\n");
         printf("Posisi yang ingin dituju? (0 jika ingin membatalkan)\n");
         printf("ENTER COMMAND FOR MOVE : ");
-        scanf("%d", &pilihan);
+        // scanf("%d", &pilihan);
+        advWord();
+        pilihan = takeNum(currentWord);
     }
     if (pilihan != 0) {
         POSISI(*p) = ELMTLD(daftartujuan, pilihan-1);
