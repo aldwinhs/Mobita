@@ -3,7 +3,7 @@
 
 #include "../ADT/boolean.h"
 #include "../ADT/tas.h"
-#include "player.h"
+#include "../ADT/player.h"
 typedef struct
 {
    int Speed_Boost; // setiap mendapat ability speedboost tambah 10
