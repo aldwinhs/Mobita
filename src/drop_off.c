@@ -20,12 +20,8 @@ void dropOffItem(Player *p, Tas *S, Ability *A, Item *item)
         else if ((*item).jenisItem == 'H')
         {
             printf("Pesanan berupa Heavy Item berhasil diantarkan\n");
-            SPEED(*A) += 11; // mendabatkan ability speed_boost
-            if (SPEED(*A) > 11)
-            {
-                SPEED(*A)
-                --;
-            }
+            // mendabatkan ability speed_boost
+            SPEED(*A) += 11;
             SUM_HEAVY(*S) //jumlah heavy item di dalam tas berkurang
             --;
         }
@@ -37,6 +33,7 @@ void dropOffItem(Player *p, Tas *S, Ability *A, Item *item)
         else if ((*item).jenisItem== 'V')
         {
             printf("Pesanan berupa VIP Item Item berhasil diantarkan\n");
+            RETURN(*A)++;
             // ability Return To Sender
         }
         else

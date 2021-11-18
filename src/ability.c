@@ -22,12 +22,12 @@ void Speed_Boost(Player *P, Tas *S, Ability *A)
     {
         if (SPEED(*A) != 0)
         {
-            SPEED(*A)
-            --;
             if (SPEED(*A) % 2 != 0)
             {
                 changeTime(P, -1); // berkurang 1 setiap ability SPEEDBOOST mod 2 == 0;
             }
+            SPEED(*A)
+            --;
         }
     }
 }
