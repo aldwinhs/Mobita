@@ -11,25 +11,26 @@ Fitur yang terdapat di dalam program :
 Folder yang terdapat di dalam program:
 1. `ADT` berisi ADT-ADT yang digunakan untuk pembuatan program.
 2. `config` berisi file konfigurasi.
-3. `driver` berisi source code untuk mengecek fungsionalitas fungsi tertentu.
-4. `pcolor` berisi modul yang dipakai untuk memberi pewarnaan pada text.
-5. `src` berisi fungsionalitas-fungsionalitas dan main program.
+3. `docs` berisi laporan tugas besar.
+4. `driver` berisi source code untuk mengecek fungsionalitas fungsi tertentu.
+5. `pcolor` berisi modul yang dipakai untuk memberi pewarnaan pada text.
+6. `src` berisi fungsionalitas-fungsionalitas dan main program.
 
 ## Cara Instalasi dan Penggunaan Website
 1. Clone repository
     ```bash
     git clone https://github.com/aldwinhs/Mobita.git
     ```
-2. Masuk ke terminal dengan directory yang tepat, misalnya `.../mobita`
+2. Masuk ke terminal dengan directory tempat dilakukannya _clone repository_, misalnya `../mobita`
 ### Untuk sistem operasi Windows
-4. Pastikan GCC sudah terinstall, kemudian masukkan command `./makeFile.bat` pada terminal
+3. Pastikan gcc sudah terinstall, kemudian masukkan command `./makeFile.bat` pada terminal
 ### Untuk sistem operasi Linux
-4. Pastikan GCC sudah terinstall[(Cek di sini)](https://linuxize.com/post/how-to-install-gcc-compiler-on-ubuntu-18-04/), kemudian masukkan command `gcc src/*.c ADT/*.c pcolor/pcolor.c -o mobita` pada terminal
-5. Masukkan command `./mobita`
-6. Mulai permainan, dan masukkan nama file konfigurasi, misalnya `ayam.txt`
+3. Pastikan gcc sudah terinstall [(Cek di sini)](https://linuxize.com/post/how-to-install-gcc-compiler-on-ubuntu-18-04/), kemudian masukkan command `gcc src/*.c ADT/*.c pcolor/pcolor.c -o mobita` pada terminal
+4. Masukkan command `./mobita`
+5. Mulai permainan, dan masukkan nama file konfigurasi, misalnya `ayam.txt`
 
 ## Anggota Kelompok
-Program ini dibuat oleh Kelompok 3Maskethir yang beranggotakan:
+Program ini dibuat oleh Kelompok 5 K3 yang beranggotakan:
 1. Mahesa Lizardy (13520116)
 2. Gerald Abraham Sianturi (13520138)
 3. Rania Dwi Fadhilah (13520142)
