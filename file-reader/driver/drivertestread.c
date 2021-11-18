@@ -1,7 +1,8 @@
 
+
 #include<stdlib.h>
 #include<stdio.h>
-#include"../wordmachine.h"
+#include"../../ADT/wordmachine.h"
 
 
 
