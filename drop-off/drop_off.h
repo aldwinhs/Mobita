@@ -4,7 +4,7 @@
 #include "../ADT/tas.h"
 #include "../ADT/boolean.h"
 #include "../ADT/player.h"
-#include "ability.h"
+#include "../ability/ability.h"
 
 void dropOffItem(Player *p, Tas *S, Ability *T, Item *item);
 
