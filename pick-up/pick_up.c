@@ -1,7 +1,6 @@
 #include "pick_up.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "player.h"
 
 
 void pickUpItem(Tas *S, Item T)

@@ -3,7 +3,7 @@
 
 #include "../ADT/tas.h"
 #include "../ADT/boolean.h"
-#include "player.h"
+#include "../ADT/player.h"
 #include "ability.h"
 
 void dropOffItem(Player *p, Tas *S, Ability *T, Item *item);
