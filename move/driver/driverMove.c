@@ -17,7 +17,10 @@
 #include "../../map/map.c"
 #include "../move.h"
 #include "../move.c"
-
+#include "../../ADT/charmachine.h"
+#include "../../ADT/charmachine.c"
+#include "../../ADT/wordmachine.h"
+#include "../../ADT/wordmachine.c"
 
 int main() {
     MatrixMap mMap;
@@ -121,6 +124,7 @@ int main() {
     ELMTLD(mpoint, 17) = pq;
 
     boolean move=false;
+    startWord();
 
     printf("\n");
     printMap(mMap, p, m1, q, berisi2);
@@ -141,3 +145,4 @@ int main() {
 // cara pakai :
 // gcc driverMove.c
 // masukin matriks adjacency (copas dari spek)
+// input asal dulu sekali
