@@ -13,6 +13,11 @@ void useGadget(ListPos l, int n);
 /* I.S. List sudah terdefinisi dan masukan integer dianggap valid */
 /* F.S. Menuliskan bahwa nama suatu gadget berhasil digunakan ke layar. */
 
+/* *** Membeli Gadget *** */
+void buyGadget(ListPos l, int n);
+/* I.S. List sudah terdefinisi dan masukan integer dianggap valid */
+/* F.S. Menuliskan bahwa nama suatu gadget berhasil dibeli ke layar. */
+
 /* *** Print Informasi *** */
 /* Informasi Inventory */
 void printInventory(ListPos G);

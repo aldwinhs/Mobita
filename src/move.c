@@ -29,7 +29,7 @@ void MOVE(Player *p, Matrix mhub, ListDin mpoint, boolean *move){
     CreateListDin(&daftartujuan, 27);
     posisiMobita(p);
     daftarTujuan(p, mhub, mpoint, &daftartujuan, &jmlhlokasi);
-    printf("Posisi yang ingin dituju? (0 jika ingin membatalkan)\n");
+    printf("Posisi yang ingin dituju? (0 jika ingin membatalkan)\n\n");
     printf("ENTER COMMAND FOR MOVE : ");
     advWord();
     pilihan = takeNum(currentWord);

@@ -29,6 +29,24 @@ void useGadget(ListPos l, int n){
     }
 }
 
+/* *** Membeli Gadget *** */
+void buyGadget(ListPos l, int n){
+/* I.S. List sudah terdefinisi dan masukan integer dianggap valid */
+/* F.S. Menuliskan bahwa nama suatu gadget berhasil dibeli ke layar. */
+    if (n == 1) {
+        printf("Kain Pembungkus Waktu berhasil dibeli!\n");
+    }
+    if (n == 2) {
+        printf("Senter Pembesar berhasil dibeli!\n");
+    }
+    if (n == 3) {
+        printf("Pintu Kemana Saja berhasil dibeli!\n");
+    }
+    if (n == 4) {
+        printf("Mesin Waktu berhasil dibeli!\n");
+    }
+}
+
 /* *** Print Informasi *** */
 /* Informasi Inventory */
 void printInventory(ListPos g){

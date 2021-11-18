@@ -42,6 +42,7 @@ int main(){
     
     // Create
     createPlayer(&player);
+    MONEY(player) = 10000;
     CreateTas(&tas);
     CreateTas(&itemInConfig);
     CreateAbility(&ability);
@@ -99,15 +100,16 @@ int main(){
                 //Hapus Item Perishable yang hangus
                 PerishableTime(&tas, player, duration); //fungsi buat ngurangin waktu hangus + hapus kalo waktu hangus 0
             }
-            printf("Waktu saat ini: %d\n", TIME(player));
+            printf("Waktu saat ini: %d\n\n", TIME(player));
         }
         else if (isWordString(currentWord, "PICK_UP")){
             if (!isEmptyQ(daftaritem) && daftaritem.buffer[IDX_HEAD(daftaritem)].lokSrc == LOCC(POSISI(player))){
                 dequeue(&daftaritem, &buang);
                 pickUpItem(&tas, buang);
+                printf("\n");
             }
             else {
-                printf("Pesanan tidak ditemukan!\n");
+                printf("Pesanan tidak ditemukan!\n\n");
             }
         }
         else if (isWordString(currentWord, "DROP_OFF")){
@@ -115,15 +117,17 @@ int main(){
             // if (POSISI(*player).C == TOP(tas).lokDes[0]){
             if (LOCC(POSISI(player)) == TOP(tas).lokDes){
                 dropOffItem(&player, &tas, &ability, &items); 
+                printf("\n");
             }   
             else {
-                printf("Tidak dapat pesanan yang dapat diantarkan!\n");
+                printf("Tidak ada pesanan yang dapat diantarkan!\n\n");
             }
             // sudah ada mekanisme mendapat ability, price , efek heavy dll
         }
         else if (isWordString(currentWord, "MAP")){
             // printf("%d", nToDo);
             printMap(map, player, AdjMtrx, daftaritem, tas);
+            printf("\n");
             //printMap(map, player, AdjMtrx, currentToDo(&itemInConfig, TIME(player), nToDo), tas);
             // printf("Map berhasil \n");
             
@@ -144,15 +148,16 @@ int main(){
             // printf("%c -> %c", INFO(l))
             // printf("%c", )
             displayToDo(daftaritem, TIME(player));
-            
+            printf("\n");
             // printf("To Do berhasil \n");
         }
         else if (isWordString(currentWord, "IN_PROGRESS")){
             displayInProgr(tas);
+            printf("\n");
         }
         else if (isWordString(currentWord, "BUY")){
             if (LOCC(ELMTLD(daftarlokasi, 0)) != LOCC(POSISI(player))) {
-                printf("Command ini hanya dapat dipanggil ketika Anda berada di Headquarter!\n");
+                printf("Command ini hanya dapat dipanggil ketika Anda berada di Headquarter!\n\n");
                 continue;
             }
 
@@ -166,17 +171,18 @@ int main(){
             
             if (buy == 0) continue;
             else if ((buy >= 1) && (buy <= 4)){
-                if (MONEY(player) < gadgetPrice(buy)) printf("Uang tidak cukup untuk membeli gadget.\n");
+                if (MONEY(player) < gadgetPrice(buy)) printf("Uang tidak cukup untuk membeli gadget.\n\n");
                 else{
                     if (!isFullListLP(GADGET(player))) { 
                         insertLastLP(&GADGET(player), buy);
                         MONEY(player) -= gadgetPrice(buy);
-                		printf("\n");
+                		buyGadget(GADGET(player), buy);
+                        printf("\n");
                     }
-                    else printf("Inventory telah penuh! Gunakan gadget yang Anda miliki terlebih dahulu sebelum membeli gadget lain.\n");
+                    else printf("Inventory telah penuh! Gunakan gadget yang Anda miliki terlebih dahulu sebelum membeli gadget lain.\n\n");
                 }
             } else {
-                printf("Input yang Anda masukkan salah, silahkan ulangi kembali!\n");
+                printf("Input yang Anda masukkan salah, silahkan ulangi kembali!\n\n");
             	continue;
             }
         }
@@ -184,7 +190,7 @@ int main(){
             int inv;
             boolean keluar = false;
             printInventory(GADGET(player));
-            printf("\nENTER COMMAND FOR INVENTORY: ");
+            printf("ENTER COMMAND FOR INVENTORY: ");
             advWord();
             inv = takeNum(currentWord);
 
@@ -194,8 +200,8 @@ int main(){
                     ElType remove;
                     swapLast(&GADGET(player), inv); 
                     deleteLastLP(&GADGET(player), &remove);
-                    useGadget(GADGET(player), inv);
-                    printf("\n");
+                    if (inv != 1) useGadget(GADGET(player), inv);
+                    // printf("\n");
 
                     // Implementasi Gadget
                     // Kain Pembungkus Waktu
@@ -219,8 +225,10 @@ int main(){
                             }
                         }
 
-                        if (foundP == false) insertLastLP(&GADGET(player), 1);
-                    
+                        if (foundP == false) {
+                            insertLastLP(&GADGET(player), 1);
+                            printf("Tidak ada perishable item, silahkan gunakan di lain waktu!\n");
+                        } else useGadget(GADGET(player), inv);
                     }
                     // Senter Pembesar
                     else if (inv == 2){
@@ -228,6 +236,7 @@ int main(){
                         // Ini ada fungsi buat ganti kapasitas tas ga yaa?
                         if (tas.currCapacity * 2 <= CAPACITY_TAS) addCapTas(&tas, tas.currCapacity * 2);
                         else addCapTas(&tas, 100);
+                        printf("Kapasitas tas sekarang adalah %d\n", tas.currCapacity);
                     }
                     // Pintu Kemana Saja
                     else if (inv == 3){
@@ -245,18 +254,21 @@ int main(){
                     else if (inv == 4){
                         // Mengurangi unit waktu sebanyak 50
                         if (TIME(player) >= 50) changeTime(&player, (-50));
-                        else changeTime(&player, TIME(player));
+                        else changeTime(&player, -(TIME(player)));
+                        printf("Waktu saat ini: %d\n", TIME(player));
                     }
+                    printf("\n");
                 } else {
-                    printf("Tidak ada gadget yang dapat digunakan!\n");
+                    printf("Tidak ada gadget yang dapat digunakan!\n\n");
                 }
             } else {
-                printf("Input yang Anda masukkan salah, silahkan ulangi kembali!\n");
+                printf("Input yang Anda masukkan salah, silahkan ulangi kembali!\n\n");
             	continue;
             }
         }
         else if (isWordString(currentWord, "HELP")){
             help();
+            printf("\n");
         }else if (isWordString(currentWord, "EXIT")){
             printf("Apakah kamu yakin ingin keluar? (Y/N)\n");
             advWord();
@@ -270,7 +282,7 @@ int main(){
 
         if((LOCC(ELMTLD(daftarlokasi, 0)) == LOCC(POSISI(player))) &&  isEmptyQ(daftaritem) && isTasEmpty(tas)){
             congratulations();
-            // printf(jumlah item??)
+            printf("Jumlah item yang berhasil diantarkan : %d\n", nToDo);
             printf("Lama waktu permainan : %d\n", TIME(player));
             exit = true;
         }
