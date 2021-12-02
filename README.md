@@ -7,6 +7,8 @@ Fitur yang terdapat di dalam program :
 1. Melacak pesanan.
 2. Navigasi peta.
 3. _Pick_ up dan _drop off item_.
+
+
 Fitur non-bonus *completed*
 
 Folder yang terdapat di dalam program:
@@ -32,7 +34,7 @@ Folder yang terdapat di dalam program:
 
 ## Anggota Kelompok
 Program ini dibuat oleh Kelompok 5 K3 yang beranggotakan:
-1. Mahesa Lizardy (13520116) [Pick up, drop off, implementasi jenis dan ability item]
+1. Mahesa Lizardy (13520116) [Pick up, drop off, implementasi jenis dan ability item] 
 2. Gerald Abraham Sianturi (13520138) [To do list, in progress, help, dan mekanisme tas player]
 3. Rania Dwi Fadhilah (13520142) [Buy, inventory, implementasi efek gadget, dan mekanisme uang player]
 4. Jundan Haris (13520155) [Move, map, dan mekanisme waktu]

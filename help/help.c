@@ -8,11 +8,11 @@ void help() {
     printf("3. DROP_OFF\t -> Untuk mendrop off item di lokasi sekarang (Khusus item yang baru saja di pick up)\n");
     printf("4. MAP\t\t -> Untuk menampilka peta\n");
     printf("5. TO_DO\t -> Untuk menampilkan pesanan yang sudah bisa dilakukan pengambilannya (PICK_UP)\n");
-    printf("6. IN_PROGRESS\t -> Untuk menampilkan barang yang ada di tas dan siap untuk diantarkan");
+    printf("6. IN_PROGRESS\t -> Untuk menampilkan barang yang ada di tas dan siap untuk diantarkan\n");
     printf("7. BUY\t -> Untuk menampilkan gadget yang dapat kamu beli\n");
     printf("8. INVENTORY\t -> Untuk menampilkan gadget yang telah kamu beli dan siap dipakai\n");
     printf("9. HELP\t\t -> Untuk menampilkan list command dan kegunaannnya\n");
-	printf("9. EXIT\t\t -> Keluar dari permainan\n");
+	printf("10. EXIT\t\t -> Keluar dari permainan\n");
     // [TO DO] [OPSIONAL] printf("10. SAVE_GAME\t -> Untuk melakukan penyimpanan kondisi game sekarang untuk bisa dipakai kemudian\n");
 }
 
